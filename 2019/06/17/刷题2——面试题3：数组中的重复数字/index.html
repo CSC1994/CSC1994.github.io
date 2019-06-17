@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="《剑指offer》,python,">
 
 
 
@@ -79,16 +79,20 @@
 
 
 
-<meta name="description" content="Stay hngry, Stay foolish">
-<meta property="og:type" content="website">
-<meta property="og:title" content="咋家">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="题目： 找出数组中重复的数字  在一个长度为n的数组里的所有数字都在0~n-1的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次，请找出数组中任意一个重复的数字。例如，如果输入长度为7的数组{2,3,1,0,2,5,3}，那么对应的输出是重复的数字2或者3。 思路一：可以先把输入数组排序，然后从头到尾扫描排序后的数组就可以，不过排序一个长度为n的数组需要O(nl">
+<meta name="keywords" content="《剑指offer》,python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="刷题2——面试题3：数组中的重复数字">
+<meta property="og:url" content="http://yoursite.com/2019/06/17/刷题2——面试题3：数组中的重复数字/index.html">
 <meta property="og:site_name" content="咋家">
-<meta property="og:description" content="Stay hngry, Stay foolish">
+<meta property="og:description" content="题目： 找出数组中重复的数字  在一个长度为n的数组里的所有数字都在0~n-1的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次，请找出数组中任意一个重复的数字。例如，如果输入长度为7的数组{2,3,1,0,2,5,3}，那么对应的输出是重复的数字2或者3。 思路一：可以先把输入数组排序，然后从头到尾扫描排序后的数组就可以，不过排序一个长度为n的数组需要O(nl">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/images/%E5%92%8B%E5%AE%B6.png">
+<meta property="og:updated_time" content="2019-06-17T13:15:41.082Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="咋家">
-<meta name="twitter:description" content="Stay hngry, Stay foolish">
+<meta name="twitter:title" content="刷题2——面试题3：数组中的重复数字">
+<meta name="twitter:description" content="题目： 找出数组中重复的数字  在一个长度为n的数组里的所有数字都在0~n-1的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次，请找出数组中任意一个重复的数字。例如，如果输入长度为7的数组{2,3,1,0,2,5,3}，那么对应的输出是重复的数字2或者3。 思路一：可以先把输入数组排序，然后从头到尾扫描排序后的数组就可以，不过排序一个长度为n的数组需要O(nl">
+<meta name="twitter:image" content="http://yoursite.com/images/%E5%92%8B%E5%AE%B6.png">
 
 
 
@@ -118,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2019/06/17/刷题2——面试题3：数组中的重复数字/">
 
 
 
 
 
-  <title>咋家</title>
+  <title>刷题2——面试题3：数组中的重复数字 | 咋家</title>
   
 
 
@@ -143,8 +147,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -247,9 +250,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -279,9 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/17/刷题2——面试题3：数组中的重复数字/" itemprop="url">刷题2——面试题3：数组中的重复数字</a></h1>
+          <h1 class="post-title" itemprop="name headline">刷题2——面试题3：数组中的重复数字</h1>
         
 
         <div class="post-meta">
@@ -353,22 +354,25 @@
       
 
       
-        
-          
-          题目：
-找出数组中重复的数字
+        <h3 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h3><blockquote>
+<p>找出数组中重复的数字</p>
+</blockquote>
+<p>在一个长度为n的数组里的所有数字都在0~n-1的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次，请找出数组中任意一个重复的数字。例如，如果输入长度为7的数组{2,3,1,0,2,5,3}，那么对应的输出是重复的数字2或者3。</p>
+<h4 id="思路一："><a href="#思路一：" class="headerlink" title="思路一："></a>思路一：</h4><p>可以先把输入数组排序，然后从头到尾扫描排序后的数组就可以，不过排序一个长度为n的数组需要O(nlogn)的时间。</p>
+<h4 id="思路二："><a href="#思路二：" class="headerlink" title="思路二："></a>思路二：</h4><p>利用哈希表解决，从头到尾按顺序扫描数组，每扫描到一个数字，可以用O(1)的时间来判断哈希表里是否包含了该数字。若哈希表里没有这个数字，就将其加入，否则就找到一个重复的数字。这个算法时间复杂度为O(n)，不过需要一个空间大小为O(n)的哈希表。</p>
+<h4 id="思路三："><a href="#思路三：" class="headerlink" title="思路三："></a>思路三：</h4><p>首先注意到数组中的数字都在0~n-1的范围内，如果这个数组中没有重复的数字，那么数组排序之后数字i将出现在下表为i的位置，由于数组中有重复的数字，有些位置可能存在多个数字，同时有些位置可能没有数字。</p>
+<p>现在从头到尾扫描这个数组中的数字，当扫描到下标为i的数字时，首先比较这个数字（用m表示）是不是等于i。如果是，则接着扫描下一个数字；如果不是，则再拿它和第m个数字进行比较。如果它和第m个数字相等，就找到一个重复的数字（该数字再下标为i和m的位置都出现了）；如果它和第m个数字不想等，就把第i个数字和第m个数字交换，把m放到属于它的位置。接下来再重复这个比较、交换的过程，直到我们发现一个重复的数字。</p>
+<p>以数组{2,3,1,0,,2,5,3}为例来分析找到重复数字的步骤：</p>
+<p>数组的第0个元素为2，与它的下标不相等，于是把它和下标为2的数字1进行交换，得到数组{1,3,2,0,2,5,3}；</p>
+<p>此时第0个数字是1，仍然与它的下标不相等，继续把它和下标为1的数字3进行交换，得到数组{3,1,2,0,2,5,3};</p>
+<p>接下来继续交换第0个数字3和第3个数字0，得到数组{0,1,2,3,2,5,3}；</p>
+<p>此时第0个数字的数字为0，接着扫描下一个数字，在接下来的几个数字中，下标为1、2、3的三个数字分别为1、2、3，它们的下标和数值都相等，因此不必执行任何操作。</p>
+<p>接下来扫描到下标为4的数字2，由于它的数值与它的下标不想等，再比较它和下标为2的数字，二者相等，也就是数字2在下标为2和下标为4的两个位置都出现了，因此找到一个重复的数字。</p>
+<p>代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">FindDuplicate</span><span class="params">(nums)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> len(nums)&lt;=<span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">        <span class="keyword">if</span> nums[i]&lt;<span class="number">0</span> <span class="keyword">or</span> nums[i]&gt;len(nums)<span class="number">-1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">        <span class="keyword">while</span> nums[i] != i:</span><br><span class="line">            <span class="keyword">if</span> nums[i] ==nums[nums[i]]:</span><br><span class="line">                duplicate =nums[i]</span><br><span class="line">                <span class="keyword">return</span> duplicate</span><br><span class="line"></span><br><span class="line">            temp =nums[i]</span><br><span class="line">            nums[i] =nums[temp]</span><br><span class="line">            nums[temp] =temp</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span></span><br></pre></td></tr></table></figure>
 
-在一个长度为n的数组里的所有数字都在0~n-1的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次，请找出数组中任意一个重复的数字。例如，如果输入长度为7的数组{2,3,1,0,2,5,3}，那么对应的输出是重复的数字2或者3。
-思路
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/06/17/刷题2——面试题3：数组中的重复数字/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+<h5 id="更多精彩，关注“咋家”"><a href="#更多精彩，关注“咋家”" class="headerlink" title="更多精彩，关注“咋家”"></a>更多精彩，关注“咋家”</h5><p><img src="/images/%E5%92%8B%E5%AE%B6.png" alt></p>
+
       
     </div>
     
@@ -383,295 +387,38 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/17/刷题1——面试题2：实现Singlton模式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="廿十">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/author.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="咋家">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/17/刷题1——面试题2：实现Singlton模式/" itemprop="url">刷题1——面试题2：实现Singlton模式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-17T20:24:45+08:00">
-                2019-06-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/《剑指offer》刷题/" itemprop="url" rel="index">
-                    <span itemprop="name">《剑指offer》刷题</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/《剑指offer》/" rel="tag"># 《剑指offer》</a>
           
-
+            <a href="/tags/python/" rel="tag"># python</a>
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          
-          题目：
-设计一个类，我们只能生成该类的一个实例。
-
-首先，我们需要知道什么是单例模式（Singleton Pattern），这是一种常用的软件设计模式，该模式的主要目的是确保某一个类只有一个实例存在。也就是说，在整个系统中，只允许某个类出现一个实例。
-在python中，可以用多种方法来实现单例模式：
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/06/17/刷题1——面试题2：实现Singlton模式/#more" rel="contents">
-              Read more &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/17/刷题1——面试题2：实现Singlton模式/" rel="next" title="刷题1——面试题2：实现Singlton模式">
+                <i class="fa fa-chevron-left"></i> 刷题1——面试题2：实现Singlton模式
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/17/公式/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="廿十">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/author.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="咋家">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/06/17/公式/" itemprop="url">公式</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-17T20:17:24+08:00">
-                2019-06-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-          a_b$$a_b$$
-$$\int_{a}^{b}a*x^2$$
-$a_b$
-$$f(n)=\begin{cases}n/2, &amp; \text{if $n$ is even}\3n+1,&amp; \text{if $n$ is odd}\end{cases}$$实验 ‘ print() ‘
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/06/17/公式/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -681,10 +428,11 @@ $$f(n)=\begin{cases}n/2, &amp; \text{if $n$ is even}\3n+1,&amp; \text{if $n$ is 
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -692,6 +440,10 @@ $$f(n)=\begin{cases}n/2, &amp; \text{if $n$ is even}\3n+1,&amp; \text{if $n$ is 
 
 
           
+
+  
+
+
 
         </div>
         
@@ -712,8 +464,17 @@ $$f(n)=\begin{cases}n/2, &amp; \text{if $n$ is even}\3n+1,&amp; \text{if $n$ is 
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -791,6 +552,22 @@ $$f(n)=\begin{cases}n/2, &amp; \text{if $n$ is even}\3n+1,&amp; \text{if $n$ is 
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目："><span class="nav-number">1.</span> <span class="nav-text">题目：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路一："><span class="nav-number">1.1.</span> <span class="nav-text">思路一：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#思路二："><span class="nav-number">1.2.</span> <span class="nav-text">思路二：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#思路三："><span class="nav-number">1.3.</span> <span class="nav-text">思路三：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#更多精彩，关注“咋家”"><span class="nav-number">1.3.1.</span> <span class="nav-text">更多精彩，关注“咋家”</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -925,6 +702,10 @@ $$f(n)=\begin{cases}n/2, &amp; \text{if $n$ is even}\3n+1,&amp; \text{if $n$ is 
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
