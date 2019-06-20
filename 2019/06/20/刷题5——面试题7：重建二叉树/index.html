@@ -87,15 +87,15 @@
 <meta property="og:site_name" content="咋家">
 <meta property="og:description" content="题目： 输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如，输入前序遍历序列{1, 2, 4, 7, 3, 5, 6, 8}和中序遍历{4, 7, 2, 1, 5, 3, 8, 6}，则重建如下所示的二叉树并输出它的头节点。  二叉树节点定义如下： 12345class TreeNode:    def __init__(self,">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://pte3nz2ay.bkt.clouddn.com/FiUX4cJUcG7SIJL7nRSlzzeZGNCy">
-<meta property="og:image" content="http://pte3nz2ay.bkt.clouddn.com/FoJxdcFPfmwf-98mYv2Dt_b65Zdp">
-<meta property="og:image" content="http://pte3nz2ay.bkt.clouddn.com/FtgjLZdipCCRffwdAR_IZ2WZcfMq">
-<meta property="og:image" content="http://pte3nz2ay.bkt.clouddn.com/FvKJ3EAHGO9CSyCM71eZ3UE6jInF">
-<meta property="og:updated_time" content="2019-06-20T09:29:05.695Z">
+<meta property="og:image" content="https://cdn.sinaimg.cn.52ecy.cn/large/005BYqpgly1g47tlho5zmj306w07hglh.jpg">
+<meta property="og:image" content="https://cdn.sinaimg.cn.52ecy.cn/large/005BYqpgly1g47tma2zbpj307o02w744.jpg">
+<meta property="og:image" content="https://cdn.sinaimg.cn.52ecy.cn/large/005BYqpgly1g47tmqbcuxj307c02sdfo.jpg">
+<meta property="og:image" content="https://cdn.sinaimg.cn.52ecy.cn/large/005BYqpgly1g47tr83h5bj30bi06976v.jpg">
+<meta property="og:updated_time" content="2019-06-20T11:04:50.360Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="刷题5——面试题7：重建二叉树">
 <meta name="twitter:description" content="题目： 输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如，输入前序遍历序列{1, 2, 4, 7, 3, 5, 6, 8}和中序遍历{4, 7, 2, 1, 5, 3, 8, 6}，则重建如下所示的二叉树并输出它的头节点。  二叉树节点定义如下： 12345class TreeNode:    def __init__(self,">
-<meta name="twitter:image" content="http://pte3nz2ay.bkt.clouddn.com/FiUX4cJUcG7SIJL7nRSlzzeZGNCy">
+<meta name="twitter:image" content="https://cdn.sinaimg.cn.52ecy.cn/large/005BYqpgly1g47tlho5zmj306w07hglh.jpg">
 
 
 
@@ -364,16 +364,16 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        self.val =x</span><br><span class="line">        self.left =<span class="literal">None</span></span><br><span class="line">        self.right =<span class="literal">None</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>如上图所示，前序遍历序列的第一个数字1就是根节点的值，扫描中序遍历序列，就能确定根节点的值的位置，根据中序遍历的特点，在根节点的值1前面的3个数字都是左子树节点的值，位于1后面的数字都是右子树节点的值。</p>
-<p><img src="http://pte3nz2ay.bkt.clouddn.com/FiUX4cJUcG7SIJL7nRSlzzeZGNCy" alt></p>
+<p><img src="https://cdn.sinaimg.cn.52ecy.cn/large/005BYqpgly1g47tlho5zmj306w07hglh.jpg" alt></p>
 <p>由于在中序遍历序列中，有3个数字是左子树节点的值，因此左子树共有3个左子节点。同样，在前序遍历序列中，根节点后面的3个数字就是3个左子树节点的值，再后面的所有数字都是右子树节点的值。这样我们就在前序遍历和中序遍历两个序列中分别找到了左、右子树对应的子序列。</p>
 <p>前序遍历序列：</p>
-<p><img src="http://pte3nz2ay.bkt.clouddn.com/FoJxdcFPfmwf-98mYv2Dt_b65Zdp" alt></p>
+<p><img src="https://cdn.sinaimg.cn.52ecy.cn/large/005BYqpgly1g47tma2zbpj307o02w744.jpg" alt></p>
 <p>中序遍历序列：</p>
-<p><img src="http://pte3nz2ay.bkt.clouddn.com/FtgjLZdipCCRffwdAR_IZ2WZcfMq" alt></p>
+<p><img src="https://cdn.sinaimg.cn.52ecy.cn/large/005BYqpgly1g47tmqbcuxj307c02sdfo.jpg" alt></p>
 <p>找到了左、右子树的前序遍历和中序遍历序列，就可以用同样的方法分别构建左、右子树，接下来的事情可以用递归的方法完成。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">construct_tree</span><span class="params">(preorder =None, inorder =None)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> preorder <span class="keyword">or</span> <span class="keyword">not</span> inorder:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    </span><br><span class="line">    index =inorder.index(preorder[<span class="number">0</span>])</span><br><span class="line">    left =inorder[<span class="number">0</span>:index]</span><br><span class="line">    right =inorder[index+<span class="number">1</span>:]</span><br><span class="line">    root =TreeNode(preorder[<span class="number">0</span>])</span><br><span class="line">    root.left =construct_tree(preorder[<span class="number">1</span>:<span class="number">1</span>+len(left)], left)</span><br><span class="line">    root.right =construct_tree(preorder[-len(right):], right)</span><br><span class="line">    <span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>
 
-<h4 id="更多精彩，关注“咋家”"><a href="#更多精彩，关注“咋家”" class="headerlink" title="更多精彩，关注“咋家”"></a>更多精彩，关注“咋家”</h4><p><img src="http://pte3nz2ay.bkt.clouddn.com/FvKJ3EAHGO9CSyCM71eZ3UE6jInF" alt></p>
+<h4 id="更多精彩，关注“咋家”"><a href="#更多精彩，关注“咋家”" class="headerlink" title="更多精彩，关注“咋家”"></a>更多精彩，关注“咋家”</h4><p><img src="https://cdn.sinaimg.cn.52ecy.cn/large/005BYqpgly1g47tr83h5bj30bi06976v.jpg" alt></p>
 
       
     </div>
