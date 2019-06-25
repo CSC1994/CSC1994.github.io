@@ -79,23 +79,20 @@
 
 
 
-<meta name="description" content="题目： 输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如，输入前序遍历序列{1, 2, 4, 7, 3, 5, 6, 8}和中序遍历{4, 7, 2, 1, 5, 3, 8, 6}，则重建如下所示的二叉树并输出它的头节点。  二叉树节点定义如下： 12345class TreeNode:    def __init__(self,">
+<meta name="description" content="题目： 请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一格开始，每一步可以在矩阵中向左、右、上、下移动一格。如果一条路径经过了矩阵的某一格，那么该路径不能再次进入该格子。例如，在下面的3×4的矩阵中包含一条字符串“bfce”的路径（路径中的字母用下划线标出）。但矩阵中不包含字符串“abfb”的路径，因为字符串的第一个字符b占据了矩阵中的第一行第二">
 <meta name="keywords" content="《剑指offer》,python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="刷题5——面试题7：重建二叉树">
-<meta property="og:url" content="http://yoursite.com/2019/06/20/刷题5——面试题7：重建二叉树/index.html">
+<meta property="og:title" content="刷题8——面试题12：矩阵中的路径">
+<meta property="og:url" content="http://yoursite.com/2019/06/24/刷题8——面试题12：矩阵中的路径/index.html">
 <meta property="og:site_name" content="咋家">
-<meta property="og:description" content="题目： 输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如，输入前序遍历序列{1, 2, 4, 7, 3, 5, 6, 8}和中序遍历{4, 7, 2, 1, 5, 3, 8, 6}，则重建如下所示的二叉树并输出它的头节点。  二叉树节点定义如下： 12345class TreeNode:    def __init__(self,">
+<meta property="og:description" content="题目： 请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一格开始，每一步可以在矩阵中向左、右、上、下移动一格。如果一条路径经过了矩阵的某一格，那么该路径不能再次进入该格子。例如，在下面的3×4的矩阵中包含一条字符串“bfce”的路径（路径中的字母用下划线标出）。但矩阵中不包含字符串“abfb”的路径，因为字符串的第一个字符b占据了矩阵中的第一行第二">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://cdn.sinaimg.cn.52ecy.cn/large/005BYqpgly1g47tlho5zmj306w07hglh.jpg">
-<meta property="og:image" content="https://cdn.sinaimg.cn.52ecy.cn/large/005BYqpgly1g47tma2zbpj307o02w744.jpg">
-<meta property="og:image" content="https://cdn.sinaimg.cn.52ecy.cn/large/005BYqpgly1g47tmqbcuxj307c02sdfo.jpg">
-<meta property="og:image" content="https://cdn.sinaimg.cn.52ecy.cn/large/005BYqpgly1g47tr83h5bj30bi06976v.jpg">
-<meta property="og:updated_time" content="2019-06-22T02:04:26.108Z">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g491vnwsy7j30bi06976v.jpg">
+<meta property="og:updated_time" content="2019-06-23T02:05:52.457Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="刷题5——面试题7：重建二叉树">
-<meta name="twitter:description" content="题目： 输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如，输入前序遍历序列{1, 2, 4, 7, 3, 5, 6, 8}和中序遍历{4, 7, 2, 1, 5, 3, 8, 6}，则重建如下所示的二叉树并输出它的头节点。  二叉树节点定义如下： 12345class TreeNode:    def __init__(self,">
-<meta name="twitter:image" content="https://cdn.sinaimg.cn.52ecy.cn/large/005BYqpgly1g47tlho5zmj306w07hglh.jpg">
+<meta name="twitter:title" content="刷题8——面试题12：矩阵中的路径">
+<meta name="twitter:description" content="题目： 请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一格开始，每一步可以在矩阵中向左、右、上、下移动一格。如果一条路径经过了矩阵的某一格，那么该路径不能再次进入该格子。例如，在下面的3×4的矩阵中包含一条字符串“bfce”的路径（路径中的字母用下划线标出）。但矩阵中不包含字符串“abfb”的路径，因为字符串的第一个字符b占据了矩阵中的第一行第二">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g491vnwsy7j30bi06976v.jpg">
 
 
 
@@ -125,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/06/20/刷题5——面试题7：重建二叉树/">
+  <link rel="canonical" href="http://yoursite.com/2019/06/24/刷题8——面试题12：矩阵中的路径/">
 
 
 
 
 
-  <title>刷题5——面试题7：重建二叉树 | 咋家</title>
+  <title>刷题8——面试题12：矩阵中的路径 | 咋家</title>
   
 
 
@@ -268,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/20/刷题5——面试题7：重建二叉树/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/24/刷题8——面试题12：矩阵中的路径/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="廿十">
@@ -285,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">刷题5——面试题7：重建二叉树</h1>
+          <h1 class="post-title" itemprop="name headline">刷题8——面试题12：矩阵中的路径</h1>
         
 
         <div class="post-meta">
@@ -297,8 +294,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-20T09:17:43+08:00">
-                2019-06-20
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-24T09:17:43+08:00">
+                2019-06-24
               </time>
             
 
@@ -358,22 +355,23 @@
 
       
         <h3 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h3><blockquote>
-<p>输入某二叉树的前序遍历和中序遍历的结果，请重建该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如，输入前序遍历序列{1, 2, 4, 7, 3, 5, 6, 8}和中序遍历{4, 7, 2, 1, 5, 3, 8, 6}，则重建如下所示的二叉树并输出它的头节点。</p>
+<p>请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一格开始，每一步可以在矩阵中向左、右、上、下移动一格。如果一条路径经过了矩阵的某一格，那么该路径不能再次进入该格子。例如，在下面的3×4的矩阵中包含一条字符串“bfce”的路径（路径中的字母用下划线标出）。但矩阵中不包含字符串“abfb”的路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入这个格子。</p>
 </blockquote>
-<p>二叉树节点定义如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        self.val =x</span><br><span class="line">        self.left =<span class="literal">None</span></span><br><span class="line">        self.right =<span class="literal">None</span></span><br></pre></td></tr></table></figure>
+<p>$$<br>\begin{matrix}<br>a &amp; \underline{b}  &amp; t &amp; g \\ 
+ c&amp;\underline{f}  &amp; \underline{c} &amp;s \\ 
+j &amp; d &amp;\underline{e}  &amp; h<br>\end{matrix}<br>$$</p>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>这是一个可以用回溯法解决的典型题。</p>
+<p>回溯法非常适合由多个步骤组成的问题，并且每个步骤都有多个选项。当我们在某一步选择了其中一个选项时，就进入下一步，然后又面临新的选项，就这样重复选择，直至到达最终的状态。</p>
+<p>用回溯法解决的问题的所有选项可以形象的用树状结构表示。在某一步有n个可能的选项，那么该步骤可以看成是树状结构中的一个节点，每个选项看成树中节点连接线，经过这些连接线到达该节点的n个子节点。树的叶节点对应着终结状态。如果在叶节点的状态满足题目的约束条件，那么我们找到一个可行的解决方案。</p>
+<p>如果在叶节点的状态不满足约束条件，那么只好回溯到它的上一个节点再尝试其它的选项。如果上一个节点所有可能的选项都已经试过，并且不能到达满足约束条件的终结状态，则再次回溯到上一个节点。如果节点的所有选项都已经尝试过仍然不能到达满足约束条件的终结状态，则该问题无解。</p>
+<p>下面我们来看这个例题。由于矩阵的第一行第二个字母’b’和路径’bfce’的第一个字符相等，我们就从这里开始分析。根据题目要求，我们此时有3个选项，分别是向左到达字母‘a’、向右到达字母‘t’、向下到达字母‘f’。我们先尝试选项‘a’，由于此时不可能得到路径‘bfce’，因此不得不回到节点‘b’尝试下一个选项’t’。同样，经过节点‘t’也不可能得到路径’bfce’，因此再次回到节点‘b’尝试下一个选项t。</p>
+<p>在节点f我们也有3个选项，向左、向右都能到达字母c、向下到达字母d。我们先选择向左到达字母c，此时只有一个选择，即向下到达字母j，不满足题目约束条件，因此回到上一个节点左边的节点c，注意到左边的节点c的所有选项都已经尝试过，因此只好再回溯到上一个节点f并尝试它的下一个选项，即向右到达节点c。</p>
+<p>在右边的节点c我们有两个选择，即向右到达节点s，或者向下到达节点e，由于节点s不可能找到满足条件的路径，我们再选择节点e，此时路径上的字母刚好组成字符串bfce，满足题目约束条件，因此找到符合要求的解决方案。</p>
+<p>通常回溯法算法适合用递归实现代码，当我们到达某一个节点时，尝试所有可能的选项并在满足条件的前提下递归的抵达下一个节点。</p>
+<p>综上，代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hasPath</span><span class="params">( matrix, rows, cols, path)</span>:</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> matrix <span class="keyword">and</span> rows &lt;<span class="number">1</span> <span class="keyword">and</span> cols &lt;<span class="number">1</span> <span class="keyword">and</span> <span class="keyword">not</span> path:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    </span><br><span class="line">    visited =[<span class="number">0</span>]*len(matrix) <span class="comment">#创建标识矩阵</span></span><br><span class="line">    pathlength =<span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> range(rows):</span><br><span class="line">        <span class="keyword">for</span> col <span class="keyword">in</span> range(cols):</span><br><span class="line">            <span class="keyword">if</span> hasPathCore(matrix, rows, cols, row, col, path, pathlength, visited):</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hasPathCore</span><span class="params">(matrix, rows, cols, row, col, path, pathlength, visited)</span>:</span></span><br><span class="line">    <span class="comment">#说明找到路径，返回True</span></span><br><span class="line">    <span class="keyword">if</span> len(path) ==pathlength:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    </span><br><span class="line">    haspath =<span class="literal">False</span></span><br><span class="line">    <span class="keyword">if</span> row &gt;=<span class="number">0</span> <span class="keyword">and</span> row &lt;rows <span class="keyword">and</span> col &gt;=<span class="number">0</span> <span class="keyword">and</span> col &lt;cols <span class="keyword">and</span> matrix[row*cols+col]==path[pathlength] <span class="keyword">and</span> <span class="keyword">not</span> visited[row*cols+col]:</span><br><span class="line">        pathlength +=<span class="number">1</span></span><br><span class="line">        visited[row*cols+col] =<span class="literal">True</span></span><br><span class="line">        <span class="comment">#进行该值上下左右递归</span></span><br><span class="line">        haspath =hasPathCore(matrix, rows, cols, row<span class="number">-1</span>, col, path, pathlength, visited) \</span><br><span class="line">                <span class="keyword">or</span> hasPathCore(matrix, rows, cols, row, col<span class="number">-1</span>, path, pathlength, visited) \</span><br><span class="line">                <span class="keyword">or</span> hasPathCore(matrix, rows, cols, row+<span class="number">1</span>, col, path, pathlength, visited) \</span><br><span class="line">                <span class="keyword">or</span> hasPathCore(matrix, rows, cols, row, col+<span class="number">1</span>, path, pathlength, visited)</span><br><span class="line">                </span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> haspath:</span><br><span class="line">            pathlength -=<span class="number">1</span></span><br><span class="line">            visited[row*cols+col] =<span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> haspath</span><br><span class="line"></span><br><span class="line">print(hasPath(<span class="string">'abtgcfcsjdeh'</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="string">'bfce'</span>)) <span class="comment">#True</span></span><br><span class="line">print(hasPath(<span class="string">'abtgcfcsjdeh'</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="string">'abfb'</span>)) <span class="comment">#False</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>如上图所示，前序遍历序列的第一个数字1就是根节点的值，扫描中序遍历序列，就能确定根节点的值的位置，根据中序遍历的特点，在根节点的值1前面的3个数字都是左子树节点的值，位于1后面的数字都是右子树节点的值。</p>
-<p><img src="https://cdn.sinaimg.cn.52ecy.cn/large/005BYqpgly1g47tlho5zmj306w07hglh.jpg" alt></p>
-<p>由于在中序遍历序列中，有3个数字是左子树节点的值，因此左子树共有3个左子节点。同样，在前序遍历序列中，根节点后面的3个数字就是3个左子树节点的值，再后面的所有数字都是右子树节点的值。这样我们就在前序遍历和中序遍历两个序列中分别找到了左、右子树对应的子序列。</p>
-<p>前序遍历序列：</p>
-<p><img src="https://cdn.sinaimg.cn.52ecy.cn/large/005BYqpgly1g47tma2zbpj307o02w744.jpg" alt></p>
-<p>中序遍历序列：</p>
-<p><img src="https://cdn.sinaimg.cn.52ecy.cn/large/005BYqpgly1g47tmqbcuxj307c02sdfo.jpg" alt></p>
-<p>找到了左、右子树的前序遍历和中序遍历序列，就可以用同样的方法分别构建左、右子树，接下来的事情可以用递归的方法完成。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">construct_tree</span><span class="params">(preorder =None, inorder =None)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> preorder <span class="keyword">or</span> <span class="keyword">not</span> inorder:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    </span><br><span class="line">    index =inorder.index(preorder[<span class="number">0</span>])</span><br><span class="line">    left =inorder[<span class="number">0</span>:index]</span><br><span class="line">    right =inorder[index+<span class="number">1</span>:]</span><br><span class="line">    root =TreeNode(preorder[<span class="number">0</span>])</span><br><span class="line">    root.left =construct_tree(preorder[<span class="number">1</span>:<span class="number">1</span>+len(left)], left)</span><br><span class="line">    root.right =construct_tree(preorder[-len(right):], right)</span><br><span class="line">    <span class="keyword">return</span> root</span><br></pre></td></tr></table></figure>
-
-<h4 id="更多精彩，关注“咋家”"><a href="#更多精彩，关注“咋家”" class="headerlink" title="更多精彩，关注“咋家”"></a>更多精彩，关注“咋家”</h4><p><img src="https://cdn.sinaimg.cn.52ecy.cn/large/005BYqpgly1g47tr83h5bj30bi06976v.jpg" alt></p>
+<h4 id="更多精彩，关注“咋家”"><a href="#更多精彩，关注“咋家”" class="headerlink" title="更多精彩，关注“咋家”"></a>更多精彩，关注“咋家”</h4><p><img src="http://ww1.sinaimg.cn/large/005xDMfSly1g491vnwsy7j30bi06976v.jpg" alt></p>
 
       
     </div>
@@ -406,8 +404,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/19/刷题4——面试题6：从头到尾打印链表/" rel="next" title="刷题4——面试题6：从尾到头打印链表">
-                <i class="fa fa-chevron-left"></i> 刷题4——面试题6：从尾到头打印链表
+              <a href="/2019/06/23/刷题7——面试题11：旋转数组的最小数字/" rel="next" title="刷题7——面试题11：旋转数组的最小数字">
+                <i class="fa fa-chevron-left"></i> 刷题7——面试题11：旋转数组的最小数字
               </a>
             
           </div>
@@ -416,8 +414,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/06/21/写给二十五/" rel="prev" title="写给二十五">
-                写给二十五 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/06/25/刷题9——面试题13：机器人的运动范围/" rel="prev" title="刷题9——面试题13：机器人的运动范围">
+                刷题9——面试题13：机器人的运动范围 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
