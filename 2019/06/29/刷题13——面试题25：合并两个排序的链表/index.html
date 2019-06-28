@@ -79,20 +79,21 @@
 
 
 
-<meta name="description" content="题目： 地上有一个m行n列的方格。一个机器人从坐标(0, 0) 的格子开始移动，它每次可以向左、右、上、下移动一格，但不能进入行坐标和列坐标的数位之和大于k的格子。例如，当k为18时，机器人能够进入方格(35, 37)，因为3+5+3+7=18。但它不能进入方格(35, 38)，因为3+5+3+8=19。请问该机器人能够到达多少个格子？  思路：和面试题12类似，这个方格也可以看作一个m×n的矩阵">
+<meta name="description" content="题目： 输入两个递增排序的链表，合并这两个链表并使新链表中的节点仍然是递增排序的。如下图所示的链表1和链表2，得到合并后的升序链表3。   思路：我们从合并两个链表的头节点开始分析，链表1的头节点的值小于链表2的头节点的值，因此链表1的头节点将是合并后链表的头节点。 我们继续合并两个链表中剩余的节点，在两个链表中剩下的节点依然是排序的，因此合并这两个链表的步骤和前面的步骤是一样的，还是比较两个头节">
 <meta name="keywords" content="《剑指offer》,python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="刷题9——面试题13：机器人的运动范围">
-<meta property="og:url" content="http://yoursite.com/2019/06/25/刷题9——面试题13：机器人的运动范围/index.html">
+<meta property="og:title" content="刷题13——面试题25：合并两个排序的链表">
+<meta property="og:url" content="http://yoursite.com/2019/06/29/刷题13——面试题25：合并两个排序的链表/index.html">
 <meta property="og:site_name" content="咋家">
-<meta property="og:description" content="题目： 地上有一个m行n列的方格。一个机器人从坐标(0, 0) 的格子开始移动，它每次可以向左、右、上、下移动一格，但不能进入行坐标和列坐标的数位之和大于k的格子。例如，当k为18时，机器人能够进入方格(35, 37)，因为3+5+3+7=18。但它不能进入方格(35, 38)，因为3+5+3+8=19。请问该机器人能够到达多少个格子？  思路：和面试题12类似，这个方格也可以看作一个m×n的矩阵">
+<meta property="og:description" content="题目： 输入两个递增排序的链表，合并这两个链表并使新链表中的节点仍然是递增排序的。如下图所示的链表1和链表2，得到合并后的升序链表3。   思路：我们从合并两个链表的头节点开始分析，链表1的头节点的值小于链表2的头节点的值，因此链表1的头节点将是合并后链表的头节点。 我们继续合并两个链表中剩余的节点，在两个链表中剩下的节点依然是排序的，因此合并这两个链表的步骤和前面的步骤是一样的，还是比较两个头节">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g4gkc5dryhj30hm066mx2.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g491vnwsy7j30bi06976v.jpg">
-<meta property="og:updated_time" content="2019-06-25T00:30:51.269Z">
+<meta property="og:updated_time" content="2019-06-28T00:59:34.413Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="刷题9——面试题13：机器人的运动范围">
-<meta name="twitter:description" content="题目： 地上有一个m行n列的方格。一个机器人从坐标(0, 0) 的格子开始移动，它每次可以向左、右、上、下移动一格，但不能进入行坐标和列坐标的数位之和大于k的格子。例如，当k为18时，机器人能够进入方格(35, 37)，因为3+5+3+7=18。但它不能进入方格(35, 38)，因为3+5+3+8=19。请问该机器人能够到达多少个格子？  思路：和面试题12类似，这个方格也可以看作一个m×n的矩阵">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g491vnwsy7j30bi06976v.jpg">
+<meta name="twitter:title" content="刷题13——面试题25：合并两个排序的链表">
+<meta name="twitter:description" content="题目： 输入两个递增排序的链表，合并这两个链表并使新链表中的节点仍然是递增排序的。如下图所示的链表1和链表2，得到合并后的升序链表3。   思路：我们从合并两个链表的头节点开始分析，链表1的头节点的值小于链表2的头节点的值，因此链表1的头节点将是合并后链表的头节点。 我们继续合并两个链表中剩余的节点，在两个链表中剩下的节点依然是排序的，因此合并这两个链表的步骤和前面的步骤是一样的，还是比较两个头节">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g4gkc5dryhj30hm066mx2.jpg">
 
 
 
@@ -122,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/06/25/刷题9——面试题13：机器人的运动范围/">
+  <link rel="canonical" href="http://yoursite.com/2019/06/29/刷题13——面试题25：合并两个排序的链表/">
 
 
 
 
 
-  <title>刷题9——面试题13：机器人的运动范围 | 咋家</title>
+  <title>刷题13——面试题25：合并两个排序的链表 | 咋家</title>
   
 
 
@@ -265,7 +266,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/25/刷题9——面试题13：机器人的运动范围/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/29/刷题13——面试题25：合并两个排序的链表/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="廿十">
@@ -282,7 +283,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">刷题9——面试题13：机器人的运动范围</h1>
+          <h1 class="post-title" itemprop="name headline">刷题13——面试题25：合并两个排序的链表</h1>
         
 
         <div class="post-meta">
@@ -294,8 +295,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-25T09:17:43+08:00">
-                2019-06-25
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-29T09:17:43+08:00">
+                2019-06-29
               </time>
             
 
@@ -355,12 +356,18 @@
 
       
         <h3 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h3><blockquote>
-<p>地上有一个m行n列的方格。一个机器人从坐标(0, 0) 的格子开始移动，它每次可以向左、右、上、下移动一格，但不能进入行坐标和列坐标的数位之和大于k的格子。例如，当k为18时，机器人能够进入方格(35, 37)，因为3+5+3+7=18。但它不能进入方格(35, 38)，因为3+5+3+8=19。请问该机器人能够到达多少个格子？</p>
+<p>输入两个递增排序的链表，合并这两个链表并使新链表中的节点仍然是递增排序的。如下图所示的链表1和链表2，得到合并后的升序链表3。</p>
 </blockquote>
-<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>和面试题12类似，这个方格也可以看作一个m×n的矩阵。同样，在这个矩阵中，除边界上的格子外，其它格子都有4个相邻的格子。</p>
-<p>机器人从坐标(0, 0)开始移动。当它准备进入坐标为(i, j)的格子时，通过检查坐标的数位和来判断机器人是否能够进入。如果机器人能够进入坐标为(i, j)的格子，则再判断它能否进入4个相邻的格子(i, j-1)、(i-1, j)、(i, j+1)和(i+1, j)。</p>
-<p>综上，代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">movingCount</span><span class="params">(threshold, rows, cols)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> threshold &lt;<span class="number">0</span> <span class="keyword">or</span> rows &lt;<span class="number">0</span> <span class="keyword">or</span> cols &lt;<span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    visited =[<span class="literal">False</span>]*(rows*cols)</span><br><span class="line">    count =movingCountCore(threshold, rows, cols, <span class="number">0</span>, <span class="number">0</span>, visited)</span><br><span class="line">    <span class="keyword">return</span> count</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">movingCountCore</span><span class="params">(threshold, rows, cols, row, col, visited)</span>:</span></span><br><span class="line">    count =<span class="number">0</span></span><br><span class="line">    <span class="keyword">if</span> check(threshold, rows, cols, row, col, visited):</span><br><span class="line">        visited[row*cols+col] =<span class="literal">True</span></span><br><span class="line">        count =<span class="number">1</span> +movingCountCore(threshold, rows, cols, row<span class="number">-1</span>, col, visited) \</span><br><span class="line">        		+movingCountCore(threshold, rows, cols, row, col<span class="number">-1</span>, visited) \</span><br><span class="line">            	+movingCountCore(threshold, rows, cols, row+<span class="number">1</span>, col, visited) \</span><br><span class="line">                +movingCountCore(threshold, rows, cols, row, col+<span class="number">1</span>, visited)</span><br><span class="line">    <span class="keyword">return</span> count</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">check</span><span class="params">(threshold, rows, cols, row, col, visited)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> row&gt;=<span class="number">0</span> <span class="keyword">and</span> row&lt;rows <span class="keyword">and</span> col&gt;=<span class="number">0</span> <span class="keyword">and</span> col&lt;cols <span class="keyword">and</span> getDigitSum(row)+getDigitSum(col)&lt;=threshold <span class="keyword">and</span> <span class="keyword">not</span> visited[row*cols+col]:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getDigitSum</span><span class="params">(number)</span>:</span></span><br><span class="line">    sum =<span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> number&gt;<span class="number">0</span>:</span><br><span class="line">        sum += number%<span class="number">10</span></span><br><span class="line">        number /=<span class="number">10</span></span><br><span class="line">        </span><br><span class="line">    <span class="keyword">return</span> sum</span><br><span class="line"></span><br><span class="line">print(movingCount(<span class="number">5</span>,<span class="number">2</span>,<span class="number">3</span>))  <span class="comment">#6</span></span><br><span class="line">print(movingCount(<span class="number">18</span>,<span class="number">38</span>,<span class="number">38</span>))  <span class="comment">#1276</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/005xDMfSly1g4gkc5dryhj30hm066mx2.jpg" alt></p>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>我们从合并两个链表的头节点开始分析，链表1的头节点的值小于链表2的头节点的值，因此链表1的头节点将是合并后链表的头节点。</p>
+<p>我们继续合并两个链表中剩余的节点，在两个链表中剩下的节点依然是排序的，因此合并这两个链表的步骤和前面的步骤是一样的，还是比较两个头节点的值。此时链表2的头节点的值小于链表1的头节点的值，因此链表2的头节点的值将是合并剩余节点得到的链表的头节点。我们把这个节点和前面合并链表时得到的链表的尾节点链接起来。</p>
+<p>当我们得到两个链表中值较小的头节点并把它链接到已经合并的链表之后，两个链表剩余的节点依然是排序的，因此合并的步骤和之前的步骤是一样的。这就是典型的递归过程，可以定义递归函数完成这一过程。</p>
+<p>在完成上面过程的同时，我们要考虑空链表的情况。当第一个链表是空链表时，将它和第二个链表合并将得到第二个链表，反之，第二个链表为空时，合并将得到第一个链表。</p>
+<p>综上，python代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListNode</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        self.val =x</span><br><span class="line">        self.next =<span class="literal">None</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge_link</span><span class="params">(head1, head2)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> head1:</span><br><span class="line">        <span class="keyword">return</span> head2</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> head2:</span><br><span class="line">        <span class="keyword">return</span> head1</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> head1.val &lt;=head2.val:</span><br><span class="line">        ret =head1</span><br><span class="line">        ret.next =merge_link(head1.next, head2)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        ret =head2</span><br><span class="line">        ret.next =merge_link(head1, head2.next)</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">return</span> ret</span><br></pre></td></tr></table></figure>
+
+<p>java代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListNode</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    ListNode next =<span class="keyword">null</span>;</span><br><span class="line">    </span><br><span class="line">    ListNode(<span class="keyword">int</span> val)&#123;</span><br><span class="line">        <span class="keyword">this</span>.val =val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">Merge</span><span class="params">(ListNode list1, ListNode list2)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (list1 ==<span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> list2;</span><br><span class="line">        <span class="keyword">if</span> (list2 ==<span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> list1;</span><br><span class="line">        </span><br><span class="line">        ListNode list0 =<span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (list1.val &lt;=list2.val)&#123;</span><br><span class="line">            list0 =list1;</span><br><span class="line">            list0.next =Merge(list1.next, list2);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            list0 =list2;</span><br><span class="line">            list0.next =merge(list1, list2.next);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> list0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="更多精彩，关注“咋家”"><a href="#更多精彩，关注“咋家”" class="headerlink" title="更多精彩，关注“咋家”"></a>更多精彩，关注“咋家”</h4><p><img src="http://ww1.sinaimg.cn/large/005xDMfSly1g491vnwsy7j30bi06976v.jpg" alt></p>
 
@@ -395,8 +402,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/24/刷题8——面试题12：矩阵中的路径/" rel="next" title="刷题8——面试题12：矩阵中的路径">
-                <i class="fa fa-chevron-left"></i> 刷题8——面试题12：矩阵中的路径
+              <a href="/2019/06/28/刷题12——面试题23：链表中环的入口节点/" rel="next" title="刷题12——面试题23：链表中环的入口节点">
+                <i class="fa fa-chevron-left"></i> 刷题12——面试题23：链表中环的入口节点
               </a>
             
           </div>
@@ -404,10 +411,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/06/26/刷题10——面试题14：剪绳子/" rel="prev" title="刷题10——面试题14：剪绳子">
-                刷题10——面试题14：剪绳子 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
