@@ -79,21 +79,21 @@
 
 
 
-<meta name="description" content="题目： 输入两个递增排序的链表，合并这两个链表并使新链表中的节点仍然是递增排序的。如下图所示的链表1和链表2，得到合并后的升序链表3。   思路：我们从合并两个链表的头节点开始分析，链表1的头节点的值小于链表2的头节点的值，因此链表1的头节点将是合并后链表的头节点。 我们继续合并两个链表中剩余的节点，在两个链表中剩下的节点依然是排序的，因此合并这两个链表的步骤和前面的步骤是一样的，还是比较两个头节">
+<meta name="description" content="题目： 输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历结果。如果是则返回true，否则返回false。假设输入的数组任意两个数字都互不相同。例如，输入数组{5，7，6，9，11，10，8}，返回true，因为这个整数序列是下图二叉搜索树的后序遍历结果。如果输入的数组是{7，4，6，5}，则由于没有哪棵二叉搜索树的后续遍历结果是这个序列，因此返回false。   思路：在后序遍历得到的序列">
 <meta name="keywords" content="《剑指offer》,python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="刷题13——面试题25：合并两个排序的链表">
-<meta property="og:url" content="http://yoursite.com/2019/06/29/刷题13——面试题25：合并两个排序的链表/index.html">
+<meta property="og:title" content="刷题17——面试题33：二叉搜索树的后续遍历序列">
+<meta property="og:url" content="http://yoursite.com/2019/07/03/刷题17——面试题33：二叉搜索树的后续遍历序列/index.html">
 <meta property="og:site_name" content="咋家">
-<meta property="og:description" content="题目： 输入两个递增排序的链表，合并这两个链表并使新链表中的节点仍然是递增排序的。如下图所示的链表1和链表2，得到合并后的升序链表3。   思路：我们从合并两个链表的头节点开始分析，链表1的头节点的值小于链表2的头节点的值，因此链表1的头节点将是合并后链表的头节点。 我们继续合并两个链表中剩余的节点，在两个链表中剩下的节点依然是排序的，因此合并这两个链表的步骤和前面的步骤是一样的，还是比较两个头节">
+<meta property="og:description" content="题目： 输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历结果。如果是则返回true，否则返回false。假设输入的数组任意两个数字都互不相同。例如，输入数组{5，7，6，9，11，10，8}，返回true，因为这个整数序列是下图二叉搜索树的后序遍历结果。如果输入的数组是{7，4，6，5}，则由于没有哪棵二叉搜索树的后续遍历结果是这个序列，因此返回false。   思路：在后序遍历得到的序列">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g4gkc5dryhj30hm066mx2.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g4l6qb6lvyj305w03ejr6.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g491vnwsy7j30bi06976v.jpg">
-<meta property="og:updated_time" content="2019-06-28T00:59:34.413Z">
+<meta property="og:updated_time" content="2019-07-02T01:15:59.863Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="刷题13——面试题25：合并两个排序的链表">
-<meta name="twitter:description" content="题目： 输入两个递增排序的链表，合并这两个链表并使新链表中的节点仍然是递增排序的。如下图所示的链表1和链表2，得到合并后的升序链表3。   思路：我们从合并两个链表的头节点开始分析，链表1的头节点的值小于链表2的头节点的值，因此链表1的头节点将是合并后链表的头节点。 我们继续合并两个链表中剩余的节点，在两个链表中剩下的节点依然是排序的，因此合并这两个链表的步骤和前面的步骤是一样的，还是比较两个头节">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g4gkc5dryhj30hm066mx2.jpg">
+<meta name="twitter:title" content="刷题17——面试题33：二叉搜索树的后续遍历序列">
+<meta name="twitter:description" content="题目： 输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历结果。如果是则返回true，否则返回false。假设输入的数组任意两个数字都互不相同。例如，输入数组{5，7，6，9，11，10，8}，返回true，因为这个整数序列是下图二叉搜索树的后序遍历结果。如果输入的数组是{7，4，6，5}，则由于没有哪棵二叉搜索树的后续遍历结果是这个序列，因此返回false。   思路：在后序遍历得到的序列">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g4l6qb6lvyj305w03ejr6.jpg">
 
 
 
@@ -123,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/06/29/刷题13——面试题25：合并两个排序的链表/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/03/刷题17——面试题33：二叉搜索树的后续遍历序列/">
 
 
 
 
 
-  <title>刷题13——面试题25：合并两个排序的链表 | 咋家</title>
+  <title>刷题17——面试题33：二叉搜索树的后续遍历序列 | 咋家</title>
   
 
 
@@ -266,7 +266,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/29/刷题13——面试题25：合并两个排序的链表/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/03/刷题17——面试题33：二叉搜索树的后续遍历序列/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="廿十">
@@ -283,7 +283,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">刷题13——面试题25：合并两个排序的链表</h1>
+          <h1 class="post-title" itemprop="name headline">刷题17——面试题33：二叉搜索树的后续遍历序列</h1>
         
 
         <div class="post-meta">
@@ -295,8 +295,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-29T09:17:43+08:00">
-                2019-06-29
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-03T09:17:43+08:00">
+                2019-07-03
               </time>
             
 
@@ -356,18 +356,18 @@
 
       
         <h3 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h3><blockquote>
-<p>输入两个递增排序的链表，合并这两个链表并使新链表中的节点仍然是递增排序的。如下图所示的链表1和链表2，得到合并后的升序链表3。</p>
+<p>输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历结果。如果是则返回true，否则返回false。假设输入的数组任意两个数字都互不相同。例如，输入数组{5，7，6，9，11，10，8}，返回true，因为这个整数序列是下图二叉搜索树的后序遍历结果。如果输入的数组是{7，4，6，5}，则由于没有哪棵二叉搜索树的后续遍历结果是这个序列，因此返回false。</p>
 </blockquote>
-<p><img src="http://ww1.sinaimg.cn/large/005xDMfSly1g4gkc5dryhj30hm066mx2.jpg" alt></p>
-<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>我们从合并两个链表的头节点开始分析，链表1的头节点的值小于链表2的头节点的值，因此链表1的头节点将是合并后链表的头节点。</p>
-<p>我们继续合并两个链表中剩余的节点，在两个链表中剩下的节点依然是排序的，因此合并这两个链表的步骤和前面的步骤是一样的，还是比较两个头节点的值。此时链表2的头节点的值小于链表1的头节点的值，因此链表2的头节点的值将是合并剩余节点得到的链表的头节点。我们把这个节点和前面合并链表时得到的链表的尾节点链接起来。</p>
-<p>当我们得到两个链表中值较小的头节点并把它链接到已经合并的链表之后，两个链表剩余的节点依然是排序的，因此合并的步骤和之前的步骤是一样的。这就是典型的递归过程，可以定义递归函数完成这一过程。</p>
-<p>在完成上面过程的同时，我们要考虑空链表的情况。当第一个链表是空链表时，将它和第二个链表合并将得到第二个链表，反之，第二个链表为空时，合并将得到第一个链表。</p>
-<p>综上，python代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListNode</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        self.val =x</span><br><span class="line">        self.next =<span class="literal">None</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge_link</span><span class="params">(head1, head2)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> head1:</span><br><span class="line">        <span class="keyword">return</span> head2</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> head2:</span><br><span class="line">        <span class="keyword">return</span> head1</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> head1.val &lt;=head2.val:</span><br><span class="line">        ret =head1</span><br><span class="line">        ret.next =merge_link(head1.next, head2)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        ret =head2</span><br><span class="line">        ret.next =merge_link(head1, head2.next)</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">return</span> ret</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/005xDMfSly1g4l6qb6lvyj305w03ejr6.jpg" alt></p>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>在后序遍历得到的序列中，最后一个数字是树的根节点的值。数组中前面的数字可以分为两部分：第一部分是左子树节点的值，它们都比根节点的值小；第二部分是右子树节点的值，它们都比根节点的值大。</p>
+<p>以数组{5，7，6，9，11，10，8}为例，后续遍历结果的最后一个数字8就是根节点的值。在这个数组中，前3个数字5、7和6都比8小，是值为8的节点的左子树节点；后3个数字9、11和10都比8大，是值为8的节点的右子树节点。</p>
+<p>接下来用同样的方法确定与数组每一部分对应的子树的结构。这其实就是一个递归的过程。对于序列{5，7，6}，最后一个数字6是左子树的根节点的值。数字5比6小，是值为6的节点的左子节点，而7则是它的右子节点。同样，在序列{9，11，10}中，最后一个数字10是右子树的根节点，数字9比10小，是值为10的节点的左子节点，而11则是它的右子节点。</p>
+<p>我们再来分析另一个整数数组{7，4，6，5}。后序遍历的最后一个数字是根节点，因此根节点的值是5.由于第个数字7比5大，因此在对应的二叉搜索树中，根节点上是没有左子树的，数字7、4和6都是右子树节点的值。但我们发现在右子树中有一个节点的值是4，比根节点的值5小，这违背了二叉搜索树的定义。因此，不存在一棵二叉搜索树，它的后续遍历结果是{7，4，6，5}。</p>
+<p>python代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">VerifySquenceOfBST</span><span class="params">(self, sequence)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> sequence:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">#获取根节点</span></span><br><span class="line">        root =sequence[<span class="number">-1</span>]</span><br><span class="line">        </span><br><span class="line">        <span class="comment">#根据二叉树性质，左孩子的每个节点的值都小于根节点</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(sequence)):</span><br><span class="line">            <span class="keyword">if</span> sequence[i]&gt;root:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            </span><br><span class="line">        <span class="comment">#判断是否右子树的每个节点的值都大于根节点</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i, len(sequence)):</span><br><span class="line">            <span class="keyword">if</span> sequence[j] &lt;root:</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            </span><br><span class="line">        left =<span class="literal">True</span></span><br><span class="line">        <span class="comment">#i&gt;0的时候证明有左孩子</span></span><br><span class="line">        <span class="keyword">if</span> i&gt;<span class="number">0</span>:</span><br><span class="line">            <span class="comment">#递归遍历左孩子</span></span><br><span class="line">            left =self.VerifySquenceOfBST(sequence[:i])</span><br><span class="line">            </span><br><span class="line">        right =<span class="literal">True</span></span><br><span class="line">        <span class="comment">#证明有右孩子，通过i的值不在最后一个节点进行判断</span></span><br><span class="line">        <span class="keyword">if</span> i&lt;len(sequence)<span class="number">-1</span>:</span><br><span class="line">            right =self.VerifySquenceOfBST(sequence[i:<span class="number">-1</span>])</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> left <span class="keyword">and</span> right</span><br></pre></td></tr></table></figure>
 
 <p>java代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListNode</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    ListNode next =<span class="keyword">null</span>;</span><br><span class="line">    </span><br><span class="line">    ListNode(<span class="keyword">int</span> val)&#123;</span><br><span class="line">        <span class="keyword">this</span>.val =val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">Merge</span><span class="params">(ListNode list1, ListNode list2)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (list1 ==<span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> list2;</span><br><span class="line">        <span class="keyword">if</span> (list2 ==<span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> list1;</span><br><span class="line">        </span><br><span class="line">        ListNode list0 =<span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (list1.val &lt;=list2.val)&#123;</span><br><span class="line">            list0 =list1;</span><br><span class="line">            list0.next =Merge(list1.next, list2);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            list0 =list2;</span><br><span class="line">            list0.next =merge(list1, list2.next);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> list0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">verifySquenceOfBST</span><span class="params">(<span class="keyword">int</span>[] sequence)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(sequence ==<span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">return</span> verifyBST(squence, <span class="number">0</span>, squence.length-<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">verifyBST</span><span class="params">(<span class="keyword">int</span>[] sequence, <span class="keyword">int</span> start, <span class="keyword">int</span> end)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(start&gt;=end)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">int</span> root =sequence[end];	<span class="comment">//后序遍历的最后一个节点为根节点</span></span><br><span class="line">    <span class="comment">//在二叉搜索树中左子树的节点小于根节点</span></span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(;i&lt;end;++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(sequence[i] &gt;root)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//在二叉搜索树中右子树的节点大于根节点</span></span><br><span class="line">    <span class="keyword">int</span> j=i;</span><br><span class="line">    <span class="keyword">for</span>(;j&lt;end;++j)&#123;</span><br><span class="line">        <span class="keyword">if</span>(sequence[j]&lt;root)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//判断左子树是不是二叉树</span></span><br><span class="line">    <span class="keyword">boolean</span> left =<span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">if</span>(i&gt;start)&#123;</span><br><span class="line">        left =verifyBST(sequence, start, i-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//判断右子树是不是二叉树</span></span><br><span class="line">    <span class="keyword">boolean</span> right =<span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">if</span>(i&lt;end)&#123;</span><br><span class="line">        right =verifyBST(sequence, i, end-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (left &amp;&amp; right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="更多精彩，关注“咋家”"><a href="#更多精彩，关注“咋家”" class="headerlink" title="更多精彩，关注“咋家”"></a>更多精彩，关注“咋家”</h4><p><img src="http://ww1.sinaimg.cn/large/005xDMfSly1g491vnwsy7j30bi06976v.jpg" alt></p>
 
@@ -402,8 +402,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/28/刷题12——面试题23：链表中环的入口节点/" rel="next" title="刷题12——面试题23：链表中环的入口节点">
-                <i class="fa fa-chevron-left"></i> 刷题12——面试题23：链表中环的入口节点
+              <a href="/2019/07/02/刷题16——面试题29：顺时针打印矩阵/" rel="next" title="刷题16——面试题29：顺时针打印矩阵">
+                <i class="fa fa-chevron-left"></i> 刷题16——面试题29：顺时针打印矩阵
               </a>
             
           </div>
@@ -411,10 +411,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/06/30/刷题14——面试题27：二叉树的镜像/" rel="prev" title="刷题14——面试题27：二叉树的镜像">
-                刷题14——面试题27：二叉树的镜像 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
