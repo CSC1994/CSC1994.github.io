@@ -79,21 +79,20 @@
 
 
 
-<meta name="description" content="题目： 输入两个递增排序的链表，合并这两个链表并使新链表中的节点仍然是递增排序的。如下图所示的链表1和链表2，得到合并后的升序链表3。   思路：我们从合并两个链表的头节点开始分析，链表1的头节点的值小于链表2的头节点的值，因此链表1的头节点将是合并后链表的头节点。 我们继续合并两个链表中剩余的节点，在两个链表中剩下的节点依然是排序的，因此合并这两个链表的步骤和前面的步骤是一样的，还是比较两个头节">
+<meta name="description" content="题目： 数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字，例如，输入一个长度为9的数组{1, 2, 3, 2, 2, 2, 5, 4, 2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。  思路一：基于Partition函数的时间复杂度为O(n)的算法如果把这个数组排序，那么排序之后位于数组中间的数字一定就是那个出现次数超过数组长度一半的数字。也就是说，这个数字就是统">
 <meta name="keywords" content="《剑指offer》,python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="刷题13——面试题25：合并两个排序的链表">
-<meta property="og:url" content="http://yoursite.com/2019/06/29/刷题13——面试题25：合并两个排序的链表/index.html">
+<meta property="og:title" content="刷题20——面试题39：数组中出现次数超过一半的数字">
+<meta property="og:url" content="http://yoursite.com/2019/07/07/刷题20——面试题39：数组中出现次数超过一半的数字/index.html">
 <meta property="og:site_name" content="咋家">
-<meta property="og:description" content="题目： 输入两个递增排序的链表，合并这两个链表并使新链表中的节点仍然是递增排序的。如下图所示的链表1和链表2，得到合并后的升序链表3。   思路：我们从合并两个链表的头节点开始分析，链表1的头节点的值小于链表2的头节点的值，因此链表1的头节点将是合并后链表的头节点。 我们继续合并两个链表中剩余的节点，在两个链表中剩下的节点依然是排序的，因此合并这两个链表的步骤和前面的步骤是一样的，还是比较两个头节">
+<meta property="og:description" content="题目： 数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字，例如，输入一个长度为9的数组{1, 2, 3, 2, 2, 2, 5, 4, 2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。  思路一：基于Partition函数的时间复杂度为O(n)的算法如果把这个数组排序，那么排序之后位于数组中间的数字一定就是那个出现次数超过数组长度一半的数字。也就是说，这个数字就是统">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g4gkc5dryhj30hm066mx2.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g491vnwsy7j30bi06976v.jpg">
-<meta property="og:updated_time" content="2019-06-28T00:59:34.413Z">
+<meta property="og:updated_time" content="2019-07-06T01:52:59.566Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="刷题13——面试题25：合并两个排序的链表">
-<meta name="twitter:description" content="题目： 输入两个递增排序的链表，合并这两个链表并使新链表中的节点仍然是递增排序的。如下图所示的链表1和链表2，得到合并后的升序链表3。   思路：我们从合并两个链表的头节点开始分析，链表1的头节点的值小于链表2的头节点的值，因此链表1的头节点将是合并后链表的头节点。 我们继续合并两个链表中剩余的节点，在两个链表中剩下的节点依然是排序的，因此合并这两个链表的步骤和前面的步骤是一样的，还是比较两个头节">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g4gkc5dryhj30hm066mx2.jpg">
+<meta name="twitter:title" content="刷题20——面试题39：数组中出现次数超过一半的数字">
+<meta name="twitter:description" content="题目： 数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字，例如，输入一个长度为9的数组{1, 2, 3, 2, 2, 2, 5, 4, 2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。  思路一：基于Partition函数的时间复杂度为O(n)的算法如果把这个数组排序，那么排序之后位于数组中间的数字一定就是那个出现次数超过数组长度一半的数字。也就是说，这个数字就是统">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g491vnwsy7j30bi06976v.jpg">
 
 
 
@@ -123,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/06/29/刷题13——面试题25：合并两个排序的链表/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/07/刷题20——面试题39：数组中出现次数超过一半的数字/">
 
 
 
 
 
-  <title>刷题13——面试题25：合并两个排序的链表 | 咋家</title>
+  <title>刷题20——面试题39：数组中出现次数超过一半的数字 | 咋家</title>
   
 
 
@@ -266,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/29/刷题13——面试题25：合并两个排序的链表/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/07/刷题20——面试题39：数组中出现次数超过一半的数字/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="廿十">
@@ -283,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">刷题13——面试题25：合并两个排序的链表</h1>
+          <h1 class="post-title" itemprop="name headline">刷题20——面试题39：数组中出现次数超过一半的数字</h1>
         
 
         <div class="post-meta">
@@ -295,8 +294,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-29T09:17:43+08:00">
-                2019-06-29
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-07T09:17:43+08:00">
+                2019-07-07
               </time>
             
 
@@ -356,18 +355,16 @@
 
       
         <h3 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h3><blockquote>
-<p>输入两个递增排序的链表，合并这两个链表并使新链表中的节点仍然是递增排序的。如下图所示的链表1和链表2，得到合并后的升序链表3。</p>
+<p>数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字，例如，输入一个长度为9的数组{1, 2, 3, 2, 2, 2, 5, 4, 2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。</p>
 </blockquote>
-<p><img src="http://ww1.sinaimg.cn/large/005xDMfSly1g4gkc5dryhj30hm066mx2.jpg" alt></p>
-<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>我们从合并两个链表的头节点开始分析，链表1的头节点的值小于链表2的头节点的值，因此链表1的头节点将是合并后链表的头节点。</p>
-<p>我们继续合并两个链表中剩余的节点，在两个链表中剩下的节点依然是排序的，因此合并这两个链表的步骤和前面的步骤是一样的，还是比较两个头节点的值。此时链表2的头节点的值小于链表1的头节点的值，因此链表2的头节点的值将是合并剩余节点得到的链表的头节点。我们把这个节点和前面合并链表时得到的链表的尾节点链接起来。</p>
-<p>当我们得到两个链表中值较小的头节点并把它链接到已经合并的链表之后，两个链表剩余的节点依然是排序的，因此合并的步骤和之前的步骤是一样的。这就是典型的递归过程，可以定义递归函数完成这一过程。</p>
-<p>在完成上面过程的同时，我们要考虑空链表的情况。当第一个链表是空链表时，将它和第二个链表合并将得到第二个链表，反之，第二个链表为空时，合并将得到第一个链表。</p>
-<p>综上，python代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListNode</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        self.val =x</span><br><span class="line">        self.next =<span class="literal">None</span></span><br><span class="line">        </span><br><span class="line">        </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge_link</span><span class="params">(head1, head2)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> head1:</span><br><span class="line">        <span class="keyword">return</span> head2</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> head2:</span><br><span class="line">        <span class="keyword">return</span> head1</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> head1.val &lt;=head2.val:</span><br><span class="line">        ret =head1</span><br><span class="line">        ret.next =merge_link(head1.next, head2)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        ret =head2</span><br><span class="line">        ret.next =merge_link(head1, head2.next)</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">return</span> ret</span><br></pre></td></tr></table></figure>
+<h3 id="思路一：基于Partition函数的时间复杂度为O-n-的算法"><a href="#思路一：基于Partition函数的时间复杂度为O-n-的算法" class="headerlink" title="思路一：基于Partition函数的时间复杂度为O(n)的算法"></a>思路一：基于Partition函数的时间复杂度为O(n)的算法</h3><p>如果把这个数组排序，那么排序之后位于数组中间的数字一定就是那个出现次数超过数组长度一半的数字。也就是说，这个数字就是统计学上的中位数，即长度为n的数组中第n/2大的数字。我们有成熟的时间复杂度为O(n)的算法得到数组中任意第k大的数字。</p>
+<p>这种算法受快速排序算法的启发。在随机快速排序算法中，我们先在数组中随机选择一个数字，然后调整数组中数字的顺序，使得比选中的数字小的数字都排在它的左边，比选中的数字大的数字都排在它的右边。如果这个选中的数字的下标刚好是n/2，那么这个数字就是数组中的中位数；如果它的下标大于n/2，那么中位数应该位于它的左边，我们可以接着在它的左边部分的数组中查找；如果它的下标小于n/2，那么中位数应该位于它的右边，我们可以接着在它的右边部分的数组中查找。这是一个典型的递归过程。</p>
+<h3 id="思路二：根据数组特点找出时间复杂度为O-n-的算法"><a href="#思路二：根据数组特点找出时间复杂度为O-n-的算法" class="headerlink" title="思路二：根据数组特点找出时间复杂度为O(n)的算法"></a>思路二：根据数组特点找出时间复杂度为O(n)的算法</h3><p>数组中有一个数字出现的次数超过数组长度的一半，也就是说它出现的次数比其它所有数字出现次数的和还要多。因此，我们可以考虑在遍历数组的时候保存两个值：一个是数组中的一个数字；另一个是次数。当我们遍历到下一个数字的时候，如果下一个数字和我们之前保存的数字相同，则次数加1；如果下一个数字和我们之前保存的数字不同，则次数减1.如果次数为0，那么我们需要保存下一个数字，并把次数设为1.由于我们要找的数字出现的次数比其它所有数字出现的次数之和还要多，那么要找的数字肯定是最后一次把数字设为1时对应的数字。</p>
+<p>python代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">moreThanHalfNum</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        count =<span class="number">1</span></span><br><span class="line">        num =nums[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> nums[<span class="number">1</span>:]:</span><br><span class="line">            <span class="keyword">if</span> num ==i:</span><br><span class="line">                count +=<span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                count -=<span class="number">1</span></span><br><span class="line">                <span class="keyword">if</span> count ==<span class="number">0</span>:</span><br><span class="line">                    num =i</span><br><span class="line">                    count +=<span class="number">1</span></span><br><span class="line">        </span><br><span class="line">        sum =<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> nums:</span><br><span class="line">            <span class="keyword">if</span> j ==num:</span><br><span class="line">                sum +=<span class="number">1</span></span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> num <span class="keyword">if</span> sum&gt;len(nums)//<span class="number">2</span> <span class="keyword">else</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
 
 <p>java代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListNode</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    ListNode next =<span class="keyword">null</span>;</span><br><span class="line">    </span><br><span class="line">    ListNode(<span class="keyword">int</span> val)&#123;</span><br><span class="line">        <span class="keyword">this</span>.val =val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ListNode <span class="title">Merge</span><span class="params">(ListNode list1, ListNode list2)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (list1 ==<span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> list2;</span><br><span class="line">        <span class="keyword">if</span> (list2 ==<span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> list1;</span><br><span class="line">        </span><br><span class="line">        ListNode list0 =<span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (list1.val &lt;=list2.val)&#123;</span><br><span class="line">            list0 =list1;</span><br><span class="line">            list0.next =Merge(list1.next, list2);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            list0 =list2;</span><br><span class="line">            list0.next =merge(list1, list2.next);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> list0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">moreThanHalfNum</span><span class="params">(<span class="keyword">int</span>[] array)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(array ==<span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> N =array.length;</span><br><span class="line">    <span class="keyword">int</span> count =<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> root =<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;N; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(count==<span class="number">0</span>)&#123;</span><br><span class="line">            root =array[i];</span><br><span class="line">            count =<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(array[i] ==root)&#123;</span><br><span class="line">            count++;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            count--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//判断数组中是否存在出现次数大于一半的数字</span></span><br><span class="line">    <span class="keyword">if</span>(checkArray(array, root))&#123;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">checkArray</span><span class="params">(<span class="keyword">int</span>[] array, <span class="keyword">int</span> root)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> N=array.length;</span><br><span class="line">    <span class="keyword">int</span> num=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;N; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(array[i] ==root)&#123;</span><br><span class="line">            num++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(num*<span class="number">2</span>&gt;N)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="更多精彩，关注“咋家”"><a href="#更多精彩，关注“咋家”" class="headerlink" title="更多精彩，关注“咋家”"></a>更多精彩，关注“咋家”</h4><p><img src="http://ww1.sinaimg.cn/large/005xDMfSly1g491vnwsy7j30bi06976v.jpg" alt></p>
 
@@ -402,8 +399,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/28/刷题12——面试题23：链表中环的入口节点/" rel="next" title="刷题12——面试题23：链表中环的入口节点">
-                <i class="fa fa-chevron-left"></i> 刷题12——面试题23：链表中环的入口节点
+              <a href="/2019/07/06/刷题19——面试题38：字符串的排列/" rel="next" title="刷题19——面试题38：字符串的排列">
+                <i class="fa fa-chevron-left"></i> 刷题19——面试题38：字符串的排列
               </a>
             
           </div>
@@ -411,10 +408,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/06/30/刷题14——面试题27：二叉树的镜像/" rel="prev" title="刷题14——面试题27：二叉树的镜像">
-                刷题14——面试题27：二叉树的镜像 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -564,7 +557,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目："><span class="nav-number">1.</span> <span class="nav-text">题目：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路："><span class="nav-number">2.</span> <span class="nav-text">思路：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#更多精彩，关注“咋家”"><span class="nav-number">2.1.</span> <span class="nav-text">更多精彩，关注“咋家”</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目："><span class="nav-number">1.</span> <span class="nav-text">题目：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路一：基于Partition函数的时间复杂度为O-n-的算法"><span class="nav-number">2.</span> <span class="nav-text">思路一：基于Partition函数的时间复杂度为O(n)的算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路二：根据数组特点找出时间复杂度为O-n-的算法"><span class="nav-number">3.</span> <span class="nav-text">思路二：根据数组特点找出时间复杂度为O(n)的算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#更多精彩，关注“咋家”"><span class="nav-number">3.1.</span> <span class="nav-text">更多精彩，关注“咋家”</span></a></li></ol></li></ol></div>
             
 
           </div>
