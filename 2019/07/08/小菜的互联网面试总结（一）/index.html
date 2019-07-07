@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/f32.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/f16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="面试,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1、TCP三次握手流程及相应标识？第三次为什么是必须的？ 2、TCP与UDP的区别？为什么TCP能保证数据一定传输到？ 3、拥塞控制与流量控制的区别  TCP、UDP都是属于运输层的协议，提供端到端的进程之间的逻辑通信，而IP协议（网络层）是提供主机间的逻辑通信，应用层规定应用进程在通信时所遵循的协议。 一、UDP主要特点：传输的是用户数据报协议。 UDP是无连接的，即发送数据之前不需要建立连接">
+<meta name="keywords" content="面试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小菜的互联网面试总结（一）">
+<meta property="og:url" content="http://yoursite.com/2019/07/08/小菜的互联网面试总结（一）/index.html">
+<meta property="og:site_name" content="咋家">
+<meta property="og:description" content="1、TCP三次握手流程及相应标识？第三次为什么是必须的？ 2、TCP与UDP的区别？为什么TCP能保证数据一定传输到？ 3、拥塞控制与流量控制的区别  TCP、UDP都是属于运输层的协议，提供端到端的进程之间的逻辑通信，而IP协议（网络层）是提供主机间的逻辑通信，应用层规定应用进程在通信时所遵循的协议。 一、UDP主要特点：传输的是用户数据报协议。 UDP是无连接的，即发送数据之前不需要建立连接">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g4mtr03yr8j30ck04qt8m.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g4mw9qq8ugj309106pgll.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g4mzjve1vnj30an09b3ym.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g491vnwsy7j30bi06976v.jpg">
+<meta property="og:updated_time" content="2019-07-07T08:12:11.594Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="小菜的互联网面试总结（一）">
+<meta name="twitter:description" content="1、TCP三次握手流程及相应标识？第三次为什么是必须的？ 2、TCP与UDP的区别？为什么TCP能保证数据一定传输到？ 3、拥塞控制与流量控制的区别  TCP、UDP都是属于运输层的协议，提供端到端的进程之间的逻辑通信，而IP协议（网络层）是提供主机间的逻辑通信，应用层规定应用进程在通信时所遵循的协议。 一、UDP主要特点：传输的是用户数据报协议。 UDP是无连接的，即发送数据之前不需要建立连接">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g4mtr03yr8j30ck04qt8m.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/08/小菜的互联网面试总结（一）/">
+
+
+
+
+
+  <title>小菜的互联网面试总结（一） | 咋家</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">咋家</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/08/小菜的互联网面试总结（一）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="廿十">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="咋家">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">小菜的互联网面试总结（一）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-08T09:18:43+08:00">
+                2019-07-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/面试/" itemprop="url" rel="index">
+                    <span itemprop="name">面试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>1、TCP三次握手流程及相应标识？第三次为什么是必须的？</p>
+<p>2、TCP与UDP的区别？为什么TCP能保证数据一定传输到？</p>
+<p>3、拥塞控制与流量控制的区别</p>
+</blockquote>
+<p>TCP、UDP都是属于运输层的协议，提供端到端的进程之间的逻辑通信，而IP协议（网络层）是提供主机间的逻辑通信，应用层规定应用进程在通信时所遵循的协议。</p>
+<h4 id="一、UDP主要特点：传输的是用户数据报协议。"><a href="#一、UDP主要特点：传输的是用户数据报协议。" class="headerlink" title="一、UDP主要特点：传输的是用户数据报协议。"></a>一、UDP主要特点：传输的是用户数据报协议。</h4><ol>
+<li>UDP是<strong>无连接</strong>的，即发送数据之前不需要建立连接</li>
+<li>UDP<strong>使用尽最大努力交付，即不保证可靠交付</strong>，同时也不使用拥塞控制</li>
+<li>UDP是<strong>面向报文的。UDP没有拥塞控制，很适合多媒体通信的要求</strong>。</li>
+<li>UDP支持<strong>一对一、一对多、多对一和多对多</strong>的交互通信。</li>
+<li>UDP的<strong>首部开销小，只有8个字节</strong>。</li>
+</ol>
+<p>发送方UDP对应用程序交下来的报文，在添加首部后就向下交付IP层。UDP对应用层交下来的报文，既不合并，也不拆分，而是保留这些报文的边界。应用层交给UDP多长的报文。</p>
+<p>UDP就照样发送，即一次发送一个报文。接收方UDP对IP层交上来的UDP用户数据报，在去除首部后就原封不动的交付上层的应用进程，一次交付一个完整的报文。</p>
+<p>应用程序必须选择合适大小的报文。</p>
+<p><img src="http://ww1.sinaimg.cn/large/005xDMfSly1g4mtr03yr8j30ck04qt8m.jpg" alt></p>
+<h4 id="二、TCP的主要特点："><a href="#二、TCP的主要特点：" class="headerlink" title="二、TCP的主要特点："></a>二、TCP的主要特点：</h4><ol>
+<li>TCP是<strong>面向连接</strong>的运输层协议</li>
+<li>每一条TCP连接只能有两个端点（endpoint），每一条TCP<strong>连接只能是点对点的（一对一）</strong></li>
+<li>TCP提供<strong>可靠交付的服务</strong></li>
+<li>TCP<strong>提供全双工通信</strong></li>
+<li>TCP是<strong>面向字节流</strong></li>
+<li><strong>首部最低20个字节</strong></li>
+</ol>
+<p><strong>TCP可靠传输的工作原理：停止等待协议（确认重传机制）</strong></p>
+<ol>
+<li><p>无差错：</p>
+<p>1）无差错：A发送分组M1，发送就暂停发送，等待B的确认，B收到M1就向A发送确认，A收到对M1的确认后再发送下一个分组</p>
+<p>2）出现差错：A只要超过一段时间仍然没有收到确认，就认为刚才发送的分组丢失了，就重传前面发过的分组，叫超时重传。由重传计数器实现。而且：A每次发送分组必须暂时保留分组副本；分组和确认分组必须进行编号；超时计数器的重传时间应当比数据再分组的平均往返时间更多一些</p>
+<p>3）如果B收到重复的分组M1，不向上一层交付；而且，向A发送确认</p>
+</li>
+<li><p>超时重传：</p>
+<p>停止等待协议的优点是简单，但是信道利用率太低了。解决方法是采用<strong>连续ARQ协议</strong>，发送方维持发送窗口，每次<strong>连续发送几个分组</strong>，接收方<strong>采用累积确认</strong>，对按序到达的<strong>最后一个分组发送确认</strong>。缺点是不能向发送方反映出接收方已经<strong>正确收到的所有分组信息</strong>，例如丢失中间的分组。</p>
+</li>
+</ol>
+<p><strong>TCP可靠传输的实现</strong></p>
+<p>TCP连接的每一端都必须设有两个窗口——<strong>一个发送窗口和一个接收窗口</strong>。TCP的可靠传输机制<strong>用字节的序号进行控制</strong>。TCP<strong>所有的确认都是基于序号而不是基于报文段</strong>。</p>
+<p>发送过的数据未收到确认之前必须保留，以便超时重传时使用。发送窗口不动（没收到确认）和前移（收到新的确认）</p>
+<p><strong>发送缓存用来暂时存放</strong>：发送应用程序传送给发送方TCP准备发送的数据；TCP已经发送但尚未收到确认的数据。</p>
+<p><strong>接收缓存用来暂时存放</strong>：按序到达的、但尚未被接收应用程序读取的数据；不按序到达的数据。</p>
+<p><strong>强调三点</strong>：</p>
+<ol>
+<li>A的发送窗口并不总是和B的接收窗口一样大（因为有一定的时间滞后）</li>
+<li>TCP标准没有规定<strong>对不按序到达的数据</strong>应如何处理。通常是<strong>先临时存放再接收窗口</strong>中，等到字节流中所缺少的字节收到后，再<strong>按序交付上层的应用进程</strong>。</li>
+<li>TCP要求接收方<strong>必须有累积确认的功能，这样可以减小传输开销</strong>。</li>
+</ol>
+<p><strong>TCP流量控制</strong></p>
+<p>流量控制（flow control）就是<strong>让发送方的发送速率不要太快，既要让接收方来得及接收，也不要使网络发生拥塞</strong>。利用<strong>滑动窗口机制</strong>可以很方便的在TCP连接上实现流量控制。</p>
+<p>TCP为每一个连接设有一个<strong>持续计时器</strong>。只要TCP连接的一方收到对方的<strong>零窗口通知</strong>，就启动持续计时器，发送一个零窗口探测报文段。</p>
+<p><strong>TCP的拥塞控制</strong></p>
+<p>在某段时间，若对网络中某资源的需求超过了该资源所提供的可用部分，网络的性能就变坏——产生拥塞（congestion）。出现拥塞的条件：<strong>对资源需求的总和&gt;可用资源</strong></p>
+<p><strong>开环控制方法</strong>就是在设计网络时事先将有关发生拥塞的因素考虑周到，力求网络在工作时步产生拥塞</p>
+<p><strong>闭环控制</strong>是基于反馈环路的概念。<strong>属于闭环控制</strong>的有以下集中措施：监测网络系统以便检测到拥塞在何时、何处发生。将拥塞发生的信息传送到可采取行动的地方。调整网络系统的运行以解决出现的问题。</p>
+<p><strong>拥塞控制方法</strong></p>
+<ol>
+<li><strong>慢开始</strong>：在主机刚刚开始发送报文段时，可先将<strong>拥塞窗口cwnd设置为一个最大报文段MSS的数值</strong>。在每收到一个对新的报文段确认后，将拥塞窗口增加至多一个MSS的数值。用这样的方法<strong>逐渐增大发送端的拥塞窗口cwnd</strong>，可以使分组注入到网络的速率更加合理。每经过一个传输轮回，拥塞窗口（发送端）就加倍</li>
+<li><strong>拥塞避免</strong>：让拥塞窗口缓慢增大。每<strong>经过一个往返时间就加1</strong>，而不是加倍，按<strong>线性规律缓慢增长</strong>。拥塞窗口<strong>大于慢开始门限</strong>，就执行拥塞避免算法。<strong>“乘法减小”</strong>：指不论在慢开始还是拥塞避免阶段，<strong>只要出现超时重传就把慢开始门限值减半。</strong> <strong>“加分增大”</strong>：指执行<strong>拥塞避免算法后</strong>，使拥塞窗口<strong>缓慢增大</strong>，以防止网络过早出现拥塞。合起来叫<strong>AMD算法</strong>。</li>
+<li><strong>快重传算法</strong>：<strong>发送方</strong>只要一连收到三个重复确认就应当<strong>重传对方尚未收到的报文</strong>。而<strong>不必等到该分组的重传计时器到期</strong>。</li>
+<li><strong>快恢复算法</strong>：（1）当发送端收到连续三个重复的确认时，<strong>就执行“乘法减小”算法，</strong>把<strong>慢开始门限ssthresh减半。</strong>但<strong>接下去步执行慢开始算法</strong>。（2）由于<strong>发送方现在认为网络很可能没有发生拥塞</strong>，因此现在<strong>不执行慢开始算法</strong>，即<strong>拥塞窗口cwnd现在不设置为1，而是设置为慢开始门限ssthresh减半后的数值</strong>，然后<strong>开始执行拥塞避免算法（“加法增大”），使拥塞窗口缓慢的线性增大</strong>。</li>
+</ol>
+<p><strong>TCP的运输建立</strong></p>
+<p>采用客户服务器方式，主动发起建立的是客户，被动等待连接建立的应用进程是服务器。</p>
+<ol>
+<li><strong>A的TCP向B发出连接请求报文段，其首部中的同步位SYN=1，并选择序号seq=x，表明传送数据时第一个数据字节的序号是x。</strong></li>
+<li><strong>B的TCP收到连接请求报文段后，如同意，则发回确认。B在确认报文段中应使SYN=1，使ACK=1，其确认号ack =x+1，自己选择的序号seq =y。</strong></li>
+<li><strong>A收到此报文段后向B给出确认，其ACK=1，确认号ack=y+1。A的TCP通知上层应用进程，连接已经建立。</strong></li>
+<li><strong>B的TCP收到主机A的确认后，也通知其上层应用进程：TCP连接已经建立</strong></li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/005xDMfSly1g4mw9qq8ugj309106pgll.jpg" alt></p>
+<p><strong>TCP的连接释放</strong></p>
+<ol>
+<li>数据传输结束后，通信的双方都可释放连接。现在A的应用进程先向其TCP发出连接释放报文段，并停止再发送数据，主动关闭TCP连接。A把连接释放报文段首部的FIN=1，其序号seq=u，等待B的确认。</li>
+<li>B发出确认，确认号ack=u+1，而这个报文段自己的序号seq=v。TCP服务器进程通知高层应用进程。从A到B这个方向的连接就释放了，TCP连接处于半关闭状态。B若发送数据，A仍要接收。</li>
+<li>若B已经没有要向A发送的数据，其应用进程就通知TCP释放连接，B到A这个方向的连接也释放了。</li>
+<li>A收到连接释放报文段后，必须发出确认，在确认报文段中ACK=1，确认号ack=w+1，自己的序号seq =u+1</li>
+<li>TCP连接必须经过时间2MSL后才算真正释放掉。因为：为了保证A发送的最后一个ACK报文段能够到达B；防止“已失效的链接请求报文段”出现在本连接中。A在发送完最后一个ACK报文段后，在经过时间2MSL（时间等待计时器），就可以使本连接持续的时间内所产生的所有报文段，都从网络中消失。这样可以使下一个新的连接中不会出现这种旧的连接请求报文段。</li>
+</ol>
+<blockquote>
+<p>4、HTTP协议了解下，相应的代码（200，400，404，500等）表示含义</p>
+</blockquote>
+<p><strong>HTTP协议的主要特点</strong></p>
+<ol>
+<li><strong>支持客户/服务器模式</strong></li>
+<li><strong>简单快速</strong>：客户向服务器请求服务时，只需传送请求方法和路径。请求常用的方法有GET、HEAD、POST。每种方法规定了客户与服务器联系的类型不同。由于HTTP协议简单，使得HTTP服务器的程序规模小，因而通信速度很快。</li>
+<li><strong>灵活</strong>：HTTP允许传输任意类型的数据对象。正在传输的类型由Content-Type加以标记</li>
+<li><strong>无连接</strong>：无连接的含义是限制每次连接只处理一个请求。服务器处理完客户的请求，并收到客户的应答后，即断开连接。采用这种方式可以节省传输时间。</li>
+<li><strong>无状态</strong>：HAATP协议是无状态协议。无状态是指协议对于事务处理没有机翼能力。缺少状态意味着如果后续处理需要前面的信息，则它必须重传，这样可能导致每次连接传送的数据量增大。另一方面，在服务器不需要先前信息时它的应答就较快。</li>
+</ol>
+<p><strong>HTTP协议之URL</strong></p>
+<p>HTTP URL格式：<a href="http://host(&quot;:&quot;port)(abs_path)" target="_blank" rel="noopener">http://host(&quot;:&quot;port)(abs_path)</a></p>
+<p>http表示通过HTTP协议来定位网络资源；host表示合法的Internet主机域名或IP地址；port指定一个端口，为空则用缺省端口80；abs_path指定请求资源的URI；如果URL中没有给出abs_path，那么当它作为请求URI时，必须以“/”的形式给出，通常这个工作浏览器自动帮我们完成。</p>
+<p><strong>HTTP协议之请求</strong></p>
+<p>http请求由三部分组成：请求行、消息报头、请求正文</p>
+<ol>
+<li><p>请求行以一个方法符号开头，以空格分开，后面跟着请求的URI和协议的版本，格式如下：</p>
+<p>Method Request-URI HTTP-Version CRLF</p>
+<p>其中Method表示请求方法；Request-URI是一个统一资源标识符；HTTP-Version表示请求的HTTP协议版本；CRLF表示回车和换行</p>
+<p>常用的请求方法：</p>
+<table>
+<thead>
+<tr>
+<th>GET</th>
+<th>请求获取Request-URI所标识的资源</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>POST</td>
+<td>在Request-URI所标识的资源后附加新的数据</td>
+</tr>
+<tr>
+<td>HEAD</td>
+<td>请求获取由Request-URI所标识的资源的响应消息报头</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td>请求服务器存储一个资源，并用Request-URI作为其标识</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>请求服务器删除Request-URI所标识的资源</td>
+</tr>
+<tr>
+<td>TRACE</td>
+<td>请求服务器回送收到的请求信息，主要用于测试或诊断</td>
+</tr>
+</tbody></table>
+<p>HEAD方法与GET方法几乎是一样的，对于HEAD请求的回应部分来说，它的HTTP头部中包含的信息与通过GET请求所得到的信息是相同的。利用这个方法，不必传输整个资源内容，就可以得到Request-URI所标识的资源的信息。该方法常用于测试超链接的有效性，是否可以访问，以及最近是否更新。</p>
+</li>
+</ol>
+<p><strong>HTTP协议之响应</strong></p>
+<p>http响应也是由三个部分组成：状态行、消息报头、响应正文</p>
+<ol>
+<li><p>状态行格式如下：</p>
+<p>HTTP-Version Status-Code Reason-Phrase CRLF</p>
+<p>其中，HTTP-Version表示服务器HTTP协议版本；Status-Code表示服务器发回的响应状态代码；Reason-Phrase表示状态代码的文本描述</p>
+<p>状态码有三位数字组成，第一个数字定义了响应的类别，且有五种可能取值：</p>
+<table>
+<thead>
+<tr>
+<th>1xx</th>
+<th>指示信息——表示请求已接收，继续处理</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2xx</td>
+<td>成功——表示请求已被成功接收、理解、接受</td>
+</tr>
+<tr>
+<td>3xx</td>
+<td>重定向——要完成请求必须进行更进一步的操作</td>
+</tr>
+<tr>
+<td>4xx</td>
+<td>客户端错误——请求有语法错误或请求无法实现</td>
+</tr>
+<tr>
+<td>5xx</td>
+<td>服务器端错误——服务器未能实现合法的请求</td>
+</tr>
+</tbody></table>
+<p>常见状态代码、状态描述、说明：</p>
+<table>
+<thead>
+<tr>
+<th>200</th>
+<th>OK</th>
+<th>客户端请求成功</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>400</td>
+<td>Bad Request</td>
+<td>客户端请求有语法错误，不能被服务器所理解</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td>请求未经授权</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td>服务器收到请求，但是拒绝提供服务</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td>请求资源不存在</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+<td>服务器发生不可预期的错误</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Server Unavailable</td>
+<td>服务器当前不能处理客户端的请求</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<blockquote>
+<p>5、socket工作过程</p>
+</blockquote>
+<p><strong>面向连接的套接字Socket通信工作流程：</strong></p>
+<ol>
+<li>服务器先用socket函数来建立一个套接字，用这个套接字完成通信的监听</li>
+<li>用bind函数来绑定一个端口号和IP地址。因为本地计算机可能有多个网址和IP，每一个IP和端口有多个端口。需要指定一个IP和端口进行监听</li>
+<li>服务器调用listen函数，使服务器的这个端口和IP处于监听状态，等待客户机的连接</li>
+<li>客户机用socket函数建立一个套接字，设定远程IP和端口</li>
+<li>客户机调用connect函数连接远程计算机指定的端口</li>
+<li>服务器用accept函数接受远程计算机的连接，建立起与客户机之间的通信</li>
+<li>建立连接以后，客户机用write函数向socket中写入数据。也可以用read函数读取服务器发送来的数据</li>
+<li>服务器用read函数读取客户机发送来的数据，也可以用write函数来发送数据</li>
+<li>完成通信后，用close函数关闭socket连接</li>
+</ol>
+<p><img src="http://ww1.sinaimg.cn/large/005xDMfSly1g4mzjve1vnj30an09b3ym.jpg" alt></p>
+<blockquote>
+<p>6、多路复用与多路分解</p>
+</blockquote>
+<p>多路复用是指把多个来源的数据导向一个输出，而多路分解是把从一个来源接收的数据发送到多个输出。</p>
+<blockquote>
+<p>7、DNS查询</p>
+<p>8、输入一个网址，谈下网络流程如何获得</p>
+</blockquote>
+<ol>
+<li>在浏览器中输入<a href="http://www.qq.com域名，操作系统会先检查自己本地的hosts文件是否有这个网址映射关系，如果有，就先调用这个IP地址映射，完成域名解析。" target="_blank" rel="noopener">www.qq.com域名，操作系统会先检查自己本地的hosts文件是否有这个网址映射关系，如果有，就先调用这个IP地址映射，完成域名解析。</a></li>
+<li>如果hosts里没有这个域名的映射，则查找本地DNS解析器缓存，是否有这个网址映射关系，如果有，直接返回，完成域名解析。</li>
+<li>如果hosts与本地DNS解析器缓存都没有相应的网址映射关系，首先会查找TCP/IP参数中设置的首选DNS服务器，在此我们叫它本地DNS服务器，此服务器收到查询时，如果要查询的域名，包含在本地配置区域资源中，则返回解析结果给客户机，完成域名解析，此解析具有权威性。</li>
+<li>如果要查询的域名，不由本地DNS服务器区域解析，但该服务器已缓存了此网址映射关系，则调用这个IP地址映射，完成域名解析，此解析不具有权威性。</li>
+<li>如果本地DNS服务器、本地区域文件与缓存解析都失效。则根据本地DNS服务器的设置（是否设置转发器）进行查询，如果未用转发模式，本地DNS就把请求发至13台根DNS，根DNS服务器收到请求后会判断这个域名（.com）是谁来授权管理，并会返回一个负责该顶级域名服务器的一个IP。本地DNS服务器收到IP信息后，将会联系负责.com域的这台服务器。这台负责.com域的服务器收到请求后，如果自己无法解析，它就会找一个管理.com域的下一级DNS服务器地址（qq.com）给本地DNS服务器。当本地DNS服务器收到这个地址后，就会找qq.com域服务器，重复上面的动作，进行查询，直到找到<a href="http://www.qq.com主机。" target="_blank" rel="noopener">www.qq.com主机。</a></li>
+<li>如果用的是转发模式，此DNS服务器就会把请求转发至上一级DNS服务器，由上一级服务器进行解析，上一级服务器如果不能解析，或找根DNS或把请求转至上上级，以此循环。不管本地DNS服务器用的是转发还是根提示，最后都是把结果返回给本地DNS服务器，由此DNS服务器再返回给客户机。</li>
+</ol>
+<p>从客户端到本地DNS服务器是属于递归查询，而DNS服务器之间就是交互查询、迭代查询。</p>
+<blockquote>
+<p> 9、进程与线程的区别</p>
+<p>10、线程有无内存资源</p>
+</blockquote>
+<p><strong>概述</strong></p>
+<ol>
+<li>进程是具有一定独立功能的程序关于某个数据集合上的一次运行活动，进程是系统进行资源分配和调度的一个独立单元</li>
+<li>线程是进程的一个实体，是CPU调度和分派的基本单元，它是比进程更小的能独立运行的基本单元。线程自己基本上不拥有系统资源，只拥有一点在运行中必不可少的资源（如程序计数器，一组寄存器和栈），但是它可与同属一个进程的其它的线程共享进程所拥有的全部资源</li>
+<li>一个线程可以创建和撤销另一个线程；同一个进程中的多个线程之间可以并发执行</li>
+<li>相对进程而言，线程是一个更加接近于执行的概念，它可以与同进程中的其它线程共享数据，但拥有自己的栈空间，拥有独立的执行序列</li>
+<li>在串行程序基础上引入线程和进程是为了提高程序的并发度，从而提高程序运行效率和响应时间</li>
+</ol>
+<p><strong>区别</strong></p>
+<p>进程和线程的主要差别在于它们是不同的操作系统资源管理方式。进程有独立的地址空间，一个进程崩溃后，在保护模式下不会对其它进程产生影响，而线程只是一个进程中的不同执行路径。线程有自己的堆栈和局部变量，但线程之间没有单独的地址空间，一个线程死掉就等于整个进程死掉，所以多进程的程序要比多线程的程序健壮，但在进程切换时，耗费资源较大，效率要差一些。但对于一些要求同时进行并且又要共享某些变量的并发操作，只能用线程，不能用进程。</p>
+<ol>
+<li>简而言之，一个程序至少有一个进程，一个进程至少有一个线程</li>
+<li>线程的划分尺度小于进程，使得多线程程序的并发性高</li>
+<li>另外，进程在执行过程拥有独立的内存单元，而多个线程共享内存，从而极大的提高了程序的运行效率</li>
+<li>线程在执行过程中与进程还是有区别的。每个独立的线程有一个程序运行的入口、顺序执行序列和程序的出口。但是线程不能够独立执行，必须依存在应用程序中，由应用程序提供多个线程执行控制</li>
+<li>从逻辑角度来看，多线程的意义在于一个应用程序中，有多个执行部分可以同时执行。但操作系统并没有将多个线程看做多个独立的应用，来实现进程的调度和管理以及资源分配。这就是线程和进程的重要区别。</li>
+</ol>
+<p><strong>优缺点</strong></p>
+<p>线程执行开销小，但不利于资源的管理和保护；而进程整相反。同时，进程适合于在SMP（对称多处理器）机器上运行，而进程可以跨机器迁移。</p>
+<blockquote>
+<p> 11、如何避免死锁</p>
+</blockquote>
+<p>操作系统中死锁是指多个进程在运行过程中因争夺资源而造成的一种僵局。具体来讲在多进程环境中，当一个进程请求资源时，如果该资源不能立即获得，那么进程就会进入等待状态。如果一个处于等待状态的进程P(i)，由于所等待的资源被另一个处于等待状态的进程P(j)(i != j)所持有，而P(j)所请求的资源又被P(i)持有，这样它们所请求的资源都不会获得，两进程一直处于等待状态，形成死锁。</p>
+<p><strong>形成死锁的四个必要条件</strong></p>
+<ol>
+<li>互斥（Mutual exclusion）。进程对所分配到的资源进行排他性使用，在一段时间内某资源只由一个进程占用</li>
+<li>持有并等待（Hold and wait）。指某个进程以已经持有了一个或多个资源，但是还要请求其它资源，而它请求的资源不能立即获得，需要等待</li>
+<li>不可抢占（No preemption）。即进程已经获取的资源在使用过程中不能被其它进程抢占，只能在使用完后，由该进程自己释放。</li>
+<li>循环等待（Circular wait）。即形成进程和请求资源之间的环路。</li>
+</ol>
+<p><strong>死锁的预防</strong></p>
+<p>死锁的预防即不允许死锁的发生，可以从破除死锁发生的四个必要条件入手。因为如果不具备上述四个必要条件，那么死锁就一定不会发生。</p>
+<ol>
+<li>互斥：不容易破除</li>
+<li>占有并等待：两种破除方式，不持有并等待，即如果一个进程一次请求获取不了所有资源，那么它不可占用任何资源（释放掉它已经占有的资源）。持有不等待，资源充足，只要申请求资源，就给其资源，不让他等待</li>
+<li>不可抢占：如果一个进程所请求的资源被另一进程占有，使他可以抢占另一进程占有的资源</li>
+<li>循环等待：对资源进行排序，即每个进程访问资源的顺序是固定的</li>
+</ol>
+<p><strong>死锁的避免</strong></p>
+<p>为了避免因为预防死锁而导致所有线程变慢，死锁避免采用了与死锁预防相反的措施。它允许三个必要条件，但通过算法<strong>判断资源请求是否可能导致循环等待的形成并相应决策</strong>，来避免死锁点的产生。因此，其前提是知道当前资源使用的整体情况，以及申请资源线程本身所占有的资源细节。判断和决策中，主要使用两种避免方法：</p>
+<ol>
+<li>线程启动拒绝：如果一个线程的请求会引发死锁，则不允许其启动</li>
+<li>资源分配拒绝：如果一个线程增加的资源会导致死锁，则不允许申请</li>
+</ol>
+<p><strong>死锁的检测</strong></p>
+<p>相比前面两种方法的保守，死锁检测就要自信而奔放得多。死锁检测中，尽可能将被请求的资源分配给线程，操作系统会周期性执行算法检测是否有循环等待的产生。检查算法执行的频率影响着死锁被检测出的灵敏度，操作系统可以在每次资源请求时检测，也可以适当降低频率，减少消耗COU时间。检测到死锁后，就需要解决死锁。目前主要采用如下方法：</p>
+<ol>
+<li>取消所有死锁相关线程，简单粗暴</li>
+<li>把每个死锁线程回滚到某些检查点，然后重启</li>
+<li>连续取消死锁线程直到死锁解除，顺序基于特定最小代价原则</li>
+<li>连续抢占资源直到死锁解除</li>
+</ol>
+<blockquote>
+<p>12、线程同步是怎样的</p>
+</blockquote>
+<p><strong>同步与互斥的区别联系</strong></p>
+<ul>
+<li><strong>互斥</strong>：使指散布在不同进程（线程）之间的若干程序片段，当某个进程（线程）运行其中一个程序片段时，其它进程（线程）就不能运行它们之中的任一程序片段，只能等到该进程（线程）运行完这个程序片段后菜可以运行</li>
+<li><strong>同步</strong>：是指散布在不同进程（线程）之间的若干程序片段，它们的运行必须严格按照规定的某种先后次序来运行，这种先后次序依赖于要完成的特定的任务</li>
+</ul>
+<p>同步是一种更为复杂的互斥，而互斥是一种特殊的同步。也就是说互斥是两个线程之间不可以同时运行，它们会相互排斥，必须等待一个线程运行完毕，另一个才能运行，而同步大部分情况下也是不能同时运行，但它是必须按照某种次序来运行相应的线程，而且少数时候同步可以允许多个线程同时允许。</p>
+<p><strong>线程同步方式</strong></p>
+<ol>
+<li><strong>临界区</strong>：通过对多线程的串行化来访问公共资源或一段代码，速度快，适合控制数据访问</li>
+<li><strong>互斥量</strong>：为协调共同对一个共享资源的单独访问而设计的</li>
+<li><strong>信号量</strong>：为控制一个具有有限数量用户资源而设计</li>
+<li><strong>事件</strong>：作用来通知线程有一些事件已发生，从而启动后继任务的开始</li>
+</ol>
+<blockquote>
+<p>13、Top_K问题解决思路（考察最大最小堆，堆结构及操作）</p>
+</blockquote>
+<ol>
+<li><p>数据量小时，可考虑快排</p>
+</li>
+<li><p>数据量大时，考虑采用堆结构</p>
+<p>将给定的数据前K个元素进行向下调整建最小堆</p>
+<p>再将堆顶元素和数组的其它元素进行比较，当堆顶元素小于数组中所取元素时，将所取元素入堆</p>
+<p>再进行调整，直到数组所有元素都依次进行比较</p>
+</li>
+</ol>
+<blockquote>
+<p>14、链表排序（归并排序能应用在上面吗，介绍下归并思想）</p>
+<p>15、快排的复杂度</p>
+</blockquote>
+<p><strong>给定一个乱序的单链表的头节点，对该链表中的节点进行排序，要求时间复杂度为O(nlgn)，空间复杂度为O(1)</strong></p>
+<p><strong>分析</strong>：</p>
+<p>由于题目要求时间复杂度为O(nlgn)，因此选择排序和插入排序可以排除</p>
+<p>再排序算法中，时间复杂度为O(nlgn)的主要有：归并排序、快速排序、堆排序</p>
+<p>其中堆排序的空间复杂度为O(n)，也不符合要求，因此也可以排除</p>
+<p>归并排序在对数组进行排序时，需要一个临时数组来存储所有元素，空间复杂度为n，但是利用归并算法对单链表进行排序时，可以通过next指针来记录元素的相对位置，因此空间复杂度也为O(1)</p>
+<p>因此可以考虑用快排和归并来实现单链表的排序</p>
+<blockquote>
+<p> 16、hasmap原理，相应的数据结构是怎样的</p>
+<p>17、如何解决哈希冲突</p>
+<p>18、装载因子的作用</p>
+<p>19、哈希表如何进行扩容（原始表中的数据是否需要迁移）</p>
+</blockquote>
+<p>hasmap基于数组+链表+（红黑树JDK8新加入）</p>
+<p><strong>解决hash冲突的方法</strong></p>
+<ol>
+<li>开放寻址法（线性探测再散列，二次探测再散列，伪随机探测再散列）</li>
+<li>再哈希法</li>
+<li><strong>链地址法</strong></li>
+<li>建立一个公共溢出区</li>
+</ol>
+<h4 id="更多精彩，关注“咋家”"><a href="#更多精彩，关注“咋家”" class="headerlink" title="更多精彩，关注“咋家”"></a>更多精彩，关注“咋家”</h4><p><img src="http://ww1.sinaimg.cn/large/005xDMfSly1g491vnwsy7j30bi06976v.jpg" alt></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/面试/" rel="tag"># 面试</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/08/刷题21——面试题40：最小的k个数/" rel="next" title="刷题21——面试题40：最小的k个数">
+                <i class="fa fa-chevron-left"></i> 刷题21——面试题40：最小的k个数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/author.jpg" alt="廿十">
+            
+              <p class="site-author-name" itemprop="name">廿十</p>
+              <p class="site-description motion-element" itemprop="description">Stay hungry, Stay foolish</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CSC1994" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:cschang1994@foxmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、UDP主要特点：传输的是用户数据报协议。"><span class="nav-number">1.</span> <span class="nav-text">一、UDP主要特点：传输的是用户数据报协议。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、TCP的主要特点："><span class="nav-number">2.</span> <span class="nav-text">二、TCP的主要特点：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更多精彩，关注“咋家”"><span class="nav-number">3.</span> <span class="nav-text">更多精彩，关注“咋家”</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">廿十</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
