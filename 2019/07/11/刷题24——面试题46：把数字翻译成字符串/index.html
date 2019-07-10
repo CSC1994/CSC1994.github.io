@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="题目： 输入一个正整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。例如，输入数组{3, 32, 321}，则打印出这3个数字能排成的最小数字321323  思路：这道题最直接的求法就是求出数组中所有数字的全排列，然后把每个排列拼起来，最后求出拼起来的数字的最小值，不过根据排列组合的知识，n个数字总共有n!个排列。 其实这道题希望我们能找到一个排序规则，数组根据这个">
+<meta name="description" content="题目： 给定一个数字，我们按照如下规则把它翻译为字符串：0翻译成“a”，1翻译成“b”，……，11翻译成“l”，……，25翻译成“z”。一个数字可能有多个翻译。例如，12258有5种不同的翻译，分别是”bccfi”、”bwfi”、“bczi”、“mcfi”和“mzi”。请编程实现一个函数，用来计算一个数字有多少种不同的翻译方法。  思路：我们以12258为例分析如何从数字的第一位开始一步步计算不同">
 <meta name="keywords" content="《剑指offer》,python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="刷题23——面试题45：把数组排成最小的数">
-<meta property="og:url" content="http://yoursite.com/2019/07/10/刷题23——面试题45：把数组排成最小的数/index.html">
+<meta property="og:title" content="刷题24——面试题46：把数字翻译成字符串">
+<meta property="og:url" content="http://yoursite.com/2019/07/11/刷题24——面试题46：把数字翻译成字符串/index.html">
 <meta property="og:site_name" content="咋家">
-<meta property="og:description" content="题目： 输入一个正整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。例如，输入数组{3, 32, 321}，则打印出这3个数字能排成的最小数字321323  思路：这道题最直接的求法就是求出数组中所有数字的全排列，然后把每个排列拼起来，最后求出拼起来的数字的最小值，不过根据排列组合的知识，n个数字总共有n!个排列。 其实这道题希望我们能找到一个排序规则，数组根据这个">
+<meta property="og:description" content="题目： 给定一个数字，我们按照如下规则把它翻译为字符串：0翻译成“a”，1翻译成“b”，……，11翻译成“l”，……，25翻译成“z”。一个数字可能有多个翻译。例如，12258有5种不同的翻译，分别是”bccfi”、”bwfi”、“bczi”、“mcfi”和“mzi”。请编程实现一个函数，用来计算一个数字有多少种不同的翻译方法。  思路：我们以12258为例分析如何从数字的第一位开始一步步计算不同">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g491vnwsy7j30bi06976v.jpg">
-<meta property="og:updated_time" content="2019-07-09T01:33:02.247Z">
+<meta property="og:updated_time" content="2019-07-10T00:50:21.148Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="刷题23——面试题45：把数组排成最小的数">
-<meta name="twitter:description" content="题目： 输入一个正整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。例如，输入数组{3, 32, 321}，则打印出这3个数字能排成的最小数字321323  思路：这道题最直接的求法就是求出数组中所有数字的全排列，然后把每个排列拼起来，最后求出拼起来的数字的最小值，不过根据排列组合的知识，n个数字总共有n!个排列。 其实这道题希望我们能找到一个排序规则，数组根据这个">
+<meta name="twitter:title" content="刷题24——面试题46：把数字翻译成字符串">
+<meta name="twitter:description" content="题目： 给定一个数字，我们按照如下规则把它翻译为字符串：0翻译成“a”，1翻译成“b”，……，11翻译成“l”，……，25翻译成“z”。一个数字可能有多个翻译。例如，12258有5种不同的翻译，分别是”bccfi”、”bwfi”、“bczi”、“mcfi”和“mzi”。请编程实现一个函数，用来计算一个数字有多少种不同的翻译方法。  思路：我们以12258为例分析如何从数字的第一位开始一步步计算不同">
 <meta name="twitter:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g491vnwsy7j30bi06976v.jpg">
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/07/10/刷题23——面试题45：把数组排成最小的数/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/11/刷题24——面试题46：把数字翻译成字符串/">
 
 
 
 
 
-  <title>刷题23——面试题45：把数组排成最小的数 | 咋家</title>
+  <title>刷题24——面试题46：把数字翻译成字符串 | 咋家</title>
   
 
 
@@ -265,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/10/刷题23——面试题45：把数组排成最小的数/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/11/刷题24——面试题46：把数字翻译成字符串/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="廿十">
@@ -282,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">刷题23——面试题45：把数组排成最小的数</h1>
+          <h1 class="post-title" itemprop="name headline">刷题24——面试题46：把数字翻译成字符串</h1>
         
 
         <div class="post-meta">
@@ -294,8 +294,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-10T09:17:43+08:00">
-                2019-07-10
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-11T09:17:43+08:00">
+                2019-07-11
               </time>
             
 
@@ -355,18 +355,18 @@
 
       
         <h3 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h3><blockquote>
-<p>输入一个正整数数组，把数组里所有数字拼接起来排成一个数，打印能拼接出的所有数字中最小的一个。例如，输入数组{3, 32, 321}，则打印出这3个数字能排成的最小数字321323</p>
+<p>给定一个数字，我们按照如下规则把它翻译为字符串：0翻译成“a”，1翻译成“b”，……，11翻译成“l”，……，25翻译成“z”。一个数字可能有多个翻译。例如，12258有5种不同的翻译，分别是”bccfi”、”bwfi”、“bczi”、“mcfi”和“mzi”。请编程实现一个函数，用来计算一个数字有多少种不同的翻译方法。</p>
 </blockquote>
-<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>这道题最直接的求法就是求出数组中所有数字的全排列，然后把每个排列拼起来，最后求出拼起来的数字的最小值，不过根据排列组合的知识，n个数字总共有n!个排列。</p>
-<p>其实这道题希望我们能找到一个排序规则，数组根据这个规则排序之后能排成一个最小的数字。要确定排序规则，就要比较两个数字，也就是给出两个数字m和n，我们要确定一个规则判断m和n哪个应该排在前面，而不是仅仅比较这两个数字的值哪个更大。</p>
-<p>根据题目要求，两个数字m和n能拼接成数字mn和nm。如果mn&lt;nm，那么我们应该打印出mn，也就是m应该排在n的前面，我们定义此时m小于n；反之，如果nm&lt;mn，则我们定义n小于m；如果mn=nm，则m等于n。</p>
-<p>接下来考虑怎么去拼接数字，即给出数字m和n，怎么得到数字mn和nm并比较它们的大小。直接用数值计算不难办到，但需要考虑的一个潜在问题是m和n都在int型能表达的范围内，但把它们拼接起来的数字mn和nm用int型表示就有可能溢出了，所以这还是一个隐形的大数问题。</p>
-<p>一个非常直观的解决大数问题的方法就是把数字转换成字符串。另外，由于把数字m和n拼接起来得到mn和nm，它们的位数肯定是相同的，因此比较它们的大小只需要按照字符串大小的比较规则届可以了。</p>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>我们以12258为例分析如何从数字的第一位开始一步步计算不同翻译方法的数目。我们有两种不同的选择来翻译第一位数字1.第一种选择是数字1单独翻译成“b”，后面剩下数字2258；第二种选择是1和紧挨着的2一起翻译成“m”，后面剩下数字258。</p>
+<p>当最开始的一个或者两个数字被翻译成一个字符之后，我们接着翻译后面剩下的数字。显然，我们可以写一个递归函数来计算翻译的数目。</p>
+<p>我们定义函数f(i)表示从第i位数字开始的不同翻译的数目，那么f(i) =f(i+1)+g(i, i+1)×f(i+2)。当第i位和第i+1位两位数字拼接起来的数字在10~25的范围内时，函数g(i, i+1)的值为1；否则为0。</p>
+<p>尽管我们用递归的思路来分析这个问题，但由于存在重复的子问题，递归并不是解决这个问题的最佳方法。还是以12258为例。如前所述，翻译12258可以分解成两个子问题：翻译1和2258，以及翻译12和258。接下来我们翻译第一个子问题剩下的2258，同样也可以分解成两个子问题：翻译2和258，以及翻译22和58.注意到子问题翻译258重复出现了。</p>
+<p>递归从最大的问题开始自上而下解决问题。我们也可以从最小的子问题自下而上解决问题，这样可以消除重复的子问题。也就是说，我们从数字的末尾开始，然后从右到左翻译并计算不同翻译的数目。</p>
 <p>python代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> cmp_to_key</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">PrintMinNum</span><span class="params">( nums)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">''</span></span><br><span class="line">    </span><br><span class="line">    strlist =list(map(str, nums))</span><br><span class="line">    key =cmp_to_key(<span class="keyword">lambda</span> x, y: int(x+y)-int(y+x))</span><br><span class="line">    strlist.sort(key=key)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">''</span>.join(strlist)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">trans_num_to_str</span><span class="params">(num)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> num&lt;<span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">if</span> num ==<span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">    string =str(num)</span><br><span class="line">    f1, f2, g=<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(string)<span class="number">-2</span>, <span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line">        <span class="keyword">if</span> int(string[i] +string[i+<span class="number">1</span>]) &lt;<span class="number">26</span>:</span><br><span class="line">            g =<span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            g =<span class="number">0</span></span><br><span class="line">        f2, f1 =f2 +g*f1, f2</span><br><span class="line">    <span class="keyword">return</span> f2</span><br></pre></td></tr></table></figure>
 
 <p>java代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PrintMinNum</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">printMinNum</span><span class="params">(<span class="keyword">int</span>[] nums)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(nums==<span class="keyword">null</span> || nums.length==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> len =nums.length;</span><br><span class="line">        String[] str =<span class="keyword">new</span> String[len];</span><br><span class="line">        StringBuilder sb =<span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;len; i++)&#123;</span><br><span class="line">            str[i] =String.valueOf(numbers[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(str, <span class="keyword">new</span> Comparator&lt;String&gt;()&#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(String str1, String str2)</span></span>&#123;</span><br><span class="line">                String c1 =str1+str2;</span><br><span class="line">                String c2 =str2+str1;</span><br><span class="line">                <span class="keyword">return</span> c1.compareTo(c2);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;len; i++)&#123;</span><br><span class="line">            sb.append(str[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sb.toString();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">Solution</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n&lt;<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> getTranslationCount(Integer.toString(n));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> getTranslationCount*(String number)&#123;</span><br><span class="line">    <span class="keyword">int</span> f1=<span class="number">0</span>, f2=<span class="number">1</span>, g=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> temp;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=number.length -<span class="number">2</span>; i&gt;=<span class="number">0</span>; i--)&#123;</span><br><span class="line">        <span class="keyword">if</span>(Integer.parseInt(number.charAt(i)+<span class="string">""</span>+number.charAt(i+<span class="number">1</span>))&lt;<span class="number">26</span>)&#123;</span><br><span class="line">            g =<span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            g =<span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        temp =f2;</span><br><span class="line">        f2 =f2+g*f1;</span><br><span class="line">        f1 =temp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> f2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="更多精彩，关注“咋家”"><a href="#更多精彩，关注“咋家”" class="headerlink" title="更多精彩，关注“咋家”"></a>更多精彩，关注“咋家”</h4><p><img src="http://ww1.sinaimg.cn/large/005xDMfSly1g491vnwsy7j30bi06976v.jpg" alt></p>
 
@@ -401,8 +401,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/09/刷题22——面试题42：连续子数组的最大和/" rel="next" title="刷题22——面试题42：连续子数组的最大和">
-                <i class="fa fa-chevron-left"></i> 刷题22——面试题42：连续子数组的最大和
+              <a href="/2019/07/10/刷题23——面试题45：把数组排成最小的数/" rel="next" title="刷题23——面试题45：把数组排成最小的数">
+                <i class="fa fa-chevron-left"></i> 刷题23——面试题45：把数组排成最小的数
               </a>
             
           </div>
@@ -410,10 +410,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/11/刷题24——面试题46：把数字翻译成字符串/" rel="prev" title="刷题24——面试题46：把数字翻译成字符串">
-                刷题24——面试题46：把数字翻译成字符串 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
