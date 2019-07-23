@@ -79,22 +79,20 @@
 
 
 
-<meta name="description" content="题目： 请完成一个函数，输入一棵二叉树，该函数输出它的镜像。  如下图所示，即为两棵互为镜像的二叉树：  思路：现在我们来仔细分析这两棵树的特点，总结出求镜像的步骤。这两颗树的根节点相同，但它们的左、右两个子节点交换了位置。因此，我们不妨先在树中交换根节点的两个子节点，得到下图的第二棵树。 交换根节点的两个子节点之后，我们注意到值为10、6的节点的子节点仍然保持不变，因此我们还需要交换这两个节点的">
+<meta name="description" content="题目： 统计一个数字在排序数组中出现的次数。例如，输入排序数组{1, 2, 3, 3, 3, 3, 4, 5}和数字3，由于3在这个数组中出现了4次，因此输出4。  思路：既然输入的数组是排序的，那么我们就能很自然的想到用二分查找算法。在题目给出的例子中，我们可以先用二分查找算法找到一个3。由于3可能出现多次，因此我们找到的3的左右两边可能都有3，于是在找到的3的左右两边顺序扫描，分别找出第一个3">
 <meta name="keywords" content="《剑指offer》,python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="刷题14——面试题27：二叉树的镜像">
-<meta property="og:url" content="http://yoursite.com/2019/06/30/刷题14——面试题27：二叉树的镜像/index.html">
+<meta property="og:title" content="刷题29——面试题53：在排序数组中查找数字">
+<meta property="og:url" content="http://yoursite.com/2019/07/23/刷题29——面试题53：在排序数组中查找数字/index.html">
 <meta property="og:site_name" content="咋家">
-<meta property="og:description" content="题目： 请完成一个函数，输入一棵二叉树，该函数输出它的镜像。  如下图所示，即为两棵互为镜像的二叉树：  思路：现在我们来仔细分析这两棵树的特点，总结出求镜像的步骤。这两颗树的根节点相同，但它们的左、右两个子节点交换了位置。因此，我们不妨先在树中交换根节点的两个子节点，得到下图的第二棵树。 交换根节点的两个子节点之后，我们注意到值为10、6的节点的子节点仍然保持不变，因此我们还需要交换这两个节点的">
+<meta property="og:description" content="题目： 统计一个数字在排序数组中出现的次数。例如，输入排序数组{1, 2, 3, 3, 3, 3, 4, 5}和数字3，由于3在这个数组中出现了4次，因此输出4。  思路：既然输入的数组是排序的，那么我们就能很自然的想到用二分查找算法。在题目给出的例子中，我们可以先用二分查找算法找到一个3。由于3可能出现多次，因此我们找到的3的左右两边可能都有3，于是在找到的3的左右两边顺序扫描，分别找出第一个3">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g4hr1zz3h6j30df0410sl.jpg">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g4hreroa95j30sa044aa3.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g491vnwsy7j30bi06976v.jpg">
-<meta property="og:updated_time" content="2019-06-29T01:46:01.861Z">
+<meta property="og:updated_time" content="2019-07-23T01:35:03.313Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="刷题14——面试题27：二叉树的镜像">
-<meta name="twitter:description" content="题目： 请完成一个函数，输入一棵二叉树，该函数输出它的镜像。  如下图所示，即为两棵互为镜像的二叉树：  思路：现在我们来仔细分析这两棵树的特点，总结出求镜像的步骤。这两颗树的根节点相同，但它们的左、右两个子节点交换了位置。因此，我们不妨先在树中交换根节点的两个子节点，得到下图的第二棵树。 交换根节点的两个子节点之后，我们注意到值为10、6的节点的子节点仍然保持不变，因此我们还需要交换这两个节点的">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g4hr1zz3h6j30df0410sl.jpg">
+<meta name="twitter:title" content="刷题29——面试题53：在排序数组中查找数字">
+<meta name="twitter:description" content="题目： 统计一个数字在排序数组中出现的次数。例如，输入排序数组{1, 2, 3, 3, 3, 3, 4, 5}和数字3，由于3在这个数组中出现了4次，因此输出4。  思路：既然输入的数组是排序的，那么我们就能很自然的想到用二分查找算法。在题目给出的例子中，我们可以先用二分查找算法找到一个3。由于3可能出现多次，因此我们找到的3的左右两边可能都有3，于是在找到的3的左右两边顺序扫描，分别找出第一个3">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g491vnwsy7j30bi06976v.jpg">
 
 
 
@@ -124,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/06/30/刷题14——面试题27：二叉树的镜像/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/23/刷题29——面试题53：在排序数组中查找数字/">
 
 
 
 
 
-  <title>刷题14——面试题27：二叉树的镜像 | 咋家</title>
+  <title>刷题29——面试题53：在排序数组中查找数字 | 咋家</title>
   
 
 
@@ -267,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/30/刷题14——面试题27：二叉树的镜像/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/23/刷题29——面试题53：在排序数组中查找数字/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="廿十">
@@ -284,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">刷题14——面试题27：二叉树的镜像</h1>
+          <h1 class="post-title" itemprop="name headline">刷题29——面试题53：在排序数组中查找数字</h1>
         
 
         <div class="post-meta">
@@ -296,8 +294,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-30T09:17:43+08:00">
-                2019-06-30
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-23T09:17:43+08:00">
+                2019-07-23
               </time>
             
 
@@ -357,20 +355,18 @@
 
       
         <h3 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h3><blockquote>
-<p>请完成一个函数，输入一棵二叉树，该函数输出它的镜像。</p>
+<p>统计一个数字在排序数组中出现的次数。例如，输入排序数组{1, 2, 3, 3, 3, 3, 4, 5}和数字3，由于3在这个数组中出现了4次，因此输出4。</p>
 </blockquote>
-<p>如下图所示，即为两棵互为镜像的二叉树：</p>
-<p><img src="http://ww1.sinaimg.cn/large/005xDMfSly1g4hr1zz3h6j30df0410sl.jpg" alt></p>
-<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>现在我们来仔细分析这两棵树的特点，总结出求镜像的步骤。这两颗树的根节点相同，但它们的左、右两个子节点交换了位置。因此，我们不妨先在树中交换根节点的两个子节点，得到下图的第二棵树。</p>
-<p>交换根节点的两个子节点之后，我们注意到值为10、6的节点的子节点仍然保持不变，因此我们还需要交换这两个节点的左、右子节点。交换之后的结果分别是下图的第三棵树和第四棵树。做完这两次交换之后，我们已经遍历完所有的非叶节点。此时变换之后的树刚好就是原始树的镜像。</p>
-<p><img src="http://ww1.sinaimg.cn/large/005xDMfSly1g4hreroa95j30sa044aa3.jpg" alt="1"></p>
-<p>注：（a）交换根节点的左、右子树；（b）交换值为10的节点的左、右子节点；（c）交换值为6的节点的左、右子节点</p>
-<p>总结上面的过程，我们得出求一棵树的镜像的过程：先前序遍历这棵树的每个节点，如果遍历到的节点有子节点，就交换它的两个子节点。当交换完所有非叶节点的左、右子节点之后，就得到了树的镜像。</p>
-<p>综上，python代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        self.val =x</span><br><span class="line">        self.left =<span class="literal">None</span></span><br><span class="line">        self.right =<span class="literal">None</span></span><br><span class="line">        </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">Mirror</span><span class="params">(self, root)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> root:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        root.left, root.right =root.right, root.left</span><br><span class="line">        <span class="keyword">if</span> root.left:</span><br><span class="line">            self.Mirror(root.left)</span><br><span class="line">        <span class="keyword">if</span> root.right:</span><br><span class="line">            self.Mirror(root.right)</span><br></pre></td></tr></table></figure>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>既然输入的数组是排序的，那么我们就能很自然的想到用二分查找算法。在题目给出的例子中，我们可以先用二分查找算法找到一个3。由于3可能出现多次，因此我们找到的3的左右两边可能都有3，于是在找到的3的左右两边顺序扫描，分别找出第一个3和最后一个3，因为要查找的数字的长度位n的数组中有可能出现O(n)次，所以顺序扫描的时间复杂度是O(n)。因此，这种算法的效率和直接从头到尾顺序扫描整个数组统计3出现的次数的方法是一样的。</p>
+<p>接下来我们思考如何更好的利用二分查找算法，假设我们要统计数字k在排序数组中出现的次数，在前面的算法中，时间主要消耗在如何确定重复出现的数字的第一个k和最后一个k的位置上，有没有可能用二分查找算法直接找到第一个k及最后一个k呢?</p>
+<p>我们先分析如何用二分查找算法在数组中找到第一个k，二分查找算法总是先拿数组中间的数字和k作比较。如果中间的数字比k大，那么k只有可能出现在数组的前半段，下一轮我们只在数组的前半段查找就可以了。如果中间的数字比k小，那么k只有可能出现在数组的后半段，下一轮我们只在数组的后半段查找就可以了。如果中间的数字和k相等，我们先判断这个数字是不是第一个k。如果中间数字的前面一个数字不是k，那么此时中间的数字刚好就是第一个k；如果中间数字的前面一个数字也是k，那么第一个k肯定在数组的前半段，下一轮我们仍然需要在数组的前半段查找。</p>
+<p>基于同样的思路，我们可以在排序数组中找到最后一个k。在分别找到第一个k和最后一个k的下标之后，我们就能计算出k在数组中出现的次数。</p>
+<p>python代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">GetNumberOfK</span><span class="params">(self, data, k)</span>:</span></span><br><span class="line">        number =<span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> data != <span class="literal">None</span> <span class="keyword">and</span> len(data) &gt;<span class="number">0</span>:</span><br><span class="line">            length =len(data)</span><br><span class="line">            first =self.GetFirst(data, length, k, <span class="number">0</span>, length<span class="number">-1</span>)</span><br><span class="line">            last =self.GetLast(data, length, k, <span class="number">0</span>, length<span class="number">-1</span>)</span><br><span class="line">            <span class="keyword">if</span> first &gt;<span class="number">-1</span>:</span><br><span class="line">                number =last -first +<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> number</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">GetFirst</span><span class="params">(self, data, length, k, start, end)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> start &gt;end:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">        middle =(start+end)//<span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> data[middle] ==k:</span><br><span class="line">            <span class="keyword">if</span> middle &gt;<span class="number">0</span> <span class="keyword">and</span> data[middle<span class="number">-1</span>]==k:</span><br><span class="line">                end =middle<span class="number">-1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> middle</span><br><span class="line">        <span class="keyword">elif</span> data[middle]&gt;k:</span><br><span class="line">            end =middle<span class="number">-1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            start =middle+<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> self.GetFirst(data, length, k, start, end)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">GetLast</span><span class="params">(self, data, length, k, start, end)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> start &gt;end:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line">        middle =(start+end)//<span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> data[middle]==k:</span><br><span class="line">            <span class="keyword">if</span> middle &lt;end <span class="keyword">and</span> data[middle+<span class="number">1</span>] ==k:</span><br><span class="line">                start =middle+<span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">return</span> middle</span><br><span class="line">        <span class="keyword">elif</span> data[middle]&gt;k:</span><br><span class="line">            end =middle <span class="number">-1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            start =middle+<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> self.GetLast(data, length, k, start, end)</span><br></pre></td></tr></table></figure>
 
-<p>java代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//二叉树结构定义如下</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BinaryTreeNode</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span> value;</span><br><span class="line">    <span class="keyword">public</span> BinaryTreeNode leftNode;</span><br><span class="line">    <span class="keyword">public</span> BinaryTreeNode rightNode;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BinaryTreeNode</span><span class="params">()</span></span>&#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BinaryTreeNode</span><span class="params">(<span class="keyword">int</span> value)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.value =value;</span><br><span class="line">        <span class="keyword">this</span>.leftNode =<span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">this</span>.rightNode =<span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MirrorOfBinaryTree</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Mirror</span><span class="params">(BinaryTreeNode node)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (node ==<span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span> (node.leftNode ==<span class="keyword">null</span> &amp;&amp; node.rightNode ==<span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        </span><br><span class="line">        BinaryTreeNode temp =node.leftNode;</span><br><span class="line">        node.leftNode =node.rightNode;</span><br><span class="line">        node.rightNode =temp;</span><br><span class="line">        <span class="keyword">if</span>(node.leftNode != <span class="keyword">null</span>)</span><br><span class="line">            Mirror(node.leftNode);</span><br><span class="line">        <span class="keyword">if</span>(node.rightNode !=<span class="keyword">null</span>)</span><br><span class="line">            Mirror(node.rightNode);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此外，python中可以直接利用count函数，count函数是顺序查找，最坏时间复杂度是O(n)</p>
+<p>python代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">GetNumberOfK</span><span class="params">(self, data, k)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> data.count(k)</span><br></pre></td></tr></table></figure>
 
 <h4 id="更多精彩，关注“咋家”"><a href="#更多精彩，关注“咋家”" class="headerlink" title="更多精彩，关注“咋家”"></a>更多精彩，关注“咋家”</h4><p><img src="http://ww1.sinaimg.cn/large/005xDMfSly1g491vnwsy7j30bi06976v.jpg" alt></p>
 
@@ -405,8 +401,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/29/刷题13——面试题25：合并两个排序的链表/" rel="next" title="刷题13——面试题25：合并两个排序的链表">
-                <i class="fa fa-chevron-left"></i> 刷题13——面试题25：合并两个排序的链表
+              <a href="/2019/07/22/刷题28——面试题51：数组中的逆序对/" rel="next" title="刷题28——面试题51：数组中的逆序对">
+                <i class="fa fa-chevron-left"></i> 刷题28——面试题51：数组中的逆序对
               </a>
             
           </div>
@@ -414,10 +410,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/01/刷题15——面试题28：对称的二叉树/" rel="prev" title="刷题15——面试题28：对称的二叉树">
-                刷题15——面试题28：对称的二叉树 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
