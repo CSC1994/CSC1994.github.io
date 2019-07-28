@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="题目： 输入一个整型数组，数组里有正数也有负数。数组中的一个或连续多个整数组成一个子数组，求所有子数组的和的最大值。要求时间复杂度为O(n)。  例如，输入的数组为{1, -2, 3, 10, -4, 7, 2, -5}，和最大的子数组为{3, 10, -4, 7, 2}，因此输出为该子数组的和18。 最直观的解法，即枚举数组的所有子数组并求出它们的和。一个长度为n的数组，总共有n(n+1)/2个">
+<meta name="description" content="题目： 假设把某股票的价格按照时间先后顺序存储在数组中，请问买卖该股票一次可能获得的最大利润是多少？例如，一只股票在某些时间节点的价格位{9, 11, 8, 5, 7, 12, 16, 14}。如果我们能在价格为5的时候买入并在价格为16时卖出，则能收获最大的利润11。  思路：股票交易的利润来自股票买入和卖出价格的差价。当然，我们只能在买入某只股票之后才能卖出。如果把股票的买入价和卖出价两个数字">
 <meta name="keywords" content="《剑指offer》,python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="刷题22——面试题42：连续子数组的最大和">
-<meta property="og:url" content="http://yoursite.com/2019/07/09/刷题22——面试题42：连续子数组的最大和/index.html">
+<meta property="og:title" content="刷题34——面试题63：股票的最大利润">
+<meta property="og:url" content="http://yoursite.com/2019/07/28/刷题34——面试题63：股票的最大利润/index.html">
 <meta property="og:site_name" content="咋家">
-<meta property="og:description" content="题目： 输入一个整型数组，数组里有正数也有负数。数组中的一个或连续多个整数组成一个子数组，求所有子数组的和的最大值。要求时间复杂度为O(n)。  例如，输入的数组为{1, -2, 3, 10, -4, 7, 2, -5}，和最大的子数组为{3, 10, -4, 7, 2}，因此输出为该子数组的和18。 最直观的解法，即枚举数组的所有子数组并求出它们的和。一个长度为n的数组，总共有n(n+1)/2个">
+<meta property="og:description" content="题目： 假设把某股票的价格按照时间先后顺序存储在数组中，请问买卖该股票一次可能获得的最大利润是多少？例如，一只股票在某些时间节点的价格位{9, 11, 8, 5, 7, 12, 16, 14}。如果我们能在价格为5的时候买入并在价格为16时卖出，则能收获最大的利润11。  思路：股票交易的利润来自股票买入和卖出价格的差价。当然，我们只能在买入某只股票之后才能卖出。如果把股票的买入价和卖出价两个数字">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g491vnwsy7j30bi06976v.jpg">
-<meta property="og:updated_time" content="2019-07-09T01:28:03.588Z">
+<meta property="og:updated_time" content="2019-07-28T01:37:55.903Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="刷题22——面试题42：连续子数组的最大和">
-<meta name="twitter:description" content="题目： 输入一个整型数组，数组里有正数也有负数。数组中的一个或连续多个整数组成一个子数组，求所有子数组的和的最大值。要求时间复杂度为O(n)。  例如，输入的数组为{1, -2, 3, 10, -4, 7, 2, -5}，和最大的子数组为{3, 10, -4, 7, 2}，因此输出为该子数组的和18。 最直观的解法，即枚举数组的所有子数组并求出它们的和。一个长度为n的数组，总共有n(n+1)/2个">
+<meta name="twitter:title" content="刷题34——面试题63：股票的最大利润">
+<meta name="twitter:description" content="题目： 假设把某股票的价格按照时间先后顺序存储在数组中，请问买卖该股票一次可能获得的最大利润是多少？例如，一只股票在某些时间节点的价格位{9, 11, 8, 5, 7, 12, 16, 14}。如果我们能在价格为5的时候买入并在价格为16时卖出，则能收获最大的利润11。  思路：股票交易的利润来自股票买入和卖出价格的差价。当然，我们只能在买入某只股票之后才能卖出。如果把股票的买入价和卖出价两个数字">
 <meta name="twitter:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g491vnwsy7j30bi06976v.jpg">
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/07/09/刷题22——面试题42：连续子数组的最大和/">
+  <link rel="canonical" href="http://yoursite.com/2019/07/28/刷题34——面试题63：股票的最大利润/">
 
 
 
 
 
-  <title>刷题22——面试题42：连续子数组的最大和 | 咋家</title>
+  <title>刷题34——面试题63：股票的最大利润 | 咋家</title>
   
 
 
@@ -265,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/09/刷题22——面试题42：连续子数组的最大和/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/28/刷题34——面试题63：股票的最大利润/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="廿十">
@@ -282,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">刷题22——面试题42：连续子数组的最大和</h1>
+          <h1 class="post-title" itemprop="name headline">刷题34——面试题63：股票的最大利润</h1>
         
 
         <div class="post-meta">
@@ -294,8 +294,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-09T09:17:43+08:00">
-                2019-07-09
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-28T09:17:43+08:00">
+                2019-07-28
               </time>
             
 
@@ -355,74 +355,12 @@
 
       
         <h3 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h3><blockquote>
-<p>输入一个整型数组，数组里有正数也有负数。数组中的一个或连续多个整数组成一个子数组，求所有子数组的和的最大值。要求时间复杂度为O(n)。</p>
+<p>假设把某股票的价格按照时间先后顺序存储在数组中，请问买卖该股票一次可能获得的最大利润是多少？例如，一只股票在某些时间节点的价格位{9, 11, 8, 5, 7, 12, 16, 14}。如果我们能在价格为5的时候买入并在价格为16时卖出，则能收获最大的利润11。</p>
 </blockquote>
-<p>例如，输入的数组为{1, -2, 3, 10, -4, 7, 2, -5}，和最大的子数组为{3, 10, -4, 7, 2}，因此输出为该子数组的和18。</p>
-<p>最直观的解法，即枚举数组的所有子数组并求出它们的和。一个长度为n的数组，总共有n(n+1)/2个子数组。计算出所有子数组的和，最快也需要O(n2)时间。</p>
-<h3 id="思路一：举例分析数组的规律"><a href="#思路一：举例分析数组的规律" class="headerlink" title="思路一：举例分析数组的规律"></a>思路一：举例分析数组的规律</h3><p>我们试着从头到尾逐个累加示例数组中的每个数字。初始化和为0.第一步加上第一个数字1，此时和为1。第二步加上数字-2，和就变成了-1。第三步加上数字3。我们注意到由于此前累加的和是-1，小于0，那如果用-1加上3，得到的和是2，比3本身还小。也就是说，从第一个数字开始的子数组的和会小于从第三个数字开始的子数组的和。因此，我们不用考虑从第一个数字开始的子数组，之前累加的和也被抛弃。</p>
-<p>我们从第三个数字重新开始累加，此时得到的和是3。第四步加10，得到的和为13。第五步加上-4，和为9。我们发现，由于-4是一个负数，因此累加-4之后得到的和比原来的和还要小。因此，我们要把之前得到的和13保存下来，因为它有可能是最大的子数组的和。第六步加上数字7，9加7的结果是16，此时的和比之前最大的和13还要大，把最大的子数组的和由13更新为16。第七步加上2，累加得到的和为18，同时更新最大子数组的和。第八步加上最后一个数字-5，由于得到的和为13，小于此前最大的和18，因此，最终最大的子数组的和为18，对应的子数组是{3, 10, -4, 7, 2}。具体过程如下：</p>
-<table>
-<thead>
-<tr>
-<th>步骤</th>
-<th>操作</th>
-<th>累加的子数组之和</th>
-<th>最大子数组和</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td>加1</td>
-<td>1</td>
-<td>1</td>
-</tr>
-<tr>
-<td>2</td>
-<td>加-2</td>
-<td>-1</td>
-<td>1</td>
-</tr>
-<tr>
-<td>3</td>
-<td>抛弃前面的和-1，加3</td>
-<td>3</td>
-<td>3</td>
-</tr>
-<tr>
-<td>4</td>
-<td>加10</td>
-<td>13</td>
-<td>13</td>
-</tr>
-<tr>
-<td>5</td>
-<td>加-4</td>
-<td>9</td>
-<td>13</td>
-</tr>
-<tr>
-<td>6</td>
-<td>加7</td>
-<td>16</td>
-<td>16</td>
-</tr>
-<tr>
-<td>7</td>
-<td>加2</td>
-<td>18</td>
-<td>18</td>
-</tr>
-<tr>
-<td>8</td>
-<td>加-5</td>
-<td>13</td>
-<td>18</td>
-</tr>
-</tbody></table>
-<h3 id="思路二：应用动态规划法"><a href="#思路二：应用动态规划法" class="headerlink" title="思路二：应用动态规划法"></a>思路二：应用动态规划法</h3><p>如果算法的功底足够扎实，那么我们还可以用动态规划的思想来分析这个问题。如果用函数f(i)表示以第i个数字结尾的子数组的最大和，那么我们需要求出max[f(i)]，其中0&lt;=i&lt;n。我们可以用如下递归公式求f(i)：<br>$$<br>f(i)=\left\{\begin{matrix}<br>pData[i] ,\ i=0 \ or\ f(i-1)\leqslant 0\\ 
-f[i-1]+pData[i], \ i\neq 0 \ and \ f(i-1)&gt;0<br>\end{matrix}\right.<br>$$<br>这个公式的意义：当以第i-1个数字结尾的子数组中所有数字的和小于0时，如果把这个负数与第i个数累加，则得到的结果比第i个数字本身还要小，所以这种情况下以第i个数字结尾的子数组就是第i个数字本身。如果以第i-1个数字结尾的子数组中所有数字的和大于0，则与第i个数字累加就得到以第i个数字结尾的子数组中所有数字的和。</p>
-<p>python代码如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">FindGreatestSumOfSub</span><span class="params">(nums)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    sum =<span class="number">0</span></span><br><span class="line">    res =nums[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)):</span><br><span class="line">        <span class="keyword">if</span> sum &lt;=<span class="number">0</span>:</span><br><span class="line">            sum =nums[i]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            sum +=nums[i]</span><br><span class="line">            </span><br><span class="line">        <span class="keyword">if</span> sum &gt;res:</span><br><span class="line">            res =sum</span><br><span class="line">            </span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<h4 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h4><p>股票交易的利润来自股票买入和卖出价格的差价。当然，我们只能在买入某只股票之后才能卖出。如果把股票的买入价和卖出价两个数字组成一个数对，那么利润就是这个数对的差值。因此，最大的利润就是数组中所有数对的最大差值。</p>
+<p>我们定义函数diff(i)为当卖出价为数组中第i个数字时可能获得的最大利润。显然，当卖出价固定时，买入价越低获得的利润越大。也就是说，如果在扫描到数组中的第i个数字时，只要我们能记住之前的i-1个数字中的最小值，就能算出在当前价位卖出时可能得到的最大利润。</p>
+<p>综上，python代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">MaxDiff</span><span class="params">(nums)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> nums:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    n =len(nums)</span><br><span class="line">    min_value =nums[<span class="number">0</span>]</span><br><span class="line">    maxDiff =nums[<span class="number">1</span>]-min_value</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">2</span>, n):</span><br><span class="line">        <span class="keyword">if</span> nums[i<span class="number">-1</span>] &lt;min_value:</span><br><span class="line">            min_value =nums[i<span class="number">-1</span>]</span><br><span class="line">        currentDiff =nums[i] -min_value</span><br><span class="line">        <span class="keyword">if</span> currentDiff &gt;maxDiff:</span><br><span class="line">            maxDiff =currentDiff</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> maxDiff</span><br></pre></td></tr></table></figure>
 
 <h4 id="更多精彩，关注“咋家”"><a href="#更多精彩，关注“咋家”" class="headerlink" title="更多精彩，关注“咋家”"></a>更多精彩，关注“咋家”</h4><p><img src="http://ww1.sinaimg.cn/large/005xDMfSly1g491vnwsy7j30bi06976v.jpg" alt></p>
 
@@ -457,8 +395,8 @@ f[i-1]+pData[i], \ i\neq 0 \ and \ f(i-1)&gt;0<br>\end{matrix}\right.<br>$$<br>�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/08/小菜的互联网面试总结（一）/" rel="next" title="小菜的互联网面试总结（一）">
-                <i class="fa fa-chevron-left"></i> 小菜的互联网面试总结（一）
+              <a href="/2019/07/27/刷题33——面试题62：圆圈中最后剩下的数字/" rel="next" title="刷题33——面试题62：圆圈中最后剩下的数字">
+                <i class="fa fa-chevron-left"></i> 刷题33——面试题62：圆圈中最后剩下的数字
               </a>
             
           </div>
@@ -467,8 +405,8 @@ f[i-1]+pData[i], \ i\neq 0 \ and \ f(i-1)&gt;0<br>\end{matrix}\right.<br>$$<br>�
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/07/10/刷题23——面试题45：把数组排成最小的数/" rel="prev" title="刷题23——面试题45：把数组排成最小的数">
-                刷题23——面试题45：把数组排成最小的数 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/07/28/经典排序算法总结/" rel="prev" title="经典排序算法总结">
+                经典排序算法总结 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -619,7 +557,7 @@ f[i-1]+pData[i], \ i\neq 0 \ and \ f(i-1)&gt;0<br>\end{matrix}\right.<br>$$<br>�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目："><span class="nav-number">1.</span> <span class="nav-text">题目：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路一：举例分析数组的规律"><span class="nav-number">2.</span> <span class="nav-text">思路一：举例分析数组的规律</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路二：应用动态规划法"><span class="nav-number">3.</span> <span class="nav-text">思路二：应用动态规划法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#更多精彩，关注“咋家”"><span class="nav-number">3.1.</span> <span class="nav-text">更多精彩，关注“咋家”</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题目："><span class="nav-number">1.</span> <span class="nav-text">题目：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路："><span class="nav-number">1.1.</span> <span class="nav-text">思路：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更多精彩，关注“咋家”"><span class="nav-number">1.2.</span> <span class="nav-text">更多精彩，关注“咋家”</span></a></li></ol></li></ol></div>
             
 
           </div>
