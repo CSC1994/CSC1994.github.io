@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/f32.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/f16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="MySQL,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="数据库相关的知识在面试时也经常遇到，不过本人对这块内容并不是很了解，只是处于简单的增删查改的水平，姑且做一个简单的总结，以备查忘。 一、关系模型主键对于关系表，有个很重要的约束，就是任意两条记录不能重复。不能重复不是指两条记录不完全相同，而是指能够通过某个字段唯一区分出不同的记录，这个字段被称为主键。 主键的一个基本原则：不使用任何业务相关的字段作为主键。常见的可作为id的字段类型有：  自增整数">
+<meta name="keywords" content="MySQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用数据库SQL操作总结">
+<meta property="og:url" content="http://yoursite.com/2019/07/30/常用数据库SQL操作总结/index.html">
+<meta property="og:site_name" content="咋家">
+<meta property="og:description" content="数据库相关的知识在面试时也经常遇到，不过本人对这块内容并不是很了解，只是处于简单的增删查改的水平，姑且做一个简单的总结，以备查忘。 一、关系模型主键对于关系表，有个很重要的约束，就是任意两条记录不能重复。不能重复不是指两条记录不完全相同，而是指能够通过某个字段唯一区分出不同的记录，这个字段被称为主键。 主键的一个基本原则：不使用任何业务相关的字段作为主键。常见的可作为id的字段类型有：  自增整数">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g491vnwsy7j30bi06976v.jpg">
+<meta property="og:updated_time" content="2019-07-30T01:45:43.457Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="常用数据库SQL操作总结">
+<meta name="twitter:description" content="数据库相关的知识在面试时也经常遇到，不过本人对这块内容并不是很了解，只是处于简单的增删查改的水平，姑且做一个简单的总结，以备查忘。 一、关系模型主键对于关系表，有个很重要的约束，就是任意两条记录不能重复。不能重复不是指两条记录不完全相同，而是指能够通过某个字段唯一区分出不同的记录，这个字段被称为主键。 主键的一个基本原则：不使用任何业务相关的字段作为主键。常见的可作为id的字段类型有：  自增整数">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g491vnwsy7j30bi06976v.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/07/30/常用数据库SQL操作总结/">
+
+
+
+
+
+  <title>常用数据库SQL操作总结 | 咋家</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">咋家</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/30/常用数据库SQL操作总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="廿十">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="咋家">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">常用数据库SQL操作总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-07-30T09:17:43+08:00">
+                2019-07-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/面试/" itemprop="url" rel="index">
+                    <span itemprop="name">面试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>数据库相关的知识在面试时也经常遇到，不过本人对这块内容并不是很了解，只是处于简单的增删查改的水平，姑且做一个简单的总结，以备查忘。</p>
+<h4 id="一、关系模型"><a href="#一、关系模型" class="headerlink" title="一、关系模型"></a>一、关系模型</h4><h5 id="主键"><a href="#主键" class="headerlink" title="主键"></a>主键</h5><p>对于关系表，有个很重要的约束，就是任意两条记录不能重复。不能重复不是指两条记录不完全相同，而是指能够通过某个字段唯一区分出不同的记录，这个字段被称为<strong>主键</strong>。</p>
+<p>主键的一个基本原则：不使用任何业务相关的字段作为主键。常见的可作为id的字段类型有：</p>
+<ol>
+<li>自增整数类型：数据库会在插入数据时自动为每一条记录分配一个自增整数。</li>
+<li>全局唯一GUID类型：使用一种全局唯一的字符串作为主键。</li>
+</ol>
+<p><strong>联合主键</strong>：关系数据库实际上还允许通过多个字段唯一标识记录。即两个或更多的字段设置为主键，这种主键被称为联合主键。</p>
+<h5 id="外键"><a href="#外键" class="headerlink" title="外键"></a>外键</h5><p>如果一个关系的一个或一组属性引用（参照）了另一个关系的主键，则称这个或这组属性为<strong>外码或外键</strong>。</p>
+<p>外键不是通过列名实现的，而是通过定义外键约束实现的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE students</span><br><span class="line">ADD CONSTRAINT fk_class_id   </span><br><span class="line">FOREIGN KEY (class_id)</span><br><span class="line">REFERENCES classes (id);</span><br></pre></td></tr></table></figure>
+
+<p>其中。外键约束的名称fk_class_id可以任意，FOREIGN KEY (class_id)指定了class_id作为外键，REFERENCES class (id)指定了这个外键将关联到classes表的id列（即classes表的主键）。</p>
+<p>通过定义外键约束，关系数据库可以保证无法插入无效的数据。</p>
+<p>由于外键约束会降低数据库的性能，大部分互联网应用程序为了追求速度，并不设置外键约束，而是仅靠应用程序自身来保证逻辑的正确性。</p>
+<p>删除一个外键约束：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE students</span><br><span class="line">DROP FOREIGN KEY fk_class_id</span><br></pre></td></tr></table></figure>
+
+<h5 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h5><p>索引是关系数据库中对某一列或多个列的值进行预排序的数据结构。通过使用索引，可以让数据库系统不必扫描整个表，而是直接定位到符合条件的记录，这样就大大加快了查询速度。</p>
+<p>创建索引：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE students</span><br><span class="line">ADD INDEX id_name_score (name, score);</span><br></pre></td></tr></table></figure>
+
+<p>索引的效率取决于索引列的值是否散列，即该列的值如果越互不相同，那么索引效率越高。</p>
+<p><strong>唯一索引</strong>：在设计关系数据表的时候，看上去唯一的列，例如身份证号等，因为具有业务含义，因此不宜作为主键。但是这些列根据业务要求，又具有唯一性约束，可以给该列添加一个唯一索引或唯一约束来保证该列数据的唯一性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE students</span><br><span class="line">ADD UNIQUE INDEX uni_name (name);</span><br><span class="line"></span><br><span class="line">ALTER TABLE students</span><br><span class="line">ADD CONSTRAINT uni_name UNIQUE (name);</span><br></pre></td></tr></table></figure>
+
+<h4 id="二、查询数据"><a href="#二、查询数据" class="headerlink" title="二、查询数据"></a>二、查询数据</h4><h5 id="基本查询"><a href="#基本查询" class="headerlink" title="基本查询"></a>基本查询</h5><p>要查询数据库表的数据，我们使用如下的SQL语句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM &lt;表名&gt;；</span><br><span class="line"></span><br><span class="line">SELECT 100+200;</span><br></pre></td></tr></table></figure>
+
+<p>其中，SELECT是关键字，表示将要执行一个查询。*表示所有列，FROM表示将要从哪个表查询。SELECT查询的结果也是一个二维表，它包含列名和每一行的数据。其中。FROM关键字也并不是必要的。</p>
+<h5 id="条件查询"><a href="#条件查询" class="headerlink" title="条件查询"></a>条件查询</h5><p>条件查询语句为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM &lt;表名&gt; WHERE &lt;条件表达式&gt;</span><br></pre></td></tr></table></figure>
+
+<p>条件表达式可以用AND，OR和NOT。常见的条件表达式：</p>
+<table>
+<thead>
+<tr>
+<th>条件</th>
+<th>表达式举例</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>使用=判断相等</td>
+<td>score =90，name =’abc’</td>
+<td>字符串需要用单引号括起来</td>
+</tr>
+<tr>
+<td>使用&gt;判断大于</td>
+<td>score &gt;90，name &gt;’abc’</td>
+<td>字符串比较根据ASCII码</td>
+</tr>
+<tr>
+<td>使用&gt;=判断大于或相等</td>
+<td>score &gt;=90，name &gt;=’abc’</td>
+<td></td>
+</tr>
+<tr>
+<td>使用&lt;判断小于</td>
+<td>score &lt;90，name &lt;’abc’</td>
+<td></td>
+</tr>
+<tr>
+<td>使用&lt;=判断小于或相等</td>
+<td>score &lt;=90，name&lt; =’abc’</td>
+<td></td>
+</tr>
+<tr>
+<td>使用&lt;&gt;判断不相等</td>
+<td>score &lt;&gt;90，name &lt;&gt;’abc’</td>
+<td></td>
+</tr>
+<tr>
+<td>使用LIKE判断相似</td>
+<td>name LIKE ‘ab%’</td>
+<td>%表示任意字符</td>
+</tr>
+</tbody></table>
+<h5 id="投影查询"><a href="#投影查询" class="headerlink" title="投影查询"></a>投影查询</h5><p>如果我们只希望返回某些列的数据，而不是所有列的数据，可以用SELECT 列1， 列2，….，让结果仅包含指定列，这种操作称为投影查询。同时，还可以给每一列起个别名。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT id, score points, name FROM students WHERE gender =&apos;M&apos;</span><br></pre></td></tr></table></figure>
+
+<h5 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h5><p>我们使用SELECT查询时，通常是按照id排序的，也是根据主键排序，如果要根据其它条件排序，可以加上ORDER BY子句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- 按score从低到高</span><br><span class="line">SELECT id, name, gender, score FROM students ORDER BY score;</span><br><span class="line">-- 按score从高到低</span><br><span class="line">SELECT id, name, gender, score FROM students ORDER BY score DESC;</span><br></pre></td></tr></table></figure>
+
+<p>如果score列有相同的数据，要进一步排序，可以继续添加列名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 按score, gender排序</span><br><span class="line">SELECT id, name, gender, score FROM students ORDER BY score DESC, gender;</span><br></pre></td></tr></table></figure>
+
+<p>默认的规则是ASC：升序，即从小到大，可以省略。如果有WHERE子句，那么ORDER BY子句要放到WHERE子句后面。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT id, name, gender, score</span><br><span class="line">FROM students</span><br><span class="line">WHERE class_id =1</span><br><span class="line">ORDER BY score DESC;</span><br></pre></td></tr></table></figure>
+
+<h5 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h5><p>使用SELECT查询时，如果数据集数据量很大，比如几万行数据，放在一个页面显示的话数据量很大，不如分页显示，分页查询可以用子句LIMIT <m> OFFSET <n>实现。</n></m></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-- 查询第一页</span><br><span class="line">SELECT id, name, gender, score</span><br><span class="line">FROM students</span><br><span class="line">ORDER BY score DESC</span><br><span class="line">LIMIT 3 OFFSET 0;</span><br><span class="line">-- 查询第二页</span><br><span class="line">SELECT id, name, gender, score</span><br><span class="line">FROM students</span><br><span class="line">ORDER BY score DESC</span><br><span class="line">LIMIT 3 OFFSET 3;</span><br></pre></td></tr></table></figure>
+
+<p>LIMIT总是设定为每页需要显示的数量pagesize，OFFSET为起始的索引。</p>
+<h5 id="聚合查询"><a href="#聚合查询" class="headerlink" title="聚合查询"></a>聚合查询</h5><p>SQL提供了专门的聚合函数来快速获得结果。以查询students表一共有多少条记录为例，可以用内置的COUNT()函数查询.</p>
+<p>COUNT(*)表示查询所有列的行数，查询结果虽然为一个数字，但仍然是一个二维表，通常使用聚合查询时，应该为列名设置一个别名，便于处理结果.</p>
+<p>聚合查询同样可以使用WHERE条件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT COUNT(*) boys FROM students WHERE gender =&apos;M&apos;;</span><br></pre></td></tr></table></figure>
+
+<p>除了COUNT()函数外，还有如下聚合函数：</p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SUM</td>
+<td>计算某一列的合计值，该列必须为数值类型</td>
+</tr>
+<tr>
+<td>AVG</td>
+<td>计算某一列的平均值，该列必须为数值类型</td>
+</tr>
+<tr>
+<td>MAX</td>
+<td>计算某一列的最大值</td>
+</tr>
+<tr>
+<td>MIN</td>
+<td>计算某一列的最小值</td>
+</tr>
+</tbody></table>
+<p>注意，MAX()和MIN()函数并不限于数值类型。如果是字符类型，MAX()和MIN()会返回排序最后和最前的字符。此外，如果WHERE没有匹配到任何行，COUNT()会返回0，而SUNM()、AVG()、MAX()和MIN()会返回NULL。</p>
+<p><strong>分组</strong></p>
+<p>如果要统计一班的学生数量，可以用下面的语句，要继续统计二班、三班学生的数量，可以采用SQL提供的分组聚合功能：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-- 统计一班学生数量</span><br><span class="line">SELECT COUNT(*) num FROM students WHERE class_id =1;</span><br><span class="line">-- 按class_id分组：</span><br><span class="line">SELECT class_id, COUNT(*) num FROM students GROUP BY class_id;</span><br></pre></td></tr></table></figure>
+
+<p>也可以使用多个列进行分组，例如，想统计各班的男生和女生人数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 按class_id, gender分组</span><br><span class="line">SELECT class_id, gender, COUNT(*) num FROM students GROUP BY class_id, gender;</span><br></pre></td></tr></table></figure>
+
+<h5 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h5><p>SELECT查询不但可以从一张表查询数据，还可以从多张表同时查询数据，查询多张表的语法是：SELECT * FROM &lt;表1&gt; &lt;表2&gt;，例如同时从students和classes表的“乘积”，即查询数据，可以这么写：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- FROM students, classes:</span><br><span class="line">SELECT * FROM students, classes;</span><br></pre></td></tr></table></figure>
+
+<p>这种一次查询两个表的数据，查询的结果也是一个二维表，它是students表和classes表的“乘积”，即students表的每一行与classes表的每一行两两都拼在一起返回。结果集的列数是students表和classes表的列数之和，行数是两表的行数之积。</p>
+<p>当有两列标题重名时，可以设置别名，如下，但是使用table.alias这样的方式来音乐列和设置别名有点麻烦，SQL还允许给表设置一个别名。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">-- set alias:</span><br><span class="line">SELECT</span><br><span class="line">	students.id sid,</span><br><span class="line">	students.name,</span><br><span class="line">	students.gender,</span><br><span class="line">	students.score,</span><br><span class="line">	classes.id cid,</span><br><span class="line">	clssses.name cname</span><br><span class="line">FROM students, classes;</span><br><span class="line">-- set table alias:</span><br><span class="line">SELECT</span><br><span class="line">	s.id sid,</span><br><span class="line">	s.name,</span><br><span class="line">	s.gender,</span><br><span class="line">	s.score,</span><br><span class="line">	c.id cid,</span><br><span class="line">	c.name cname</span><br><span class="line">FROM students s, classes c;</span><br></pre></td></tr></table></figure>
+
+<h5 id="连接查询"><a href="#连接查询" class="headerlink" title="连接查询"></a>连接查询</h5><p>连接查询是另一种类型的多表查询。连接查询对多个表进行JOIN运算，简单地说，就是先确定一个主表作为结果集，然后，把其它表的行有选择性的“连接”在主表结果集上。</p>
+<p>例如，我们想选出students表的所有学生信息，可以用一条简单的SELECT语句完成，但是结果集只有class_id列，没有对应班级的name列。现在问题来了，存放班级名称的name列存储在classes表中，只有根据students表的class_id，找到classes表对应的行，再取出name列，就可以获得班级名称。这时，连接查询就派上了用场，我们先用最常用的一种内连接——INNER JOIN来实现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT s.id, s.name, s.class_id, c.name class_name, s.gender, s.score</span><br><span class="line">FROM students s</span><br><span class="line">INNER JOIN classes c</span><br><span class="line">ON s.class_id =c.id;</span><br></pre></td></tr></table></figure>
+
+<p>注意INNER JOIN查询的写法是：</p>
+<ol>
+<li>先确定主表，仍然使用FROM&lt;表1&gt;的语法</li>
+<li>再确定需要连接的表，使用INNER JOIN &lt;表2&gt;的语法</li>
+<li>然后确定连接条件，使用ON &lt;条件…&gt;，这里的条件是s.class_id =c.id，表示students表的class_id列与classes表的id列相同的行需要连接</li>
+<li>可选：加上WHERE子句、ORDER BY等子句</li>
+</ol>
+<p>有内连接就有外连接，它们的区别是;</p>
+<ul>
+<li>INNER JOIN 只返回同时存在与两表的行数据，由于students表的class_id包含1，2，3，classes表的id包含1，2，3，4，所以，INNER JOIN根据条件s.class_id=c.id返回的结果仅包含1，2，3</li>
+<li>RIGHT OUTER JOIN返回右表都存在的行，如果某一行仅在右表存在，那么结果集就会以NULL填充剩下的字段</li>
+<li>LEFT OUTER JOIN只返回左表都存在的行，如果我们给students表增加一行，并添加class_id=5，由于classes表并不存在id=5的行，所以LEFT OUTER JOIN的结果就会增加一行，对应的class_name是NULL</li>
+<li>FULL OUTER JOIN会把两张表的所有记录全部选择出来，并且自动把对方不存在的列填充为NULL</li>
+</ul>
+<h4 id="三、修改数据"><a href="#三、修改数据" class="headerlink" title="三、修改数据"></a>三、修改数据</h4><p>关系数据库的基本操作就是增删改查，即CRUD：Create、Retrieve、Update、Delete</p>
+<h5 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h5><p>当我们向数据表插入一条新纪录时，就必须使用INSERT语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO &lt;表名&gt; (字段1，字段2，...) VALUES (值1，值2，...);</span><br><span class="line">-- 一次性添加多条新纪录</span><br><span class="line">INSERT INTO students (class_id, name, gender, score) VALUES</span><br><span class="line">	(1, &apos;大宝&apos;, &apos;M&apos;, 87),</span><br><span class="line">	(2, &apos;二宝&apos;, &apos;M&apos;, 81);</span><br></pre></td></tr></table></figure>
+
+<h5 id="更新数据"><a href="#更新数据" class="headerlink" title="更新数据"></a>更新数据</h5><p>如果要更新数据表中的记录，就必须用UPDATE语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UPDATE &lt;表名&gt; SET 字段1=值1，字段2=值2，... WHERE ...;</span><br><span class="line">-- 例如，我们想更新students表id=1的记录的name和score这两个字段</span><br><span class="line">UPDATE students SET name=&apos;大牛&apos;, score=66 WHERE id=1;</span><br></pre></td></tr></table></figure>
+
+<p>在UPDATE语句中，更新字段时可以使用表达式，例如。把所有80分以下的同学成绩加10分：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPDATE students SET score=score+10 WHERE score&lt;80;</span><br></pre></td></tr></table></figure>
+
+<p>注意的是，UPDATE语句可以没有WHERE条件，这时，整个表的所有记录都会被更新，所以，在执行UPDATE语句时要非常小心，最好先用SELECT语句来测试WHERE条件是否筛选出了期望的记录值，然后再UPDATE更新。</p>
+<h5 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h5><p>如果要删除数据库表中的记录，可以用DELETE语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DELETE FROM &lt;表名&gt; WHERE ...;</span><br><span class="line">-- 例如，删除students表中id=1的记录</span><br><span class="line">DELETE FROM students WHERE id=1;</span><br></pre></td></tr></table></figure>
+
+<p>注意，如果WHERE条件没有匹配到任何记录，DELETE语句不含报错，也不会有任何记录被删除/不带WHERE条件的DELETE语句会删除整个表的数据。</p>
+<h4 id="四、事务"><a href="#四、事务" class="headerlink" title="四、事务"></a>四、事务</h4><p>在执行SQL语句的时候，某些业务要求，一系列操作必须全部执行，而不能执行一部分。例如，一个转账操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-- 从id=1的账号给id=2的账户转账100元</span><br><span class="line">-- 第一步：将id=1的账户余额减去100</span><br><span class="line">UPDATE accounts SET balance =balance-100 WHERE id=1;</span><br><span class="line">-- 第二步：将id=2的账户余额加上100</span><br><span class="line">UPDATE accounts SET balance =balance+100 WHERE id=2;</span><br></pre></td></tr></table></figure>
+
+<p>这两条SQL语句必须全部执行，或者。某些原因，如果第一条语句成功，第二条语句失败，就必须全部撤销。</p>
+<p>这种把多条语句作为一个整体进行操作的功能，被称为数据库<strong>事务</strong>。数据库事务可以确保该事物范围内的所有操作都可以全部成功或者全部失败。如果事务失败，那么效果就和没有执行这些SQL一样，不会对数据库有任何改动。</p>
+<p>可见，事物具有ACID这4个特性：</p>
+<ul>
+<li>A：Atomic，原子性，将所有SQL作为原子工作单元执行，要么全部执行，要么全部不执行；</li>
+<li>C：Consistent，一致性，事务完成后，所有数据的状态都是一致的，即A账户只要减去了100，B账户则必定加上了100</li>
+<li>I：Isolation，隔离性，如果有多个事务并发执行，每个事务作出的修改必须与其它事务隔离；</li>
+<li>D：Duration，持久性，即事务完成后，对数据库数据的修改持久化存储</li>
+</ul>
+<p>对于单条SQL语句，数据库系统自动将其作为一个事务执行，这种事务被称为<strong>隐式事务</strong>。</p>
+<p>要把多条SQL语句作为一个事务执行，使用BEGIN开启一个事务，使用COMMIT提交一个事务，这种事务被称为<strong>显式事务</strong>，例如，上面的转账操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">BEGIN</span><br><span class="line">UPDATE accounts SET balance =balance-100 WHERE id=1;</span><br><span class="line">UPDATE accounts SET balance =balance+100 WHERE id=2;</span><br><span class="line">COMMIT;</span><br></pre></td></tr></table></figure>
+
+<p>很显然多条SQL语句要想作为一个事务执行，就必须使用显氏事务。</p>
+<p>COMMIT是指提交事务，即试图把事务内的所有SQL所做的修改永久保存。如果COMMIT语句执行失败了，整个事务也会失败，可以用ROLLBACK回滚事务，整个事务失败。</p>
+<p><strong>隔离级别</strong>：对于并发执行的事务，如果涉及到操作同一条记录的时候，可能会发生问题，因为并发操作会带来数据的不一致性，包括<strong>脏读、不可重复读、幻读</strong>等。数据库系统提供了隔离级别来让我们有针对性的选择事务的隔离级别，避免数据不一致的问题。</p>
+<p>SQL标准定义了4种隔离级别，分别对应可能出现的数据不一致情况：</p>
+<table>
+<thead>
+<tr>
+<th>Isolation</th>
+<th>脏读</th>
+<th>不可重复读</th>
+<th>幻读</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Read Uncommited</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Read Commited</td>
+<td>-</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Repeatable Read</td>
+<td>-</td>
+<td>-</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Serializable</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody></table>
+<p>Read Uncommited是隔离级别最低的一种事务级别。在这种隔离级别下，一个事务会读到另一个事务更新后但未提交的数据，如果另一个事务回滚，那么当前事务读到的数据就是脏数据，这就是脏读(Dirty Read)。</p>
+<p>在Read Commited隔离级别下，一个事务可能会遇到不可重复读(Non Repeatable Read)的问题。不可重复读是指，在一个事务内，多次读同一个数据，在这个事务还没有结束时，如果另一个事务恰好修改了这个数据，那么第一个事务，两次读取的数据就可能不一致。</p>
+<p>在Repeatable Read隔离级别下，一个事务可能会遇到幻读(Phantom Read)的问题。幻读是指，在一个事务中，第一次查询某条记录，发现没有，但是，当试图更新这条不存在的记录时，竟然能成功，并且再次读取同一条记录，它就神奇的出现了。</p>
+<p>Serializable是最严格的隔离级别，在这种情况下，所有事务都按照次序依次执行，因此脏读、不可重复读、幻读都不会出现。</p>
+<h4 id="五、实用SQL语句"><a href="#五、实用SQL语句" class="headerlink" title="五、实用SQL语句"></a>五、实用SQL语句</h4><p><strong>插入或替换</strong></p>
+<p>如果我们希望插入一条新记录，但如果记录已经存在，就先删除原记录，再插入新记录。此时，可以使用REPLACE语句，这样就不必先查询，再决定是否先删除再插入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">REPLACE INTO students (id, class_id, name, gender, score) VALUES (1,1,&apos;小米&apos;,&apos;F&apos;,99);</span><br></pre></td></tr></table></figure>
+
+<p>若id=1的记录不存在，REPLACE语句将插入新数据，否则，当前id=1的记录将被删除，然后再插入新记录。</p>
+<p><strong>插入或更新</strong></p>
+<p>如果我们希望插入一条新记录，但如果记录已经存在，就更新该记录，可以用如下语句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO students (id, class_id) VALUES (1,1) ON DUPLICATE KEY UPDATE class_id=2;</span><br></pre></td></tr></table></figure>
+
+<p>若id=1的记录不存在，INSERT语句将插入新数据，否则，当前id=1的记录将被更新，更新的字段由UPDATE指定。</p>
+<p><strong>插入或忽略</strong></p>
+<p>如果我们希望插入一条新记录，但如果记录已经存在，就直接忽略，可以用如下语句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INSERT IGNORE INTO students (id, class_id) VALUE (1,1);</span><br></pre></td></tr></table></figure>
+
+<p><strong>快照</strong></p>
+<p>如果想要对一个表进行快照，即复制一份当前表的数据到一个新表：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-- 对class_id=1的记录进行快照，并存储为新表students_of_classes:</span><br><span class="line">CREATE TABLE students_of_classes SELECT * FROM students WHERE class_id=1;</span><br></pre></td></tr></table></figure>
+
+<p><strong>写入查询结果集</strong></p>
+<p>如果查询结果需要写入到表中，先创建一个统计成绩的表statistics，记录各班的平均成绩：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE statistics (</span><br><span class="line">	id BIGINT NOT NULL AUTO_INCREMENT,</span><br><span class="line">    class_id BIGINT NOT NULL,</span><br><span class="line">    averge DOUBLE NOT NULL,</span><br><span class="line">    PRIMARY KEY (id)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>然后用以下语句写入各班平均成绩：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO statistics (class_id, averge) </span><br><span class="line">SELECT class_id, AVG(score) FROM students </span><br><span class="line">GROUP BY class_id;</span><br></pre></td></tr></table></figure>
+
+<h4 id="更多精彩，关注“咋家”"><a href="#更多精彩，关注“咋家”" class="headerlink" title="更多精彩，关注“咋家”"></a>更多精彩，关注“咋家”</h4><p><img src="http://ww1.sinaimg.cn/large/005xDMfSly1g491vnwsy7j30bi06976v.jpg" alt></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/MySQL/" rel="tag"># MySQL</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/28/经典排序算法总结/" rel="next" title="经典排序算法总结">
+                <i class="fa fa-chevron-left"></i> 经典排序算法总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/author.jpg" alt="廿十">
+            
+              <p class="site-author-name" itemprop="name">廿十</p>
+              <p class="site-description motion-element" itemprop="description">Stay hungry, Stay foolish</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CSC1994" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:cschang1994@foxmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、关系模型"><span class="nav-number">1.</span> <span class="nav-text">一、关系模型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#主键"><span class="nav-number">1.1.</span> <span class="nav-text">主键</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#外键"><span class="nav-number">1.2.</span> <span class="nav-text">外键</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#索引"><span class="nav-number">1.3.</span> <span class="nav-text">索引</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、查询数据"><span class="nav-number">2.</span> <span class="nav-text">二、查询数据</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#基本查询"><span class="nav-number">2.1.</span> <span class="nav-text">基本查询</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#条件查询"><span class="nav-number">2.2.</span> <span class="nav-text">条件查询</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#投影查询"><span class="nav-number">2.3.</span> <span class="nav-text">投影查询</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#排序"><span class="nav-number">2.4.</span> <span class="nav-text">排序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#分页查询"><span class="nav-number">2.5.</span> <span class="nav-text">分页查询</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#聚合查询"><span class="nav-number">2.6.</span> <span class="nav-text">聚合查询</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#多表查询"><span class="nav-number">2.7.</span> <span class="nav-text">多表查询</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#连接查询"><span class="nav-number">2.8.</span> <span class="nav-text">连接查询</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、修改数据"><span class="nav-number">3.</span> <span class="nav-text">三、修改数据</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#插入数据"><span class="nav-number">3.1.</span> <span class="nav-text">插入数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#更新数据"><span class="nav-number">3.2.</span> <span class="nav-text">更新数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#删除数据"><span class="nav-number">3.3.</span> <span class="nav-text">删除数据</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、事务"><span class="nav-number">4.</span> <span class="nav-text">四、事务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五、实用SQL语句"><span class="nav-number">5.</span> <span class="nav-text">五、实用SQL语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更多精彩，关注“咋家”"><span class="nav-number">6.</span> <span class="nav-text">更多精彩，关注“咋家”</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">廿十</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
