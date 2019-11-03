@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/f32.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/f16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="操作系统,内存管理,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="内存管理连续内存分配 First Fit(首次适应分配) Best Fit(最佳适应分配) Worst Fit(最差适应分配)  连续内存分配容易出现外部碎片问题，解决办法 压缩式碎片整理：内存在内部之间进行拷贝，需要考虑拷贝时间和代价 交换式碎片整理：将不需要的内存置换到磁盘  缺点 分配给一个程序的物理内存是连续的 内存利用率低 有外碎片、内碎片问题  非连续内存分配优点 一个程序的物理地址空">
+<meta name="keywords" content="操作系统,内存管理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统知识点（一）——内存管理">
+<meta property="og:url" content="http://yoursite.com/2019/11/03/操作系统知识点（一）——内存管理/index.html">
+<meta property="og:site_name" content="咋家">
+<meta property="og:description" content="内存管理连续内存分配 First Fit(首次适应分配) Best Fit(最佳适应分配) Worst Fit(最差适应分配)  连续内存分配容易出现外部碎片问题，解决办法 压缩式碎片整理：内存在内部之间进行拷贝，需要考虑拷贝时间和代价 交换式碎片整理：将不需要的内存置换到磁盘  缺点 分配给一个程序的物理内存是连续的 内存利用率低 有外碎片、内碎片问题  非连续内存分配优点 一个程序的物理地址空">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g491vnwsy7j30bi06976v.jpg">
+<meta property="og:updated_time" content="2019-11-03T06:17:50.199Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="操作系统知识点（一）——内存管理">
+<meta name="twitter:description" content="内存管理连续内存分配 First Fit(首次适应分配) Best Fit(最佳适应分配) Worst Fit(最差适应分配)  连续内存分配容易出现外部碎片问题，解决办法 压缩式碎片整理：内存在内部之间进行拷贝，需要考虑拷贝时间和代价 交换式碎片整理：将不需要的内存置换到磁盘  缺点 分配给一个程序的物理内存是连续的 内存利用率低 有外碎片、内碎片问题  非连续内存分配优点 一个程序的物理地址空">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g491vnwsy7j30bi06976v.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/11/03/操作系统知识点（一）——内存管理/">
+
+
+
+
+
+  <title>操作系统知识点（一）——内存管理 | 咋家</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">咋家</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/03/操作系统知识点（一）——内存管理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="廿十">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="咋家">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">操作系统知识点（一）——内存管理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-03T09:18:43+08:00">
+                2019-11-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/操作系统/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h3><h4 id="连续内存分配"><a href="#连续内存分配" class="headerlink" title="连续内存分配"></a>连续内存分配</h4><ul>
+<li>First Fit(首次适应分配)</li>
+<li>Best Fit(最佳适应分配)</li>
+<li>Worst Fit(最差适应分配)</li>
+</ul>
+<h5 id="连续内存分配容易出现外部碎片问题，解决办法"><a href="#连续内存分配容易出现外部碎片问题，解决办法" class="headerlink" title="连续内存分配容易出现外部碎片问题，解决办法"></a>连续内存分配容易出现外部碎片问题，解决办法</h5><ul>
+<li>压缩式碎片整理：内存在内部之间进行拷贝，需要考虑拷贝时间和代价</li>
+<li>交换式碎片整理：将不需要的内存置换到磁盘</li>
+</ul>
+<h5 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h5><ul>
+<li>分配给一个程序的物理内存是连续的</li>
+<li>内存利用率低</li>
+<li>有外碎片、内碎片问题</li>
+</ul>
+<h4 id="非连续内存分配"><a href="#非连续内存分配" class="headerlink" title="非连续内存分配"></a>非连续内存分配</h4><h5 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h5><ul>
+<li>一个程序的物理地址空间是非连续的</li>
+<li>更好的内存利用和管理</li>
+<li>允许共享代码与数据</li>
+<li>支持动态加载和动态链接</li>
+</ul>
+<h5 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h5><ul>
+<li>如何建立虚拟地址和物理地址之间的转换？<ul>
+<li>软件方案（开销大）</li>
+<li>硬件方案：分段、分页</li>
+</ul>
+</li>
+</ul>
+<h5 id="段访问机制（面向用户程序段）"><a href="#段访问机制（面向用户程序段）" class="headerlink" title="段访问机制（面向用户程序段）"></a>段访问机制（面向用户程序段）</h5><ul>
+<li>一个段：一个内存‘块’</li>
+<li>程序访问内存地址需要一个2维的二元组（s, addr）<ul>
+<li>s——段号</li>
+<li>addr——段内偏移</li>
+</ul>
+</li>
+</ul>
+<h5 id="分页（面向内存）"><a href="#分页（面向内存）" class="headerlink" title="分页（面向内存）"></a>分页（面向内存）</h5><ul>
+<li><p>划分物理内存至固定大小的帧（大小是2的幂）</p>
+</li>
+<li><p>划分逻辑地址空间至相同大小的页（大小是2的幂）</p>
+</li>
+<li><p>建立方案：转换逻辑地址为物理地址（pages to frames）</p>
+<ul>
+<li>页表</li>
+<li>MMU/TLB</li>
+</ul>
+</li>
+<li><p>帧：二元组（f, o）</p>
+<ul>
+<li>f——帧号（F位，共有2^F个帧）</li>
+<li>o——帧内偏移（S位，每帧有2^S字节）</li>
+<li>物理地址=2^S×f+o</li>
+</ul>
+</li>
+<li><p>页</p>
+<ul>
+<li>页内偏移大小=帧内偏移大小</li>
+</ul>
+</li>
+<li><p>页表（每个程序都有页表，两部分组成：标志位和帧号）</p>
+</li>
+<li><p>分页机制性能问题：访问一个内存单元需要2次内存访问(时间问题)</p>
+<ul>
+<li>一次用于获取页表项</li>
+<li>一次用于访问数据</li>
+</ul>
+</li>
+<li><p>页表可能非常大（空间问题）</p>
+<ul>
+<li>缓存</li>
+<li>间接访问</li>
+</ul>
+</li>
+<li><p>Tanslation Look-aside Buffer(TLB)位于CPU中的快表，解决时间问题</p>
+<ul>
+<li>TLB使用关联内存实现，具备快速访问性能</li>
+<li>如果TLB命中，物理页号可以快速获取</li>
+<li>未命中，对应的表项被更新到TLB中</li>
+</ul>
+</li>
+<li><p>多级页表，解决空间问题</p>
+</li>
+<li><p>反向页表（以帧号查页号）</p>
+</li>
+</ul>
+<h4 id="更多精彩，关注“咋家”"><a href="#更多精彩，关注“咋家”" class="headerlink" title="更多精彩，关注“咋家”"></a>更多精彩，关注“咋家”</h4><p><img src="http://ww1.sinaimg.cn/large/005xDMfSly1g491vnwsy7j30bi06976v.jpg" alt></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/操作系统/" rel="tag"># 操作系统</a>
+          
+            <a href="/tags/内存管理/" rel="tag"># 内存管理</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/06/富爸爸穷爸爸/" rel="next" title="富爸爸穷爸爸">
+                <i class="fa fa-chevron-left"></i> 富爸爸穷爸爸
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/04/操作系统知识点（二）——虚拟内存/" rel="prev" title="操作系统知识点（二）——虚拟内存">
+                操作系统知识点（二）——虚拟内存 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/author.jpg" alt="廿十">
+            
+              <p class="site-author-name" itemprop="name">廿十</p>
+              <p class="site-description motion-element" itemprop="description">Stay hungry, Stay foolish</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CSC1994" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:cschang1994@foxmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#内存管理"><span class="nav-number">1.</span> <span class="nav-text">内存管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#连续内存分配"><span class="nav-number">1.1.</span> <span class="nav-text">连续内存分配</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#连续内存分配容易出现外部碎片问题，解决办法"><span class="nav-number">1.1.1.</span> <span class="nav-text">连续内存分配容易出现外部碎片问题，解决办法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#缺点"><span class="nav-number">1.1.2.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非连续内存分配"><span class="nav-number">1.2.</span> <span class="nav-text">非连续内存分配</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#优点"><span class="nav-number">1.2.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#缺点-1"><span class="nav-number">1.2.2.</span> <span class="nav-text">缺点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#段访问机制（面向用户程序段）"><span class="nav-number">1.2.3.</span> <span class="nav-text">段访问机制（面向用户程序段）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#分页（面向内存）"><span class="nav-number">1.2.4.</span> <span class="nav-text">分页（面向内存）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更多精彩，关注“咋家”"><span class="nav-number">1.3.</span> <span class="nav-text">更多精彩，关注“咋家”</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">廿十</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

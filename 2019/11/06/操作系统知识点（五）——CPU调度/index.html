@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/f32.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/f16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="操作系统,CPU调度,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="CPU调度背景 CPU调度  从就绪队列中挑选一个进程/线程作为CPU将要运行的下一个进程/线程 调度程序：挑选进程/线程的内核函数 什么时候进行调度   调度时机  进程从运行状态切换到等待状态 进程被终结了   非抢占系统：调度程序必须等待事件结束，当前进程主动放弃CPU时  可抢占系统  中断请求被服务例程响应完成时 当前进程被抢占：进程时间片用完；进程从等待切换到就绪    调度准则 CP">
+<meta name="keywords" content="操作系统,CPU调度">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统知识点（五）——CPU调度">
+<meta property="og:url" content="http://yoursite.com/2019/11/06/操作系统知识点（五）——CPU调度/index.html">
+<meta property="og:site_name" content="咋家">
+<meta property="og:description" content="CPU调度背景 CPU调度  从就绪队列中挑选一个进程/线程作为CPU将要运行的下一个进程/线程 调度程序：挑选进程/线程的内核函数 什么时候进行调度   调度时机  进程从运行状态切换到等待状态 进程被终结了   非抢占系统：调度程序必须等待事件结束，当前进程主动放弃CPU时  可抢占系统  中断请求被服务例程响应完成时 当前进程被抢占：进程时间片用完；进程从等待切换到就绪    调度准则 CP">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g491vnwsy7j30bi06976v.jpg">
+<meta property="og:updated_time" content="2019-11-03T06:33:54.545Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="操作系统知识点（五）——CPU调度">
+<meta name="twitter:description" content="CPU调度背景 CPU调度  从就绪队列中挑选一个进程/线程作为CPU将要运行的下一个进程/线程 调度程序：挑选进程/线程的内核函数 什么时候进行调度   调度时机  进程从运行状态切换到等待状态 进程被终结了   非抢占系统：调度程序必须等待事件结束，当前进程主动放弃CPU时  可抢占系统  中断请求被服务例程响应完成时 当前进程被抢占：进程时间片用完；进程从等待切换到就绪    调度准则 CP">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g491vnwsy7j30bi06976v.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/11/06/操作系统知识点（五）——CPU调度/">
+
+
+
+
+
+  <title>操作系统知识点（五）——CPU调度 | 咋家</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">咋家</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/06/操作系统知识点（五）——CPU调度/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="廿十">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="咋家">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">操作系统知识点（五）——CPU调度</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-06T09:18:45+08:00">
+                2019-11-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/操作系统/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="CPU调度"><a href="#CPU调度" class="headerlink" title="CPU调度"></a>CPU调度</h3><h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><ul>
+<li><p><strong>CPU调度</strong></p>
+<ul>
+<li>从就绪队列中挑选一个进程/线程作为CPU将要运行的下一个进程/线程</li>
+<li>调度程序：挑选进程/线程的内核函数</li>
+<li>什么时候进行调度</li>
+</ul>
+</li>
+<li><p><strong>调度时机</strong></p>
+<ul>
+<li>进程从运行状态切换到等待状态</li>
+<li>进程被终结了</li>
+</ul>
+</li>
+<li><p><strong>非抢占系统</strong>：调度程序必须等待事件结束，当前进程主动放弃CPU时</p>
+</li>
+<li><p><strong>可抢占系统</strong></p>
+<ul>
+<li>中断请求被服务例程响应完成时</li>
+<li>当前进程被抢占：进程时间片用完；进程从等待切换到就绪</li>
+</ul>
+</li>
+</ul>
+<h4 id="调度准则"><a href="#调度准则" class="headerlink" title="调度准则"></a>调度准则</h4><ul>
+<li><strong>CPU使用率</strong>：CPU处于忙状态的时间百分比</li>
+<li><strong>吞吐量</strong>：单位时间内完成的进程数量</li>
+<li><strong>周转时间</strong>：进程从初始化到结束的总时间</li>
+<li><strong>等待时间</strong>：进程在就绪队列中的总时间</li>
+<li><strong>响应时间</strong>：从提交请求到产生响应所花费的总时间</li>
+</ul>
+<h4 id="调度算法"><a href="#调度算法" class="headerlink" title="调度算法"></a>调度算法</h4><ul>
+<li><strong>先来先服务（First Come First Served，FCFS）</strong>:依据进程进入就绪状态的先后顺序排列<ul>
+<li><strong>优点</strong>：简单</li>
+<li><strong>缺点</strong><ul>
+<li>平均等待时间波动较大，短进程可能排在长进程后面</li>
+<li>I/O资源和CPU资源的利用率较低</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>短进程优先算法（SPN，SJF，SRT）</strong>：选择就绪队列中执行时间最短进程占用CPU进入运行状态<ul>
+<li>短剩余时间优先算法（SRT）：可抢占，SPN算法的可抢占改进</li>
+<li><strong>缺点</strong><ul>
+<li>可能导致饥饿，连续的短任务流会使长进程无法获得CPU资源</li>
+<li>需要预知未来，如何预估下一个CPU计算的持续时间：询问用户，如果用户欺骗就杀死相应进程</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>最高响应比优先算法（Highest Response Ratio Next，HRRN）</strong>：选择就绪队列中响应比R值最高的进程，R=(w+s)/s，w：等待时间；s：执行时间<ul>
+<li>在SPN调度的基础上改进</li>
+<li>不可抢占</li>
+<li>关注进程的等待时间</li>
+<li>防止无限期推迟</li>
+</ul>
+</li>
+<li><strong>时间片轮转算法（Round Robin，RR）</strong>：时间片结束时，按FCFS算法切换到下一个就绪进程<ul>
+<li>算法开销，额外上下文切换</li>
+<li>时间片太长，等待时间过长，极限情况退化成FCFS</li>
+<li>时间片太小，反应迅速，但产生大量上下文切换</li>
+<li>时间片选择目标，维持上下文切换开销处于1%以内</li>
+</ul>
+</li>
+<li><strong>多级反馈队列算法（MultiLevel Feedback Queues，MLFQ）</strong><ul>
+<li>就绪队列被划分成独立的队列</li>
+<li>每个队列拥有自己的调度策略</li>
+<li>调度必须在队列间进行：固定优先级、时间切片</li>
+<li>进程可在不同队列间移动的多级列算法<ul>
+<li>时间片大小随优先级别增加而增加</li>
+<li>CPU密集型进程的优先级下降很快</li>
+<li>如进程在当前的时间片没有完成，则降到下一个优先级</li>
+<li>I/O密集型进程停留在高优先级</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>公平共享调度算法（Fair Share Scheduling，FSS）</strong><ul>
+<li>一些用户组比其它用户组更重要</li>
+<li>保证不重要的组无法垄断资源</li>
+<li>未使用的资源按比例分配</li>
+<li>没有达到资源使用率目标的组获得更高的优先级</li>
+</ul>
+</li>
+</ul>
+<h4 id="实时调度"><a href="#实时调度" class="headerlink" title="实时调度"></a>实时调度</h4><ul>
+<li><p><strong>实时操作系统</strong>：正确性依赖于其实际和功能两方面的操作系统</p>
+</li>
+<li><p><strong>性能指标</strong></p>
+<ul>
+<li>时间约束的及时性</li>
+<li>速度和平均性能相对不重要</li>
+</ul>
+</li>
+<li><p><strong>特性</strong>：</p>
+<ul>
+<li>时间约束的可预测性</li>
+</ul>
+</li>
+<li><p><strong>强实时操作系统</strong>：要求在指定的时间内必须完成重要任务</p>
+</li>
+<li><p><strong>弱实时操作系统</strong>：重要进程有高优先级，要求尽量但非必须完成</p>
+</li>
+<li><p><strong>速率单调调度算法（RM，Rate Monntonic）</strong></p>
+<ul>
+<li>通过周期安排优先级</li>
+<li>周期越短优先级越高</li>
+<li>执行周期最短的任务</li>
+</ul>
+</li>
+<li><p><strong>最早截止时间优先算法（EDF，Earliest Deadline First）</strong></p>
+<ul>
+<li>截止时间越早优先级越高</li>
+<li>执行截止时间最早的任务</li>
+</ul>
+</li>
+</ul>
+<h4 id="多处理器调度"><a href="#多处理器调度" class="headerlink" title="多处理器调度"></a>多处理器调度</h4><ul>
+<li><p><strong>多处理机调度的特征</strong></p>
+<ul>
+<li>多个处理机组成一个多处理机系统</li>
+<li>处理机间可负载共享</li>
+</ul>
+</li>
+<li><p><strong>对称多处理器（SMP，Symmetric multiprocessing）调度</strong></p>
+<ul>
+<li>每个处理器运行自己的调度程序</li>
+<li>调度程序对共享资源的访问需要进行同步</li>
+</ul>
+</li>
+<li><p><strong>静态进程分配</strong></p>
+<ul>
+<li>进程从开始到结束都被分配到一个固定的处理机上执行</li>
+<li>每个处理机有自己的就绪队列</li>
+<li>调度开销小</li>
+<li>各处理机可能忙闲不均</li>
+</ul>
+</li>
+<li><p><strong>动态进程分配</strong></p>
+<ul>
+<li>进程在执行中可分配到任意空闲处理机执行</li>
+<li>所有处理机共享一个公共的就绪队列</li>
+<li>调度开销大</li>
+<li>各处理机的负载是均衡的</li>
+</ul>
+</li>
+</ul>
+<h4 id="优先级反转"><a href="#优先级反转" class="headerlink" title="优先级反转"></a>优先级反转</h4><ul>
+<li><p>操作系统中出现高优先级进程长时间等待低优先级进程所占用资源的现象</p>
+</li>
+<li><p>基于优先级的可抢占调度算法存在优先级反置</p>
+</li>
+<li><p><strong>优先级继承</strong>：占用资源的低优先级进程继承申请资源的高优先级进程的优先级</p>
+<ul>
+<li>只在占有资源的低优先级进程被阻塞时，才提高占用资源进程的优先级</li>
+</ul>
+</li>
+<li><p><strong>优先级天花板协议</strong>：占用资源进程的优先级和所有可能申请该资源的进程的最高优先级相同</p>
+<ul>
+<li>不管是否发生等待，都提升占用资源进程的优先级</li>
+<li>优先级高于系统中所有被锁定的资源的优先级上限，任务执行临界区时不会被阻塞</li>
+</ul>
+</li>
+</ul>
+<h4 id="更多精彩，关注“咋家”"><a href="#更多精彩，关注“咋家”" class="headerlink" title="更多精彩，关注“咋家”"></a>更多精彩，关注“咋家”</h4><p><img src="http://ww1.sinaimg.cn/large/005xDMfSly1g491vnwsy7j30bi06976v.jpg" alt></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/操作系统/" rel="tag"># 操作系统</a>
+          
+            <a href="/tags/CPU调度/" rel="tag"># CPU调度</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/06/操作系统知识点（四）——进程线程/" rel="next" title="操作系统知识点（四）——进程线程">
+                <i class="fa fa-chevron-left"></i> 操作系统知识点（四）——进程线程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/07/操作系统知识点（六）——同步互斥/" rel="prev" title="操作系统知识点（六）——同步互斥">
+                操作系统知识点（六）——同步互斥 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/author.jpg" alt="廿十">
+            
+              <p class="site-author-name" itemprop="name">廿十</p>
+              <p class="site-description motion-element" itemprop="description">Stay hungry, Stay foolish</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CSC1994" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:cschang1994@foxmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#CPU调度"><span class="nav-number">1.</span> <span class="nav-text">CPU调度</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景"><span class="nav-number">1.1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调度准则"><span class="nav-number">1.2.</span> <span class="nav-text">调度准则</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调度算法"><span class="nav-number">1.3.</span> <span class="nav-text">调度算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实时调度"><span class="nav-number">1.4.</span> <span class="nav-text">实时调度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多处理器调度"><span class="nav-number">1.5.</span> <span class="nav-text">多处理器调度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优先级反转"><span class="nav-number">1.6.</span> <span class="nav-text">优先级反转</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更多精彩，关注“咋家”"><span class="nav-number">1.7.</span> <span class="nav-text">更多精彩，关注“咋家”</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">廿十</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

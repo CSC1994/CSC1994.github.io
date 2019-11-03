@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/f32.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/f16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="操作系统,同步互斥,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="同步互斥背景并发进程的正确性 独立进程  不和其它进程共享资源或状态 确定性——输入状态决定结果 可重现——能够重现起始条件 调度顺序不重要   并发进程  在多个进程间有资源共享 不确定性 不可重现   并发进程的正确性  执行过程是不确定性和不可重现的 程序错误可能是间歇性发生的    进程并发的好处 资源共享  一台电脑，多个用户   加速  I/O操作和计算可以重叠 多处理器——将程序分成">
+<meta name="keywords" content="操作系统,同步互斥">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统知识点（六）——同步互斥">
+<meta property="og:url" content="http://yoursite.com/2019/11/07/操作系统知识点（六）——同步互斥/index.html">
+<meta property="og:site_name" content="咋家">
+<meta property="og:description" content="同步互斥背景并发进程的正确性 独立进程  不和其它进程共享资源或状态 确定性——输入状态决定结果 可重现——能够重现起始条件 调度顺序不重要   并发进程  在多个进程间有资源共享 不确定性 不可重现   并发进程的正确性  执行过程是不确定性和不可重现的 程序错误可能是间歇性发生的    进程并发的好处 资源共享  一台电脑，多个用户   加速  I/O操作和计算可以重叠 多处理器——将程序分成">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g491vnwsy7j30bi06976v.jpg">
+<meta property="og:updated_time" content="2019-11-03T06:26:39.978Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="操作系统知识点（六）——同步互斥">
+<meta name="twitter:description" content="同步互斥背景并发进程的正确性 独立进程  不和其它进程共享资源或状态 确定性——输入状态决定结果 可重现——能够重现起始条件 调度顺序不重要   并发进程  在多个进程间有资源共享 不确定性 不可重现   并发进程的正确性  执行过程是不确定性和不可重现的 程序错误可能是间歇性发生的    进程并发的好处 资源共享  一台电脑，多个用户   加速  I/O操作和计算可以重叠 多处理器——将程序分成">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/005xDMfSly1g491vnwsy7j30bi06976v.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/11/07/操作系统知识点（六）——同步互斥/">
+
+
+
+
+
+  <title>操作系统知识点（六）——同步互斥 | 咋家</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">咋家</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/07/操作系统知识点（六）——同步互斥/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="廿十">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/author.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="咋家">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">操作系统知识点（六）——同步互斥</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-07T09:18:43+08:00">
+                2019-11-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/操作系统/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="同步互斥"><a href="#同步互斥" class="headerlink" title="同步互斥"></a>同步互斥</h3><h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><h5 id="并发进程的正确性"><a href="#并发进程的正确性" class="headerlink" title="并发进程的正确性"></a>并发进程的正确性</h5><ul>
+<li><p><strong>独立进程</strong></p>
+<ul>
+<li>不和其它进程共享资源或状态</li>
+<li><strong>确定性</strong>——输入状态决定结果</li>
+<li><strong>可重现</strong>——能够重现起始条件</li>
+<li>调度顺序不重要</li>
+</ul>
+</li>
+<li><p><strong>并发进程</strong></p>
+<ul>
+<li>在多个进程间有资源共享</li>
+<li>不确定性</li>
+<li>不可重现</li>
+</ul>
+</li>
+<li><p><strong>并发进程的正确性</strong></p>
+<ul>
+<li>执行过程是不确定性和不可重现的</li>
+<li>程序错误可能是间歇性发生的</li>
+</ul>
+</li>
+</ul>
+<h5 id="进程并发的好处"><a href="#进程并发的好处" class="headerlink" title="进程并发的好处"></a>进程并发的好处</h5><ul>
+<li><p><strong>资源共享</strong></p>
+<ul>
+<li>一台电脑，多个用户</li>
+</ul>
+</li>
+<li><p><strong>加速</strong></p>
+<ul>
+<li>I/O操作和计算可以重叠</li>
+<li>多处理器——将程序分成多个部分并行执行</li>
+</ul>
+</li>
+<li><p><strong>模块化</strong></p>
+<ul>
+<li>将大程序分解成小程序</li>
+<li>使系统易于扩展</li>
+</ul>
+</li>
+</ul>
+<h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><h5 id="原子操作"><a href="#原子操作" class="headerlink" title="原子操作"></a>原子操作</h5><ul>
+<li>原子操作是指一次不存在任何中断或失败的操作<ul>
+<li>要么操作成功完成</li>
+<li>或者操作没有执行</li>
+<li>不会出现部分执行的状态</li>
+</ul>
+</li>
+</ul>
+<h5 id="临界区（Critical-Section）"><a href="#临界区（Critical-Section）" class="headerlink" title="临界区（Critical Section）"></a>临界区（Critical Section）</h5><ul>
+<li>临界区是指进程中的一段需要访问共享资源并且当另一个进程处于相应代码区域时不会被执行的代码区域</li>
+</ul>
+<h5 id="互斥（Mutual-exclusion）"><a href="#互斥（Mutual-exclusion）" class="headerlink" title="互斥（Mutual exclusion）"></a>互斥（Mutual exclusion）</h5><ul>
+<li>当一个进程处于临界区并仍访问共享资源时，没有其它进程会处于临界区并且访问任何相同的共享资源</li>
+</ul>
+<h5 id="死锁（Dead-lock）"><a href="#死锁（Dead-lock）" class="headerlink" title="死锁（Dead lock）"></a>死锁（Dead lock）</h5><ul>
+<li>两个或以上的进程，在相互等待完成特定任务，而最终没法将自身任务进行下去</li>
+</ul>
+<h5 id="饥饿（Starvation）"><a href="#饥饿（Starvation）" class="headerlink" title="饥饿（Starvation）"></a>饥饿（Starvation）</h5><ul>
+<li>一个可执行的进程，被调度器持续忽略，以至于虽然处于可执行状态却不被执行</li>
+</ul>
+<h4 id="临界区"><a href="#临界区" class="headerlink" title="临界区"></a>临界区</h4><ul>
+<li><strong>互斥</strong>：同一间临界区最多存在一个线程</li>
+<li><strong>Progress</strong>：如果一个线程想要进入临界区，那么它最终会成功</li>
+<li><strong>有限等待</strong>：如果一个线程i处于入口区，那么在i的请求被接受之前，其它线程进入临界区的时间是有限制的</li>
+<li><strong>无忙等待（可选）</strong>：如果一个进程在等待进入临界区，那么在它可以进入之前会被挂起</li>
+</ul>
+<h4 id="方法1：禁用硬件中断"><a href="#方法1：禁用硬件中断" class="headerlink" title="方法1：禁用硬件中断"></a>方法1：禁用硬件中断</h4><ul>
+<li><p>没有中断，没有上下文切换，因此没有并发</p>
+<ul>
+<li>硬件将中断处理延迟到中断被启用之后</li>
+<li>现代计算机体系结构都提供指令来实现禁用中断</li>
+</ul>
+</li>
+<li><p>进入临界区：禁止所有中断，并保存标志</p>
+</li>
+<li><p>离开临界区：使能所有中断，并恢复标志</p>
+</li>
+<li><p><strong>缺点</strong></p>
+<ul>
+<li>禁用中断后，进程无法被停止。整个系统都会为此停下来；可能导致其它进程处于饥饿状态</li>
+<li>临界区可能很长。无法确定响应中断所需的时间</li>
+<li>小心使用</li>
+</ul>
+</li>
+</ul>
+<h4 id="方法2：基于软件的解决方法"><a href="#方法2：基于软件的解决方法" class="headerlink" title="方法2：基于软件的解决方法"></a>方法2：基于软件的解决方法</h4><h5 id="Peterson算法"><a href="#Peterson算法" class="headerlink" title="Peterson算法"></a>Peterson算法</h5><ul>
+<li><p>满足线程Ti和Tj之间互斥的经典的基于软件的解决方法（1981年）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> turn;</span><br><span class="line">boolean flag[];</span><br><span class="line"><span class="keyword">do</span>&#123;</span><br><span class="line">    flag[i] =<span class="literal">true</span>;</span><br><span class="line">    turn =j;</span><br><span class="line">    <span class="keyword">while</span>(flag[j] &amp;&amp; turn ==j);</span><br><span class="line">    	CRITICAL SECTION</span><br><span class="line">    flag[i] =<span class="literal">false</span>;</span><br><span class="line">    	REMAINDER SECTION</span><br><span class="line">&#125;<span class="keyword">while</span>(<span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h5 id="Dekkers算法"><a href="#Dekkers算法" class="headerlink" title="Dekkers算法"></a>Dekkers算法</h5><ul>
+<li><p>线程Ti的代码</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">flag[<span class="number">0</span>]:= <span class="literal">false</span>; flag[<span class="number">1</span>]:= <span class="literal">false</span>; turn:= <span class="number">0</span>;<span class="comment">//or1 </span></span><br><span class="line">	</span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">       flag[i] = <span class="literal">true</span>;</span><br><span class="line">       <span class="keyword">while</span> flag[j] == <span class="literal">true</span> &#123; </span><br><span class="line">            <span class="keyword">if</span> turn ≠ i &#123; </span><br><span class="line">               flag[i] := <span class="literal">false</span> </span><br><span class="line">               <span class="keyword">while</span> turn ≠ i &#123; &#125; </span><br><span class="line">               flag[i] := <span class="literal">true</span> </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125; </span><br><span class="line">        CRITICAL SECTION</span><br><span class="line">       turn := j</span><br><span class="line">       flag[i] = <span class="literal">false</span>;</span><br><span class="line">        EMAINDER SECTION</span><br><span class="line">   &#125; <span class="keyword">while</span> (<span class="literal">true</span>);</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h5 id="Bakery算法"><a href="#Bakery算法" class="headerlink" title="Bakery算法"></a>Bakery算法</h5><ul>
+<li>N个进程的临界区<ul>
+<li>进入临界区之前，进程接收一个数字</li>
+<li>得到的数字最小的进入临界区</li>
+<li>如果进程Pi和Pj收到相同的数字，那么如果i&lt;j，Pi先进入临界区，否则Pj先进入临界区</li>
+<li>编号方案总是按照枚举的增加顺序生成数字</li>
+</ul>
+</li>
+</ul>
+<h5 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h5><ul>
+<li>复杂</li>
+<li>需要忙等待，浪费CPU时间</li>
+</ul>
+<h4 id="方法3：更高级的抽象"><a href="#方法3：更高级的抽象" class="headerlink" title="方法3：更高级的抽象"></a>方法3：更高级的抽象</h4><ul>
+<li><p>硬件提供了一些同步原语：中断禁用、原子操作指令等</p>
+</li>
+<li><p>操作系统提供更高级的编程抽象来简化进程同步</p>
+<ul>
+<li>例如：锁、信号量</li>
+<li>用硬件原语来构建</li>
+</ul>
+</li>
+<li><p>锁是一个抽象的数据结构</p>
+<ul>
+<li>一个二进制状态（锁定/解锁）。两种方法</li>
+<li>Lock: Acquire()——锁被释放前一直等待，然后得到锁</li>
+<li>Lock: Release()——释放锁，唤醒任何等待的进程</li>
+</ul>
+</li>
+<li><p>使用锁来编写临界区</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lock_next_pid -&gt;Acquire();</span><br><span class="line">new_pid =next_pid++;</span><br><span class="line">lock_next_pid -&gt;Release();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>大多数现代体系结构都提供特殊的原子操作指令</p>
+<ul>
+<li>通过特殊的内存访问电路</li>
+<li>针对处理器和多处理器</li>
+</ul>
+</li>
+<li><p>Test-and-Set测试和置位</p>
+<ul>
+<li><p>从内存中读取值</p>
+</li>
+<li><p>测试值是否位1（然后返回真或假）</p>
+</li>
+<li><p>内存值设置为1</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">TestAndSet</span><span class="params">(boolean *target)</span></span>&#123;</span><br><span class="line">    boolean rv =*target;</span><br><span class="line">    *target =<span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">return</span> rv;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>交换：交换内存中的两个值</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Exchange</span><span class="params">(boolean *a, boolean *b)</span></span>&#123;</span><br><span class="line">    boolean temp =*a;</span><br><span class="line">    *a =*b;</span><br><span class="line">    *b =temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用TAS指令实现自旋锁（spinlock）</p>
+<ul>
+<li><p>忙等待：适合临界区较短</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Lock</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> value =<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">Lock::Acquire()&#123;</span><br><span class="line">    <span class="keyword">while</span>(test-<span class="keyword">and</span>-<span class="built_in">set</span>(value));</span><br><span class="line">    <span class="comment">//spin</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    如果锁被释放，那么TS指令读取0并将值设置为1——锁被设置为忙并且需要等待完成</span></span><br><span class="line"><span class="comment">    如果锁处于忙状态，那么TS指令读取1并将值设置为1——不改变锁的状态并且需要循环</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">&#125;</span><br><span class="line">Lock::Release()&#123;</span><br><span class="line">    value =<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>无忙等待，适合临界区较长</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Lock</span> &#123;</span></span><br><span class="line">   <span class="keyword">int</span> value = <span class="number">0</span>;</span><br><span class="line">   WaitQueue q;</span><br><span class="line">&#125;</span><br><span class="line">Lock::Acquire() &#123;</span><br><span class="line">   <span class="keyword">while</span> (test-<span class="keyword">and</span>-<span class="built_in">set</span>(value)) &#123;</span><br><span class="line">      add <span class="keyword">this</span> TCB to wait <span class="built_in">queue</span> q;</span><br><span class="line">      schedule();</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line">Lock::Release() &#123;</span><br><span class="line">   value = <span class="number">0</span>;</span><br><span class="line">   remove one thread t from q;</span><br><span class="line">   wakeup(t);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><strong>优点</strong></p>
+<ul>
+<li>适用于单处理器或者共享主存的多处理器中任意数量的进程同步</li>
+<li>简单并且容易证明</li>
+<li>支持多临界区</li>
+</ul>
+</li>
+<li><p><strong>缺点</strong></p>
+<ul>
+<li>忙等待消耗处理器时间</li>
+<li>可能导致饥饿。进程离开临界区时有多个等待进程的情况</li>
+<li>死锁</li>
+</ul>
+</li>
+</ul>
+<h4 id="更多精彩，关注“咋家”"><a href="#更多精彩，关注“咋家”" class="headerlink" title="更多精彩，关注“咋家”"></a>更多精彩，关注“咋家”</h4><p><img src="http://ww1.sinaimg.cn/large/005xDMfSly1g491vnwsy7j30bi06976v.jpg" alt></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/操作系统/" rel="tag"># 操作系统</a>
+          
+            <a href="/tags/同步互斥/" rel="tag"># 同步互斥</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/06/操作系统知识点（五）——CPU调度/" rel="next" title="操作系统知识点（五）——CPU调度">
+                <i class="fa fa-chevron-left"></i> 操作系统知识点（五）——CPU调度
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/08/操作系统知识点（七）——信号量/" rel="prev" title="操作系统知识点（七）——信号量">
+                操作系统知识点（七）——信号量 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/author.jpg" alt="廿十">
+            
+              <p class="site-author-name" itemprop="name">廿十</p>
+              <p class="site-description motion-element" itemprop="description">Stay hungry, Stay foolish</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CSC1994" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:cschang1994@foxmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#同步互斥"><span class="nav-number">1.</span> <span class="nav-text">同步互斥</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景"><span class="nav-number">1.1.</span> <span class="nav-text">背景</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#并发进程的正确性"><span class="nav-number">1.1.1.</span> <span class="nav-text">并发进程的正确性</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#进程并发的好处"><span class="nav-number">1.1.2.</span> <span class="nav-text">进程并发的好处</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#概念"><span class="nav-number">1.2.</span> <span class="nav-text">概念</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#原子操作"><span class="nav-number">1.2.1.</span> <span class="nav-text">原子操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#临界区（Critical-Section）"><span class="nav-number">1.2.2.</span> <span class="nav-text">临界区（Critical Section）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#互斥（Mutual-exclusion）"><span class="nav-number">1.2.3.</span> <span class="nav-text">互斥（Mutual exclusion）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#死锁（Dead-lock）"><span class="nav-number">1.2.4.</span> <span class="nav-text">死锁（Dead lock）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#饥饿（Starvation）"><span class="nav-number">1.2.5.</span> <span class="nav-text">饥饿（Starvation）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#临界区"><span class="nav-number">1.3.</span> <span class="nav-text">临界区</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法1：禁用硬件中断"><span class="nav-number">1.4.</span> <span class="nav-text">方法1：禁用硬件中断</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法2：基于软件的解决方法"><span class="nav-number">1.5.</span> <span class="nav-text">方法2：基于软件的解决方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Peterson算法"><span class="nav-number">1.5.1.</span> <span class="nav-text">Peterson算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Dekkers算法"><span class="nav-number">1.5.2.</span> <span class="nav-text">Dekkers算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Bakery算法"><span class="nav-number">1.5.3.</span> <span class="nav-text">Bakery算法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#缺点"><span class="nav-number">1.5.4.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法3：更高级的抽象"><span class="nav-number">1.6.</span> <span class="nav-text">方法3：更高级的抽象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更多精彩，关注“咋家”"><span class="nav-number">1.7.</span> <span class="nav-text">更多精彩，关注“咋家”</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">廿十</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
